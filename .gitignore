@@ -1,0 +1,33 @@
+# ──── Environment ────
+.env
+*.env.local
+
+# ──── Java / Maven ────
+backend/target/
+*.class
+*.jar
+*.log
+.idea/
+*.iml
+
+# ──── Node / Frontend ────
+node_modules/
+frontend/.next/
+frontend/out/
+poster-service/node_modules/
+
+# ──── OS ────
+.DS_Store
+Thumbs.db
+
+# ──── Docker ────
+docker-compose.override.yml
+
+# ──── SSL Certs ────
+nginx/certs/*.pem
+nginx/certs/*.key
+
+# ──── IDE ────
+.vscode/
+*.swp
+*.swo

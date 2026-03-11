@@ -1,0 +1,82 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mintbit-health
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:mintbit}
+    username: ${DB_USER:mintbit}
+    password: ${DB_PASSWORD:mintbit123}
+    driver-class-name: org.postgresql.Driver
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:redis123}
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:mintbit}
+    password: ${RABBITMQ_PASSWORD:mq123}
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 50MB
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# MinIO
+minio:
+  endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+  access-key: ${MINIO_ACCESS_KEY:minioadmin}
+  secret-key: ${MINIO_SECRET_KEY:minioadmin}
+  bucket:
+    report: health-reports
+    poster: health-posters
+    community: community-images
+    avatar: user-avatars
+
+# AI
+ai:
+  api-key: ${AI_API_KEY:}
+  base-url: ${AI_BASE_URL:https://api.anthropic.com}
+  model: ${AI_MODEL:claude-sonnet-4-20250514}
+
+# OCR
+ocr:
+  service-url: ${OCR_SERVICE_URL:http://localhost:8866}
+
+# Poster
+poster:
+  service-url: ${POSTER_SERVICE_URL:http://localhost:3001}
+
+# JWT
+jwt:
+  secret: ${JWT_SECRET:mintbit-health-jwt-secret-key-2024-please-change-in-production}
+  expiration: 86400000  # 24h
+
+# Knife4j
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  level:
+    com.mintbit.health: debug

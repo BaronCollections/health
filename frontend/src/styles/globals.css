@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --life-green: #6DB578;
+  --safe-gold: #F39C12;
+  --bg-cool: #F8FAFB;
+}
+
+body {
+  background-color: var(--bg-cool);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Glassmorphism utility */
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md rounded-2xl border border-white/30 shadow-md;
+  }
+}
