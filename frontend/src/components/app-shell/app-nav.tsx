@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 
 import { PRIMARY_NAV_ITEMS } from '@/config/app';
+import { useLocale } from '@/i18n/use-locale';
 import { cn } from '@/lib/utils';
 
 type AppNavProps = {
@@ -11,6 +12,7 @@ type AppNavProps = {
 };
 
 export function AppNav({ currentPath }: AppNavProps) {
+  const { t } = useLocale();
   const normalizedPath = useMemo(
     () => (currentPath === '' ? '/' : currentPath),
     [currentPath]
@@ -27,7 +29,7 @@ export function AppNav({ currentPath }: AppNavProps) {
             <Link
               key={item.href}
               href={item.href}
-              aria-label={item.a11yLabel}
+              aria-label={t(item.labelKey)}
               className={cn(
                 'flex flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[11px] font-medium transition-colors',
                 isActive
@@ -36,7 +38,7 @@ export function AppNav({ currentPath }: AppNavProps) {
               )}
             >
               <Icon className="h-4 w-4" strokeWidth={isActive ? 2.2 : 1.9} />
-              <span>{item.label}</span>
+              <span>{t(item.labelKey)}</span>
             </Link>
           );
         })}

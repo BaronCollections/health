@@ -1,12 +1,16 @@
+'use client';
+
 import { AppShell } from '@/components/app-shell/app-shell';
+import { useLocale } from '@/i18n/use-locale';
 
 export function CheckInScreen() {
+  const { t } = useLocale();
+
   return (
-    <AppShell currentPath="/check-in" title="Check-in">
+    <AppShell currentPath="/check-in" title={t('screen.checkInTitle')}>
       <section className="rounded-[28px] border border-mint-line/70 bg-white/88 p-6 shadow-[0_18px_34px_rgba(109,181,120,0.08)]">
         <p className="text-sm leading-6 text-mint-ink/72">
-          Daily adherence, streaks, and rewards will be attached after the
-          foundation layer is complete.
+          {t('screen.checkInBody')}
         </p>
       </section>
     </AppShell>

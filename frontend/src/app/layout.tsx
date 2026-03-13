@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { LocaleProvider } from '@/i18n/locale-context';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className={`${inter.className} bg-mint-canvas text-mint-ink antialiased`}>
-        {children}
+        <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>
   );

@@ -7,30 +7,28 @@ import {
   UserRound,
 } from 'lucide-react';
 
+import type { MessageKey } from '@/i18n/types';
+
 export type AppNavItem = {
   href: string;
   icon: LucideIcon;
-  label: string;
-  a11yLabel: string;
+  labelKey: MessageKey;
 };
 
 export const APP_NAME = 'MintBit';
-export const APP_TAGLINE = 'Precision nutrition for the one person that matters right now.';
 
 export const PRIMARY_NAV_ITEMS: AppNavItem[] = [
-  { href: '/', icon: Home, label: 'Home', a11yLabel: 'Home' },
-  { href: '/plan', icon: Activity, label: 'Plan', a11yLabel: 'Plan' },
+  { href: '/', icon: Home, labelKey: 'nav.home' },
+  { href: '/plan', icon: Activity, labelKey: 'nav.plan' },
   {
     href: '/check-in',
     icon: CalendarCheck2,
-    label: 'Check-in',
-    a11yLabel: 'Check-in',
+    labelKey: 'nav.checkIn',
   },
   {
     href: '/community',
     icon: AppWindow,
-    label: 'Community',
-    a11yLabel: 'Community',
+    labelKey: 'nav.community',
   },
-  { href: '/me', icon: UserRound, label: 'Me', a11yLabel: 'Me' },
+  { href: '/me', icon: UserRound, labelKey: 'nav.me' },
 ];

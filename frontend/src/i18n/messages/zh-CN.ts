@@ -1,0 +1,33 @@
+import type { MessageDictionary } from '../types';
+
+export const zhCNMessages: MessageDictionary = {
+  'nav.home': '首页',
+  'nav.plan': '方案',
+  'nav.checkIn': '打卡',
+  'nav.community': '社区',
+  'nav.me': '我的',
+  'language.switchToEnglish': 'English',
+  'language.switchToChinese': '中文',
+  'shell.eyebrow': 'MintBit',
+  'shell.foundationTitle': '第一阶段基础底座',
+  'shell.tagline': '为后续评估、推荐、社区与打卡建立统一的移动端骨架。',
+  'home.badge': '基础建设阶段',
+  'home.heading': '先把移动端骨架搭稳，再接健康闭环。',
+  'home.body':
+    '这一阶段先完成 MintBit 的应用壳层、双语系统、账号基础能力与安全入口，再进入问卷、OCR、方案和社区业务模块。',
+  'home.primaryCta': '查看方案壳层',
+  'home.secondaryCta': '查看个人中心壳层',
+  'home.card1': '五个一级入口已经按确认的信息架构落位。',
+  'home.card2': 'MintBit 品牌绿色 token 已经作为默认视觉基线接入。',
+  'home.card3': '小雅作为独立粒子助手层保留，不覆盖品牌主色系统。',
+  'screen.planTitle': '方案',
+  'screen.planBody': '推荐报告、产品展示、加入我的方案和历史画报将在下一里程碑接入这里。',
+  'screen.checkInTitle': '打卡',
+  'screen.checkInBody': '每日计划执行、连续打卡、积分和勋章会在基础层稳定后接入。',
+  'screen.communityTitle': '社区',
+  'screen.communityBody': '社区流、审核、分享和圈子治理将在完成双语和权限基础后接入。',
+  'screen.meTitle': '我的',
+  'screen.meCard1': '语言与地区偏好',
+  'screen.meCard2': '通知与 OCR 确认偏好',
+  'screen.meCard3': '隐私、权限与账号控制',
+};

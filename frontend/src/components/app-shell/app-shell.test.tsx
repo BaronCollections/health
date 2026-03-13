@@ -12,10 +12,10 @@ describe('AppShell', () => {
       </AppShell>
     );
 
-    expect(screen.getByRole('link', { name: /^home$/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /^plan$/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /^check-in$/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /^community$/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /^me$/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '首页' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '方案' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '打卡' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '社区' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '我的' })).toBeInTheDocument();
   });
 });
