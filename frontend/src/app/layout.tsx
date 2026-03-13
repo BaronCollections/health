@@ -1,26 +1,44 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import '@/styles/globals.css';
+import type React from "react"
+import type { Metadata, Viewport } from "next"
+import { Inter } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import "@/styles/globals.css"
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: 'MintBit 薄荷比特 - 个性化维生素AI推荐',
-  description: '基于AI的个性化维生素推荐平台，科学问卷+体检数据+智能分析，为你定制专属营养方案',
-};
+  title: "Morning - 你的专属健康管家",
+  description: "科学健康管理，每日打卡养成好习惯",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Morning",
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#90EE90",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="zh-CN">
-      <body className={inter.className}>
-        <main className="min-h-screen bg-background">
-          {children}
-        </main>
+      <body className={`font-sans antialiased ${inter.className}`}>
+        {children}
+        <Analytics />
       </body>
     </html>
-  );
+  )
 }
