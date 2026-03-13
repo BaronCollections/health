@@ -3,13 +3,24 @@
 @tailwind utilities;
 
 :root {
-  --life-green: #6DB578;
-  --safe-gold: #F39C12;
-  --bg-cool: #F8FAFB;
+  --mint-50: #f1f8f2;
+  --mint-100: #dcefe0;
+  --mint-200: #badfc2;
+  --mint-300: #93cda1;
+  --mint-400: #6db578;
+  --mint-500: #54995f;
+  --mint-600: #41794a;
+  --mint-700: #355744;
+  --mint-ink: #2d3436;
+  --mint-canvas: #f7faf8;
+  --mint-glow: #fdf5e6;
+  --mint-line: rgba(109, 181, 120, 0.18);
 }
 
 body {
-  background-color: var(--bg-cool);
+  background:
+    radial-gradient(circle at top right, rgba(109, 181, 120, 0.16), transparent 24%),
+    linear-gradient(180deg, #f9fcf9 0%, #f4f9f6 100%);
   font-family: 'Inter', system-ui, sans-serif;
 }
 
