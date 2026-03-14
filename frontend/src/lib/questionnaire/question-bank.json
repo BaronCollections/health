@@ -1,0 +1,1124 @@
+{
+  "meta": {
+    "name": "FFQ Question Bank",
+    "version": "1.0.0"
+  },
+  "scoring": {
+    "dimensionWeightsDefault": {
+      "lifestyle": 0.3,
+      "diet": 0.35,
+      "health": 0.25,
+      "goal": 0.1
+    },
+    "multiSelectScoringRule": {
+      "mode": "min"
+    }
+  },
+  "questions": [
+    {
+      "id": "B01",
+      "dimension": "basic",
+      "type": "single_choice",
+      "title": "你的性别是？",
+      "options": [
+        {
+          "label": "男",
+          "value": "male",
+          "score": null,
+          "tags": [
+            "male"
+          ]
+        },
+        {
+          "label": "女",
+          "value": "female",
+          "score": null,
+          "tags": [
+            "female"
+          ]
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "B02",
+      "dimension": "basic",
+      "type": "single_choice",
+      "title": "你的年龄是？",
+      "options": [
+        {
+          "label": "3岁以下",
+          "value": "age_0_3",
+          "score": null,
+          "tags": [
+            "child"
+          ]
+        },
+        {
+          "label": "4-12岁",
+          "value": "age_4_12",
+          "score": null,
+          "tags": [
+            "child"
+          ]
+        },
+        {
+          "label": "13-17岁",
+          "value": "age_13_17",
+          "score": null,
+          "tags": [
+            "teen"
+          ]
+        },
+        {
+          "label": "18-35岁",
+          "value": "age_18_35",
+          "score": null,
+          "tags": [
+            "adult"
+          ]
+        },
+        {
+          "label": "36-59岁",
+          "value": "age_36_59",
+          "score": null,
+          "tags": [
+            "adult"
+          ]
+        },
+        {
+          "label": "60-70岁",
+          "value": "age_60_70",
+          "score": null,
+          "tags": [
+            "senior"
+          ]
+        },
+        {
+          "label": "70岁以上",
+          "value": "age_70_plus",
+          "score": null,
+          "tags": [
+            "senior"
+          ]
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "B03",
+      "dimension": "basic",
+      "type": "group_input",
+      "title": "你的身高（cm）和体重（kg）是？",
+      "fields": [
+        {
+          "key": "heightCm",
+          "label": "身高(cm)",
+          "inputType": "number",
+          "min": 100,
+          "max": 250,
+          "required": true
+        },
+        {
+          "key": "weightKg",
+          "label": "体重(kg)",
+          "inputType": "number",
+          "min": 20,
+          "max": 200,
+          "required": true
+        }
+      ],
+      "required": true,
+      "showIf": []
+    },
+    {
+      "id": "B04",
+      "dimension": "basic",
+      "type": "single_choice",
+      "title": "你所在的地域是？",
+      "options": [
+        {
+          "label": "北方（京津冀/东北/西北）",
+          "value": "north",
+          "score": null
+        },
+        {
+          "label": "南方（江浙沪/华南/西南）",
+          "value": "south",
+          "score": null
+        },
+        {
+          "label": "中部（豫鄂湘皖）",
+          "value": "central",
+          "score": null
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "B05",
+      "dimension": "basic",
+      "type": "single_choice",
+      "title": "你目前的生理阶段是？",
+      "options": [
+        {
+          "label": "普通阶段",
+          "value": "female_general",
+          "score": null,
+          "tags": [
+            "female_general"
+          ]
+        },
+        {
+          "label": "备孕中",
+          "value": "female_preconception",
+          "score": null,
+          "tags": [
+            "female_preconception"
+          ]
+        },
+        {
+          "label": "孕期",
+          "value": "female_pregnant",
+          "score": null,
+          "tags": [
+            "female_pregnant"
+          ]
+        },
+        {
+          "label": "哺乳期",
+          "value": "female_lactation",
+          "score": null,
+          "tags": [
+            "female_lactation"
+          ]
+        },
+        {
+          "label": "更年期",
+          "value": "female_menopause",
+          "score": null,
+          "tags": [
+            "female_menopause"
+          ]
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "female"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L01",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你平均每天的睡眠时长是？",
+      "options": [
+        {
+          "label": "小于6小时",
+          "value": "lt6",
+          "score": 1
+        },
+        {
+          "label": "6-7小时",
+          "value": "6_7",
+          "score": 3
+        },
+        {
+          "label": "7-8小时",
+          "value": "7_8",
+          "score": 5
+        },
+        {
+          "label": "大于8小时",
+          "value": "gt8",
+          "score": 4
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "L02",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你入睡及夜间睡眠情况是？",
+      "options": [
+        {
+          "label": "难入睡+频繁夜醒",
+          "value": "bad_both",
+          "score": 1
+        },
+        {
+          "label": "难入睡/频繁夜醒",
+          "value": "bad_one",
+          "score": 2
+        },
+        {
+          "label": "入睡顺利，偶夜醒",
+          "value": "ok_some",
+          "score": 4
+        },
+        {
+          "label": "入睡顺利，一觉到天亮",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "L03",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你吸烟/饮酒习惯是？",
+      "options": [
+        {
+          "label": "经常吸烟+饮酒",
+          "value": "often_both",
+          "score": 1
+        },
+        {
+          "label": "吸烟/饮酒其一",
+          "value": "often_one",
+          "score": 2
+        },
+        {
+          "label": "偶尔吸烟/饮酒",
+          "value": "sometimes",
+          "score": 3
+        },
+        {
+          "label": "从不",
+          "value": "never",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "noneTags": [
+            "child",
+            "teen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你每周运动频率及强度是？",
+      "options": [
+        {
+          "label": "几乎不运动",
+          "value": "none",
+          "score": 1
+        },
+        {
+          "label": "1-2次，轻度（散步）",
+          "value": "light_1_2",
+          "score": 2
+        },
+        {
+          "label": "3-4次，中度（慢跑/瑜伽）",
+          "value": "mid_3_4",
+          "score": 4
+        },
+        {
+          "label": "5次以上，中高强度（健身/球类）",
+          "value": "high_5plus",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "L05",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你每天久坐（含电子设备）时长是？",
+      "options": [
+        {
+          "label": "大于8小时",
+          "value": "gt8",
+          "score": 1
+        },
+        {
+          "label": "6-8小时",
+          "value": "6_8",
+          "score": 2
+        },
+        {
+          "label": "4-6小时",
+          "value": "4_6",
+          "score": 3
+        },
+        {
+          "label": "小于4小时",
+          "value": "lt4",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "L06",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你近期记忆力及骨骼状况是？",
+      "options": [
+        {
+          "label": "记忆力明显衰退+频繁骨痛",
+          "value": "bad_both",
+          "score": 1
+        },
+        {
+          "label": "记忆力减退/骨痛其一",
+          "value": "bad_one",
+          "score": 2
+        },
+        {
+          "label": "记忆力正常，偶骨痛",
+          "value": "ok_some",
+          "score": 4
+        },
+        {
+          "label": "记忆力正常，无骨痛",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "senior"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你近期是否有跌倒风险？",
+      "options": [
+        {
+          "label": "近3个月跌倒过",
+          "value": "fell",
+          "score": 1
+        },
+        {
+          "label": "走路不稳，易绊倒",
+          "value": "unstable",
+          "score": 2
+        },
+        {
+          "label": "走路平稳，偶尔大意",
+          "value": "ok",
+          "score": 4
+        },
+        {
+          "label": "走路稳健，无风险",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "senior"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你的经期及经前不适情况是？",
+      "options": [
+        {
+          "label": "经期紊乱+严重经前不适",
+          "value": "bad_both",
+          "score": 1
+        },
+        {
+          "label": "经期紊乱/严重经前不适其一",
+          "value": "bad_one",
+          "score": 2
+        },
+        {
+          "label": "经期规律，轻微经前不适",
+          "value": "ok_some",
+          "score": 4
+        },
+        {
+          "label": "经期规律，无不适",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "female"
+          ]
+        },
+        {
+          "anyTags": [
+            "female_general",
+            "female_menopause"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "dimension": "lifestyle",
+      "type": "single_choice",
+      "title": "你每天户外活动及零食摄入情况是？",
+      "options": [
+        {
+          "label": "小于1小时户外活动+频繁吃零食",
+          "value": "bad_both",
+          "score": 1
+        },
+        {
+          "label": "小于1小时户外活动/频繁吃零食其一",
+          "value": "bad_one",
+          "score": 2
+        },
+        {
+          "label": "1-2小时户外活动，偶尔吃零食",
+          "value": "ok",
+          "score": 4
+        },
+        {
+          "label": "大于2小时户外活动，少吃/不吃零食",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "anyTags": [
+            "child",
+            "teen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E01",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你每天主食（米饭/面条/杂粮）摄入量是？",
+      "options": [
+        {
+          "label": "小于1碗",
+          "value": "lt1",
+          "score": 1
+        },
+        {
+          "label": "1-2碗",
+          "value": "1_2",
+          "score": 3
+        },
+        {
+          "label": "2-3碗",
+          "value": "2_3",
+          "score": 4
+        },
+        {
+          "label": "大于3碗",
+          "value": "gt3",
+          "score": 2
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "E02",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你每天蔬菜摄入量及种类是？",
+      "options": [
+        {
+          "label": "几乎不吃",
+          "value": "none",
+          "score": 1
+        },
+        {
+          "label": "1种，少量",
+          "value": "low_1",
+          "score": 2
+        },
+        {
+          "label": "2-3种，适量",
+          "value": "mid_2_3",
+          "score": 4
+        },
+        {
+          "label": "3种以上，充足",
+          "value": "high_3plus",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "E03",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你每天水果摄入量及种类是？",
+      "options": [
+        {
+          "label": "几乎不吃",
+          "value": "none",
+          "score": 1
+        },
+        {
+          "label": "1种，少量",
+          "value": "low_1",
+          "score": 2
+        },
+        {
+          "label": "2种，适量",
+          "value": "mid_2",
+          "score": 4
+        },
+        {
+          "label": "2种以上，充足",
+          "value": "high_2plus",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "E04",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你每周肉蛋（瘦肉/鸡蛋/鱼虾）摄入量是？",
+      "options": [
+        {
+          "label": "小于2次",
+          "value": "lt2",
+          "score": 1
+        },
+        {
+          "label": "2-4次",
+          "value": "2_4",
+          "score": 3
+        },
+        {
+          "label": "5-6次",
+          "value": "5_6",
+          "score": 4
+        },
+        {
+          "label": "每天1次及以上",
+          "value": "daily",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "E05",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你每天奶制品（牛奶/酸奶/奶酪）摄入量是？",
+      "options": [
+        {
+          "label": "几乎不喝",
+          "value": "none",
+          "score": 1
+        },
+        {
+          "label": "小于200ml",
+          "value": "lt200",
+          "score": 2
+        },
+        {
+          "label": "200-300ml",
+          "value": "200_300",
+          "score": 5
+        },
+        {
+          "label": "大于300ml",
+          "value": "gt300",
+          "score": 4
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "E06",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你家孩子辅食/正餐挑食、偏食情况是？",
+      "options": [
+        {
+          "label": "严重挑食，仅吃少数几种",
+          "value": "severe",
+          "score": 1
+        },
+        {
+          "label": "轻微挑食，部分食物不吃",
+          "value": "mild",
+          "score": 2
+        },
+        {
+          "label": "基本不挑食，偶尔抗拒",
+          "value": "ok",
+          "score": 4
+        },
+        {
+          "label": "不挑食，饮食均衡",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "child"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你的咀嚼能力及每日饮水量是？",
+      "options": [
+        {
+          "label": "咀嚼困难+小于800ml饮水量",
+          "value": "bad_both",
+          "score": 1
+        },
+        {
+          "label": "咀嚼一般/小于800ml饮水量其一",
+          "value": "bad_one",
+          "score": 2
+        },
+        {
+          "label": "咀嚼正常，800-1500ml饮水量",
+          "value": "ok",
+          "score": 4
+        },
+        {
+          "label": "咀嚼正常，大于1500ml饮水量",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "senior"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你的饮食口味偏好是？",
+      "description": "（高血压/糖尿病等人群可做联动风险提示）",
+      "options": [
+        {
+          "label": "重油重盐重糖",
+          "value": "heavy_all",
+          "score": 1
+        },
+        {
+          "label": "偏油/偏咸/偏甜其一",
+          "value": "heavy_one",
+          "score": 2
+        },
+        {
+          "label": "清淡，偶尔偏重",
+          "value": "light_sometimes",
+          "score": 4
+        },
+        {
+          "label": "长期清淡",
+          "value": "light_always",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "E09",
+      "dimension": "diet",
+      "type": "single_choice",
+      "title": "你是否规律补充叶酸/铁剂？",
+      "options": [
+        {
+          "label": "从不补充",
+          "value": "never",
+          "score": 1
+        },
+        {
+          "label": "偶尔补充",
+          "value": "rare",
+          "score": 2
+        },
+        {
+          "label": "间断规律补充",
+          "value": "sometimes",
+          "score": 4
+        },
+        {
+          "label": "每天规律补充",
+          "value": "daily",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "female"
+          ]
+        },
+        {
+          "anyTags": [
+            "female_preconception",
+            "female_pregnant",
+            "female_lactation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H01",
+      "dimension": "health",
+      "type": "multi_choice",
+      "title": "你是否有以下基础疾病？（可多选）",
+      "description": "多选计分：取最低分。",
+      "options": [
+        {
+          "label": "无基础疾病",
+          "value": "none",
+          "score": 5
+        },
+        {
+          "label": "高血压",
+          "value": "hypertension",
+          "score": 2
+        },
+        {
+          "label": "糖尿病",
+          "value": "diabetes",
+          "score": 2
+        },
+        {
+          "label": "高血脂",
+          "value": "hyperlipidemia",
+          "score": 2
+        },
+        {
+          "label": "其他慢性病",
+          "value": "other_chronic",
+          "score": 3
+        }
+      ],
+      "required": true,
+      "autoNext": false,
+      "showIf": []
+    },
+    {
+      "id": "H02",
+      "dimension": "health",
+      "type": "single_choice",
+      "title": "你近期是否有疲劳、头晕、眼干等不适症状？",
+      "options": [
+        {
+          "label": "频繁出现",
+          "value": "often",
+          "score": 1
+        },
+        {
+          "label": "偶尔出现",
+          "value": "sometimes",
+          "score": 3
+        },
+        {
+          "label": "极少出现",
+          "value": "rare",
+          "score": 4
+        },
+        {
+          "label": "从未出现",
+          "value": "never",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "H03",
+      "dimension": "health",
+      "type": "single_choice",
+      "title": "孩子近期生长发育及免疫力情况是？",
+      "options": [
+        {
+          "label": "生长缓慢+每月感冒大于等于2次",
+          "value": "bad_both",
+          "score": 1
+        },
+        {
+          "label": "生长缓慢/每月感冒大于等于2次其一",
+          "value": "bad_one",
+          "score": 2
+        },
+        {
+          "label": "生长正常，每月感冒1次",
+          "value": "ok",
+          "score": 4
+        },
+        {
+          "label": "生长正常，极少感冒",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "child"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H04",
+      "dimension": "health",
+      "type": "single_choice",
+      "title": "你近期视力/听力及慢性病控制情况是？",
+      "options": [
+        {
+          "label": "视力/听力明显退化+慢性病控制差",
+          "value": "bad_both",
+          "score": 1
+        },
+        {
+          "label": "其一退化/控制一般",
+          "value": "bad_one",
+          "score": 2
+        },
+        {
+          "label": "轻微退化，控制良好",
+          "value": "ok",
+          "score": 4
+        },
+        {
+          "label": "无退化，控制稳定",
+          "value": "good",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": [
+        {
+          "allTags": [
+            "senior"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H05",
+      "dimension": "health",
+      "type": "single_choice",
+      "title": "你是否正在服用药物或营养补充剂？",
+      "description": "用于后续药物相互作用提示",
+      "options": [
+        {
+          "label": "长期服用药物",
+          "value": "drug_long",
+          "score": 2
+        },
+        {
+          "label": "长期服用补剂",
+          "value": "supp_long",
+          "score": 3
+        },
+        {
+          "label": "偶尔服用",
+          "value": "sometimes",
+          "score": 4
+        },
+        {
+          "label": "从不服用",
+          "value": "never",
+          "score": 5
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "H06",
+      "dimension": "health",
+      "type": "single_choice",
+      "title": "你过往是否有重大疾病史？",
+      "options": [
+        {
+          "label": "有",
+          "value": "yes",
+          "score": 2
+        },
+        {
+          "label": "无",
+          "value": "no",
+          "score": 5
+        },
+        {
+          "label": "记不清",
+          "value": "unknown",
+          "score": 3
+        }
+      ],
+      "required": true,
+      "autoNext": true,
+      "showIf": []
+    },
+    {
+      "id": "G01",
+      "dimension": "goal",
+      "type": "multi_choice",
+      "title": "你核心的健康目标是？",
+      "description": "可多选；用于建议匹配优先级。",
+      "options": [
+        {
+          "label": "改善睡眠",
+          "value": "sleep",
+          "score": null
+        },
+        {
+          "label": "提升免疫力",
+          "value": "immunity",
+          "score": null
+        },
+        {
+          "label": "体重管理",
+          "value": "weight",
+          "score": null
+        },
+        {
+          "label": "皮肤状态优化",
+          "value": "skin",
+          "score": null
+        },
+        {
+          "label": "促进生长发育",
+          "value": "growth",
+          "score": null,
+          "showForTags": [
+            "child"
+          ]
+        },
+        {
+          "label": "增强体质",
+          "value": "strength",
+          "score": null,
+          "showForTags": [
+            "child"
+          ]
+        },
+        {
+          "label": "维护骨骼健康",
+          "value": "bone",
+          "score": null,
+          "showForTags": [
+            "senior"
+          ]
+        },
+        {
+          "label": "改善记忆力",
+          "value": "memory",
+          "score": null,
+          "showForTags": [
+            "senior"
+          ]
+        },
+        {
+          "label": "备孕调理",
+          "value": "preconception",
+          "score": null,
+          "showForTags": [
+            "female"
+          ]
+        },
+        {
+          "label": "经期护理",
+          "value": "menstrual",
+          "score": null,
+          "showForTags": [
+            "female"
+          ]
+        }
+      ],
+      "required": true,
+      "autoNext": false,
+      "showIf": []
+    }
+  ]
+}

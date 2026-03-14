@@ -1,0 +1,229 @@
+{
+  "titles": {
+    "B01": "What is your gender?",
+    "B02": "What is your age?",
+    "B03": "What are your height (cm) and weight (kg)?",
+    "B04": "Which region do you live in?",
+    "B05": "What is your current physiological stage?",
+    "L01": "How many hours do you sleep per day on average?",
+    "L02": "How is your sleep onset and nighttime sleep?",
+    "L03": "What are your smoking and drinking habits?",
+    "L04": "How often and how intensely do you exercise each week?",
+    "L05": "How long are you sedentary each day, including screen time?",
+    "L06": "How are your recent memory and bone conditions?",
+    "L07": "Have you recently had any fall risk?",
+    "L08": "How are your menstrual cycle and premenstrual discomfort?",
+    "L09": "How much outdoor activity and snacking do you have each day?",
+    "E01": "How much staple food (rice/noodles/whole grains) do you eat each day?",
+    "E02": "How much and how many kinds of vegetables do you eat each day?",
+    "E03": "How much and how many kinds of fruit do you eat each day?",
+    "E04": "How much meat and eggs (lean meat/eggs/fish/shrimp) do you eat each week?",
+    "E05": "How much dairy (milk/yogurt/cheese) do you consume each day?",
+    "E06": "How picky is your child with complementary foods or regular meals?",
+    "E07": "How are your chewing ability and daily water intake?",
+    "E08": "What is your taste preference?",
+    "E09": "Do you regularly supplement folic acid or iron?",
+    "H01": "Do you have any of the following underlying conditions? (Multiple choice)",
+    "H02": "Have you recently had fatigue, dizziness, dry eyes, or similar discomfort?",
+    "H03": "How are your child's recent growth, development, and immunity?",
+    "H04": "How are your recent vision/hearing and chronic disease control?",
+    "H05": "Are you currently taking medication or nutritional supplements?",
+    "H06": "Do you have a history of major illness?",
+    "G01": "What are your core health goals?"
+  },
+  "descriptions": {
+    "E08": "(Can be linked to risk prompts for users with hypertension, diabetes, and related conditions.)",
+    "H01": "Multi-select scoring: the lowest score is used.",
+    "H05": "Used for later drug interaction reminders.",
+    "G01": "Multiple selections allowed; used for recommendation priority."
+  },
+  "fields": {
+    "B03": {
+      "heightCm": "Height (cm)",
+      "weightKg": "Weight (kg)"
+    }
+  },
+  "options": {
+    "B01": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "B02": {
+      "age_0_3": "Under 3",
+      "age_4_12": "4-12",
+      "age_13_17": "13-17",
+      "age_18_35": "18-35",
+      "age_36_59": "36-59",
+      "age_60_70": "60-70",
+      "age_70_plus": "Over 70"
+    },
+    "B04": {
+      "north": "Northern China",
+      "south": "Southern China",
+      "central": "Central China"
+    },
+    "B05": {
+      "female_general": "General stage",
+      "female_preconception": "Trying to conceive",
+      "female_pregnant": "Pregnant",
+      "female_lactation": "Breastfeeding",
+      "female_menopause": "Menopause"
+    },
+    "L01": {
+      "lt6": "Less than 6 hours",
+      "6_7": "6-7 hours",
+      "7_8": "7-8 hours",
+      "gt8": "More than 8 hours"
+    },
+    "L02": {
+      "bad_both": "Difficulty falling asleep + frequent waking",
+      "bad_one": "Either difficulty falling asleep or frequent waking",
+      "ok_some": "Easy to fall asleep, occasional waking",
+      "good": "Fall asleep easily and sleep through the night"
+    },
+    "L03": {
+      "often_both": "Smoke and drink frequently",
+      "often_one": "Regularly do one of the two",
+      "sometimes": "Occasionally smoke or drink",
+      "never": "Never"
+    },
+    "L04": {
+      "none": "Almost never exercise",
+      "light_1_2": "1-2 times, light intensity (walking)",
+      "mid_3_4": "3-4 times, moderate intensity (jogging/yoga)",
+      "high_5plus": "5+ times, moderate to high intensity (gym/ball sports)"
+    },
+    "L05": {
+      "gt8": "More than 8 hours",
+      "6_8": "6-8 hours",
+      "4_6": "4-6 hours",
+      "lt4": "Less than 4 hours"
+    },
+    "L06": {
+      "bad_both": "Noticeable memory decline + frequent bone pain",
+      "bad_one": "Either memory decline or bone pain",
+      "ok_some": "Memory is normal, occasional bone pain",
+      "good": "Memory is normal, no bone pain"
+    },
+    "L07": {
+      "fell": "Fell within the past 3 months",
+      "unstable": "Unsteady walking, easy to trip",
+      "ok": "Walk steadily, occasional carelessness",
+      "good": "Walk steadily, no obvious risk"
+    },
+    "L08": {
+      "bad_both": "Irregular cycle + severe premenstrual discomfort",
+      "bad_one": "Either irregular cycle or severe premenstrual discomfort",
+      "ok_some": "Regular cycle with mild PMS",
+      "good": "Regular cycle with no discomfort"
+    },
+    "L09": {
+      "bad_both": "Less than 1 hour outdoors + frequent snacks",
+      "bad_one": "Either less than 1 hour outdoors or frequent snacks",
+      "ok": "1-2 hours outdoors, occasional snacks",
+      "good": "More than 2 hours outdoors, few or no snacks"
+    },
+    "E01": {
+      "lt1": "Less than 1 bowl",
+      "1_2": "1-2 bowls",
+      "2_3": "2-3 bowls",
+      "gt3": "More than 3 bowls"
+    },
+    "E02": {
+      "none": "Hardly any",
+      "low_1": "1 kind, small amount",
+      "mid_2_3": "2-3 kinds, moderate amount",
+      "high_3plus": "3+ kinds, plentiful"
+    },
+    "E03": {
+      "none": "Hardly any",
+      "low_1": "1 kind, small amount",
+      "mid_2": "2 kinds, moderate amount",
+      "high_2plus": "2+ kinds, plentiful"
+    },
+    "E04": {
+      "lt2": "Less than 2 times",
+      "2_4": "2-4 times",
+      "5_6": "5-6 times",
+      "daily": "Once a day or more"
+    },
+    "E05": {
+      "none": "Hardly ever",
+      "lt200": "Less than 200 ml",
+      "200_300": "200-300 ml",
+      "gt300": "More than 300 ml"
+    },
+    "E06": {
+      "severe": "Very picky, only a few foods accepted",
+      "mild": "Mildly picky, avoids some foods",
+      "ok": "Mostly not picky, occasional resistance",
+      "good": "Not picky, balanced diet"
+    },
+    "E07": {
+      "bad_both": "Chewing difficulty + under 800 ml water",
+      "bad_one": "Either chewing is average or water is under 800 ml",
+      "ok": "Chewing is normal, 800-1500 ml water",
+      "good": "Chewing is normal, more than 1500 ml water"
+    },
+    "E08": {
+      "heavy_all": "High oil, salt, and sugar",
+      "heavy_one": "Heavy in one of oil, salt, or sugar",
+      "light_sometimes": "Generally light, occasionally heavy",
+      "light_always": "Consistently light"
+    },
+    "E09": {
+      "never": "Never",
+      "rare": "Occasionally",
+      "sometimes": "Intermittently but regularly",
+      "daily": "Every day"
+    },
+    "H01": {
+      "none": "No underlying condition",
+      "hypertension": "Hypertension",
+      "diabetes": "Diabetes",
+      "hyperlipidemia": "High blood lipids",
+      "other_chronic": "Other chronic disease"
+    },
+    "H02": {
+      "often": "Frequently",
+      "sometimes": "Occasionally",
+      "rare": "Rarely",
+      "never": "Never"
+    },
+    "H03": {
+      "bad_both": "Slow growth + two or more colds each month",
+      "bad_one": "Either slow growth or two or more colds each month",
+      "ok": "Normal growth, one cold per month",
+      "good": "Normal growth, rarely catches a cold"
+    },
+    "H04": {
+      "bad_both": "Clear vision/hearing decline + poor disease control",
+      "bad_one": "Either decline or only average control",
+      "ok": "Mild decline, disease is well controlled",
+      "good": "No decline, disease is stable"
+    },
+    "H05": {
+      "drug_long": "Long-term medication use",
+      "supp_long": "Long-term supplement use",
+      "sometimes": "Occasional use",
+      "never": "Never"
+    },
+    "H06": {
+      "yes": "Yes",
+      "no": "No",
+      "unknown": "Can't remember"
+    },
+    "G01": {
+      "sleep": "Better sleep",
+      "immunity": "Stronger immunity",
+      "weight": "Weight management",
+      "skin": "Better skin condition",
+      "growth": "Support growth and development",
+      "strength": "Build a stronger constitution",
+      "bone": "Bone health",
+      "memory": "Better memory",
+      "preconception": "Preconception support",
+      "menstrual": "Menstrual care"
+    }
+  }
+}

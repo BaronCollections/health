@@ -72,6 +72,11 @@ export const zhCNMessages = {
   "profile.checkInCardBody": "养成坚持服用好习惯",
   "profile.checkInCardCta": "去打卡",
   "profile.settingsTitle": "设置",
+  "questionnaire.next": "下一步",
+  "questionnaire.generatingTitle": "正在生成报告...",
+  "questionnaire.generatingBody": "AI正在分析您的健康数据",
+  "questionnaire.completeTitle": "评估完成",
+  "questionnaire.completeBody": "即将跳转到您的专属报告",
 } as const satisfies MessageDictionary
 
 export const enMessages: Record<keyof typeof zhCNMessages, string> = {
@@ -146,6 +151,11 @@ export const enMessages: Record<keyof typeof zhCNMessages, string> = {
   "profile.checkInCardBody": "Build a consistent routine",
   "profile.checkInCardCta": "Go check in",
   "profile.settingsTitle": "Settings",
+  "questionnaire.next": "Next",
+  "questionnaire.generatingTitle": "Generating your report...",
+  "questionnaire.generatingBody": "AI is analyzing your health inputs.",
+  "questionnaire.completeTitle": "Assessment complete",
+  "questionnaire.completeBody": "Redirecting to your personal report.",
 }
 
 export const messagesByLocale: Record<Locale, Record<keyof typeof zhCNMessages, string>> = {
