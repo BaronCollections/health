@@ -59,7 +59,7 @@
 - [x] **Step 1: Run `node --test frontend/scripts/questionnaire-translations.test.mjs`**
 - [x] **Step 2: Run `npm run build` in `frontend`**
 - [x] **Step 3: Record the node status in this plan**
-- [ ] **Step 4: Commit and push the node**
+- [x] **Step 4: Commit and push the node**
 
 ## Node Status
 
@@ -67,6 +67,7 @@
 - Verified with:
   - `node --test frontend/scripts/questionnaire-translations.test.mjs`
   - `npm run build`
+- Pushed branch: `codex/local-prototype-h5`
 - Deferred to next node:
   - questionnaire entry/landing screen bilingualization if `AIHealthChat` becomes active again
   - report deep-section long-form localization
