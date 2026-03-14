@@ -3,6 +3,8 @@ import { useState, useRef, useEffect, useCallback } from "react"
 import { ChevronRight, Calendar, Flame, MessageCircle, ArrowLeft, X } from "lucide-react"
 import { SharedNav } from "./shared-nav"
 
+import { useLocale } from "@/i18n/use-locale"
+
 // 数字滚动动画组件
 function AnimatedNumber({ value, duration = 1000 }: { value: number, duration?: number }) {
   const [displayValue, setDisplayValue] = useState(value)
@@ -170,6 +172,7 @@ function PillIcon({ color, type }: { color: string, type: string }) {
 }
 
 export function MorningCheckin() {
+  const { locale, t } = useLocale()
   const [isLongPressing, setIsLongPressing] = useState(false)
   const [fillProgress, setFillProgress] = useState(0)
   const [showSuccess, setShowSuccess] = useState(false)
@@ -362,9 +365,9 @@ export function MorningCheckin() {
 
   return (
     <div className="min-h-screen bg-[#F5F5F5] flex flex-col max-w-md mx-auto relative">
-{/* 顶部状态栏 */}
+      {/* 顶部状态栏 */}
       <div className="bg-white px-4 py-3 flex items-center justify-center border-b border-border">
-        <span className="text-base font-medium text-foreground">Morning</span>
+        <span className="text-base font-medium text-foreground">{t("brand.name")}</span>
       </div>
 
       {/* 打卡成功弹窗 - 动态效果 */}
@@ -403,17 +406,17 @@ export function MorningCheckin() {
                   </div>
                   
                   {/* 文字 */}
-                  <p className="text-2xl font-bold text-foreground">打卡成功!</p>
+                  <p className="text-2xl font-bold text-foreground">{t("checkIn.successTitle")}</p>
                   
                   {/* 健康值增加 - 带闪烁 */}
                   <div className="flex items-center gap-2 px-4 py-2 bg-[#E8FFE8] rounded-full">
                     <Flame className="w-5 h-5 text-primary fill-primary animate-pulse" />
-                    <span className="text-primary font-bold text-lg">+10 健康值</span>
+                    <span className="text-primary font-bold text-lg">{t("checkIn.pointsReward")}</span>
                   </div>
                   
                   {/* 连续天数 */}
                   <p className="text-sm text-muted-foreground mt-1">
-                    已连续打卡 <span className="text-primary font-bold">{streakDays + 1}</span> 天
+                    {t("checkIn.streakPrefix")} <span className="text-primary font-bold">{streakDays + 1}</span> {t("checkIn.streakSuffix")}
                   </p>
                 </div>
                 
@@ -430,13 +433,13 @@ export function MorningCheckin() {
       <div className="bg-white px-4 py-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-lg font-bold text-foreground">每日打卡</h2>
-            <p className="text-sm text-muted-foreground">养成坚持服用好习惯</p>
+            <h2 className="text-lg font-bold text-foreground">{t("checkIn.dailyTitle")}</h2>
+            <p className="text-sm text-muted-foreground">{t("checkIn.dailySubtitle")}</p>
           </div>
           <div className="flex items-center gap-1 text-primary">
             <Flame className={`w-5 h-5 transition-all duration-300 ${checkedIn ? "fill-primary" : ""}`} />
             <span className="font-bold text-lg"><AnimatedNumber value={streakDays} /></span>
-            <span className="text-sm">天</span>
+            <span className="text-sm">{t("checkIn.streakSuffix")}</span>
           </div>
         </div>
 
@@ -473,13 +476,13 @@ export function MorningCheckin() {
                   <svg className="w-10 h-10 text-white mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-white font-bold">已打卡</span>
+                  <span className="text-white font-bold">{t("checkIn.checkedIn")}</span>
                 </>
               ) : (
                 <>
                   <Calendar className="w-8 h-8 text-white mb-1" />
-                  <span className="text-white font-bold text-lg">打卡</span>
-                  <span className="text-white/80 text-xs">长按3秒</span>
+                  <span className="text-white font-bold text-lg">{t("checkIn.action")}</span>
+                  <span className="text-white/80 text-xs">{t("checkIn.longPressHint")}</span>
                 </>
               )}
             </div>
@@ -490,15 +493,15 @@ export function MorningCheckin() {
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-[#FFF8E6] rounded-xl p-3 text-center">
             <p className="text-2xl font-bold text-foreground"><AnimatedNumber value={monthlyCheckins} /></p>
-            <p className="text-xs text-muted-foreground">本月打卡</p>
+            <p className="text-xs text-muted-foreground">{t("checkIn.monthly")}</p>
           </div>
           <div className="bg-[#E8FFE8] rounded-xl p-3 text-center">
             <p className="text-2xl font-bold text-foreground"><AnimatedNumber value={totalCheckins} /></p>
-            <p className="text-xs text-muted-foreground">累计打卡</p>
+            <p className="text-xs text-muted-foreground">{t("checkIn.total")}</p>
           </div>
           <div className="bg-[#FFF0F0] rounded-xl p-3 text-center">
             <p className="text-2xl font-bold text-foreground"><AnimatedNumber value={healthPoints} /></p>
-            <p className="text-xs text-muted-foreground">健康值</p>
+            <p className="text-xs text-muted-foreground">{t("checkIn.healthPoints")}</p>
           </div>
         </div>
       </div>
@@ -526,22 +529,22 @@ export function MorningCheckin() {
         <div className="flex items-center justify-center gap-4 mb-4 py-2 bg-[#F8F8F8] rounded-lg">
           <div className="text-center">
             <p className="text-lg font-bold text-primary">{checkedDays.length}</p>
-            <p className="text-[10px] text-muted-foreground">已打卡</p>
+            <p className="text-[10px] text-muted-foreground">{t("checkIn.checkedDays")}</p>
           </div>
           <div className="w-px h-8 bg-border" />
           <div className="text-center">
             <p className="text-lg font-bold text-foreground">{daysInMonth - checkedDays.length}</p>
-            <p className="text-[10px] text-muted-foreground">未打卡</p>
+            <p className="text-[10px] text-muted-foreground">{t("checkIn.pendingDays")}</p>
           </div>
           <div className="w-px h-8 bg-border" />
           <div className="text-center">
             <p className="text-lg font-bold text-primary">{Math.round(checkedDays.length / daysInMonth * 100)}%</p>
-            <p className="text-[10px] text-muted-foreground">完成率</p>
+            <p className="text-[10px] text-muted-foreground">{t("checkIn.completionRate")}</p>
           </div>
         </div>
         
         <div className="grid grid-cols-7 gap-1 text-center">
-          {["日", "一", "二", "三", "四", "五", "六"].map((d) => (
+          {(locale === "zh-CN" ? ["日", "一", "二", "三", "四", "五", "六"] : ["S", "M", "T", "W", "T", "F", "S"]).map((d) => (
             <div key={d} className="text-xs text-muted-foreground py-2 font-medium">{d}</div>
           ))}
           {Array.from({ length: firstDayOfMonth }).map((_, i) => (

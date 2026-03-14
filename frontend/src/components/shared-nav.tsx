@@ -3,15 +3,18 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Home, FileText, Calendar, Users, User } from "lucide-react"
 
+import { useLocale } from "@/i18n/use-locale"
+
 export function SharedNav() {
   const pathname = usePathname()
+  const { t } = useLocale()
 
   const tabs = [
-    { href: "/", icon: Home, label: "首页" },
-    { href: "/report", icon: FileText, label: "报告" },
-    { href: "/checkin", icon: Calendar, label: "打卡" },
-    { href: "/community", icon: Users, label: "社区" },
-    { href: "/profile", icon: User, label: "我的" },
+    { href: "/", icon: Home, label: t("nav.home") },
+    { href: "/report", icon: FileText, label: t("nav.plan") },
+    { href: "/checkin", icon: Calendar, label: t("nav.checkIn") },
+    { href: "/community", icon: Users, label: t("nav.community") },
+    { href: "/profile", icon: User, label: t("nav.me") },
   ]
 
   return (

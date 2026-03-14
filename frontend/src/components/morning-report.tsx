@@ -6,6 +6,8 @@ import { ChevronRight, Check } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { SharedNav } from "./shared-nav"
 
+import { useLocale } from "@/i18n/use-locale"
+
 // 模拟用户报告数据 - 完整内容
 const reportData = {
   name: "baron",
@@ -86,6 +88,7 @@ function PillIcon({ color, type }: { color: string; type: string }) {
 
 export function MorningReport() {
   const router = useRouter()
+  const { t } = useLocale()
   const [currentPage, setCurrentPage] = useState(0)
   const [selectedGoal, setSelectedGoal] = useState<string>(reportData.improvementGoals[0])
   const containerRef = useRef<HTMLDivElement>(null)
@@ -180,7 +183,7 @@ export function MorningReport() {
     <div className="min-h-screen bg-white flex flex-col max-w-md mx-auto relative">
       {/* 顶部导航 */}
       <div className="flex items-center justify-center px-4 py-3 bg-white border-b border-border">
-        <span className="text-base font-medium text-foreground">Morning</span>
+        <span className="text-base font-medium text-foreground">{t("brand.name")}</span>
       </div>
 
       {/* 整体可滚动区域 */}
@@ -203,14 +206,17 @@ export function MorningReport() {
               <div className="min-h-full bg-white px-4 py-4">
                 {/* 头部标题 */}
                 <div className="mb-4">
-                  <h1 className="text-lg font-bold text-foreground">{reportData.name}的</h1>
-                  <h2 className="text-lg font-bold text-foreground">个人营养画报</h2>
+                  <h1 className="text-lg font-bold text-foreground">
+                    {reportData.name}
+                    {t("report.cover.ownerSuffix")}
+                  </h1>
+                  <h2 className="text-lg font-bold text-foreground">{t("report.cover.posterTitle")}</h2>
                 </div>
 
                 {/* BMI 指数 */}
                 <div className="mb-4">
                   <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-sm text-muted-foreground">BMI 指数</span>
+                    <span className="text-sm text-muted-foreground">{t("report.cover.bmiLabel")}</span>
                     <span className="text-3xl font-bold text-foreground ml-auto">{reportData.bmi}</span>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">{reportData.bmiDesc}</p>
@@ -218,7 +224,7 @@ export function MorningReport() {
 
                 {/* 综合得分雷达图 */}
                 <div className="mb-4">
-                  <p className="text-sm text-muted-foreground mb-4">你的健康测评综合得分：<span className="text-2xl font-bold text-foreground ml-2">{reportData.totalScore}</span><span className="text-sm text-muted-foreground">/100</span></p>
+                  <p className="text-sm text-muted-foreground mb-4">{t("report.cover.scoreLabel")}<span className="text-2xl font-bold text-foreground ml-2">{reportData.totalScore}</span><span className="text-sm text-muted-foreground">/100</span></p>
                   <p className="text-[10px] text-muted-foreground mb-4">{reportData.scoreDesc}</p>
                   
                   {/* 雷达图 */}
@@ -263,7 +269,7 @@ export function MorningReport() {
 
                 {/* 本次改善目标 - 可点击跳转 */}
                 <div className="mb-4">
-                  <h3 className="text-sm font-medium text-foreground mb-3">本次改善目标：</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-3">{t("report.cover.goalsLabel")}</h3>
                   <div className="flex flex-wrap gap-2">
                     {reportData.improvementGoals.map((goal, i) => (
                       <button 
@@ -279,7 +285,7 @@ export function MorningReport() {
 
                 {/* 首要目标 */}
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-sm text-muted-foreground">首要目标：</span>
+                  <span className="text-sm text-muted-foreground">{t("report.cover.primaryGoalLabel")}</span>
                   <span className="flex items-center gap-1.5 px-3 py-1.5 bg-[#E8F5E8] rounded-full text-sm text-primary font-medium">
                     <span className="w-4 h-4 rounded-full border-2 border-primary flex items-center justify-center">
                       <span className="w-2 h-2 rounded-full bg-primary" />
@@ -290,7 +296,7 @@ export function MorningReport() {
 
                 {/* 滑动提示 */}
                 <div className="text-center pt-4">
-                  <p className="text-xs text-muted-foreground">左滑查看详细建议</p>
+                  <p className="text-xs text-muted-foreground">{t("report.cover.swipeHint")}</p>
                   <ChevronRight className="w-4 h-4 text-muted-foreground mx-auto mt-1" />
                 </div>
               </div>
@@ -301,7 +307,7 @@ export function MorningReport() {
               <div className="min-h-full bg-white px-4 py-4">
                 {/* 每日小目标 */}
                 <div className="mb-8">
-                  <h3 className="text-base font-bold text-foreground mb-4">每日小目标</h3>
+                  <h3 className="text-base font-bold text-foreground mb-4">{t("report.dailyGoal.title")}</h3>
                   <div className="flex gap-4">
                     <div className="text-4xl">{reportData.dailyGoal.icon}</div>
                     <div className="flex-1">
@@ -313,7 +319,7 @@ export function MorningReport() {
 
                 {/* 特殊提醒 */}
                 <div>
-                  <h3 className="text-base font-bold text-foreground mb-4">特殊提醒</h3>
+                  <h3 className="text-base font-bold text-foreground mb-4">{t("report.specialReminders.title")}</h3>
                   <div className="space-y-4">
                     {reportData.specialReminders.map((reminder, i) => (
                       <div key={i} className="flex gap-3">

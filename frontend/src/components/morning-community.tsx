@@ -5,6 +5,8 @@ import React from "react"
 import { Heart, MessageCircle, Share2, MoreHorizontal, ImageIcon, Plus, ChevronRight, ArrowLeft, X, Download } from "lucide-react"
 import { SharedNav } from "./shared-nav"
 
+import { useLocale } from "@/i18n/use-locale"
+
 // 评论数据类型
 type Comment = {
   id: number
@@ -121,7 +123,8 @@ const allCircles = [
 const posts = initialPosts; // Declare the posts variable
 
 export function MorningCommunity() {
-  const [activeTab, setActiveTab] = useState<"推荐" | "打卡圈">("推荐")
+  const { t } = useLocale()
+  const [activeTab, setActiveTab] = useState<"recommended" | "circles">("recommended")
   const [postsState, setPostsState] = useState<Post[]>(initialPosts)
   const [showPostModal, setShowPostModal] = useState(false)
   const [newPostContent, setNewPostContent] = useState("")
@@ -422,37 +425,40 @@ setCommentText("")
     <div className="min-h-screen bg-[#F5F5F5] flex flex-col max-w-md mx-auto relative">
       {/* 顶部状态栏 */}
       <div className="bg-white px-4 py-3 flex items-center justify-center border-b border-border">
-        <span className="text-base font-medium text-foreground">Morning</span>
+        <span className="text-base font-medium text-foreground">{t("brand.name")}</span>
       </div>
 
       {/* Tab导航 */}
       <div className="bg-white px-4">
         <div className="flex gap-6">
-          {(["推荐", "打卡圈"] as const).map((tab) => (
+          {([
+            { key: "recommended", label: t("community.tab.recommended") },
+            { key: "circles", label: t("community.tab.circles") },
+          ] as const).map((tab) => (
             <button
-              key={tab}
+              key={tab.key}
               onClick={() => {
-                setActiveTab(tab)
-                if (tab === "打卡圈") setSelectedCircle(null)
+                setActiveTab(tab.key)
+                if (tab.key === "circles") setSelectedCircle(null)
               }}
               className={`py-3 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === tab
+                activeTab === tab.key
                   ? "text-primary border-primary"
                   : "text-muted-foreground border-transparent"
               }`}
             >
-              {tab}
+              {tab.label}
             </button>
           ))}
         </div>
       </div>
 
       {/* 打卡圈Tab内容 */}
-      {activeTab === "打卡圈" && (
+      {activeTab === "circles" && (
         <div className="bg-white px-4 py-4">
 {/* 热门圈子标签 */}
           <div className="mb-4">
-            <h3 className="font-medium text-foreground mb-3">热门圈子</h3>
+            <h3 className="font-medium text-foreground mb-3">{t("community.hotCircles")}</h3>
             <div className="flex flex-wrap gap-2">
               {allCircles.map((circle, i) => {
                 const tagColors = [
@@ -495,7 +501,7 @@ setCommentText("")
                       <p className="text-sm text-muted-foreground">{circle.members.toLocaleString()}人已加入</p>
                     </div>
                     <button className="px-5 py-2 bg-primary rounded-full text-sm font-medium text-white">
-                      加入
+                      {t("community.join")}
                     </button>
                   </div>
                   <p className="text-sm text-muted-foreground">{circle.desc}</p>
@@ -507,7 +513,7 @@ setCommentText("")
           {/* 全部圈子列表 */}
           <div>
             <h3 className="font-medium text-foreground mb-3">
-              {selectedCircle ? `#${selectedCircle} 的动态` : "全部圈子"}
+              {selectedCircle ? `#${selectedCircle}${t("community.circleFeedSuffix")}` : t("community.allCircles")}
             </h3>
             {!selectedCircle ? (
               <div className="space-y-3">
@@ -548,8 +554,8 @@ setCommentText("")
                   </div>
                 ) : (
                   <div className="text-center py-8 text-muted-foreground">
-                    <p className="text-sm font-medium">暂无动态</p>
-                    <p className="text-xs mt-1">成为第一个发布动态的人吧</p>
+                    <p className="text-sm font-medium">{t("community.emptyTitle")}</p>
+                    <p className="text-xs mt-1">{t("community.emptyBody")}</p>
                   </div>
                 )}
               </>
@@ -567,7 +573,7 @@ setCommentText("")
       )}
 
       {/* 帖子列表 */}
-      {activeTab === "推荐" && (
+      {activeTab === "recommended" && (
         <div className="flex-1 mt-2 space-y-2">
         {postsState.map((post) => (
           <div key={post.id} className="bg-white px-4 py-4">
@@ -991,8 +997,8 @@ setCommentText("")
                       <span className="text-white text-xs font-bold">M</span>
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-foreground">Morning</p>
-                      <p className="text-[10px] text-muted-foreground">健康生活，从早开始</p>
+                      <p className="text-xs font-medium text-foreground">{t("brand.name")}</p>
+                      <p className="text-[10px] text-muted-foreground">{t("community.shareTagline")}</p>
                     </div>
                   </div>
                   <div className="w-16 h-16 bg-[#F8F8F8] rounded-lg flex items-center justify-center">

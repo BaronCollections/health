@@ -5,8 +5,11 @@ import { ArrowLeft, Coins, ChevronRight, CreditCard, Truck, Package, Star, Rotat
 import { useRouter } from "next/navigation"
 import { SharedNav } from "./shared-nav"
 
+import { useLocale } from "@/i18n/use-locale"
+
 export function MorningProfile() {
   const router = useRouter()
+  const { t } = useLocale()
   const [showServiceModal, setShowServiceModal] = useState(false)
   const [serviceType, setServiceType] = useState("")
   const [copied, setCopied] = useState(false)
@@ -427,7 +430,7 @@ export function MorningProfile() {
     <div className="min-h-screen bg-[#F5F5F5] flex flex-col max-w-md mx-auto relative">
 {/* 顶部状态栏 */}
       <div className="bg-white px-4 py-3 flex items-center justify-center border-b border-border">
-        <span className="text-base font-medium text-foreground">Morning</span>
+        <span className="text-base font-medium text-foreground">{t("brand.name")}</span>
       </div>
 
       {/* 用户信息区 */}
@@ -447,18 +450,18 @@ export function MorningProfile() {
                 )}
               </div>
               <div className="absolute -bottom-1 -right-1 bg-primary text-[8px] text-foreground px-1.5 py-0.5 rounded-full">
-                会员
+                {t("profile.memberBadge")}
               </div>
             </button>
             <div>
               <p className="font-medium text-foreground">{nickname}</p>
-              <p className="text-xs text-muted-foreground">立即成为会员</p>
+              <p className="text-xs text-muted-foreground">{t("profile.becomeMember")}</p>
             </div>
           </div>
           {/* 健康值 */}
           <div className="text-right">
             <div className="flex items-center gap-1">
-              <span className="text-xs text-muted-foreground">健康值</span>
+              <span className="text-xs text-muted-foreground">{t("profile.healthPoints")}</span>
             </div>
             <div className="flex items-center gap-1 mt-1">
               <div className="w-4 h-4 bg-primary rounded-full" />
@@ -477,11 +480,11 @@ export function MorningProfile() {
             <div className="w-6 h-6 bg-foreground rounded flex items-center justify-center">
               <span className="text-primary text-xs font-bold">V</span>
             </div>
-            <span className="text-sm font-medium text-foreground">成为会员</span>
-            <span className="text-xs text-foreground/80">入会立得 200 健康值</span>
+            <span className="text-sm font-medium text-foreground">{t("profile.memberBannerTitle")}</span>
+            <span className="text-xs text-foreground/80">{t("profile.memberBannerBody")}</span>
           </div>
           <div className="flex items-center gap-1">
-            <span className="text-sm font-medium text-foreground">查看权益</span>
+            <span className="text-sm font-medium text-foreground">{t("profile.memberBannerCta")}</span>
             <ChevronRight className="w-4 h-4 text-foreground" />
           </div>
         </button>
@@ -519,18 +522,18 @@ export function MorningProfile() {
         {/* 邀请有礼 */}
         <div className="flex-1 bg-white rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-sm font-medium text-foreground">邀请有礼</span>
+            <span className="text-sm font-medium text-foreground">{t("profile.inviteCardTitle")}</span>
           </div>
-          <p className="text-xs text-muted-foreground mb-3">每邀1位好友下单：</p>
+          <p className="text-xs text-muted-foreground mb-3">{t("profile.inviteCardBody")}</p>
           <div className="flex items-baseline gap-1">
             <span className="text-3xl font-bold text-primary">30</span>
-            <span className="text-sm text-foreground">健康值</span>
+            <span className="text-sm text-foreground">{t("profile.healthPoints")}</span>
           </div>
           <button 
             onClick={() => router.push("/community")}
             className="mt-3 px-4 py-1.5 border border-foreground rounded-full text-xs font-medium text-foreground"
           >
-            去邀请
+            {t("profile.inviteCardCta")}
           </button>
         </div>
 
@@ -538,21 +541,21 @@ export function MorningProfile() {
         <div className="flex-1 bg-white rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-4 h-4 bg-primary rounded-full" />
-            <span className="text-sm font-medium text-foreground">打卡获健康值</span>
+            <span className="text-sm font-medium text-foreground">{t("profile.checkInCardTitle")}</span>
           </div>
-          <p className="text-xs text-muted-foreground mb-6">养成坚持服用好习惯</p>
+          <p className="text-xs text-muted-foreground mb-6">{t("profile.checkInCardBody")}</p>
           <button 
             onClick={() => router.push("/checkin")}
             className="px-4 py-1.5 border border-foreground rounded-full text-xs font-medium text-foreground"
           >
-            去打卡
+            {t("profile.checkInCardCta")}
           </button>
         </div>
       </div>
 
       {/* 设置 */}
       <div className="bg-white mt-2 px-4 py-4">
-        <h3 className="font-medium text-foreground mb-4">设置</h3>
+        <h3 className="font-medium text-foreground mb-4">{t("profile.settingsTitle")}</h3>
         <div className="space-y-0">
           {/* 深色模式开关 */}
           <div className="flex items-center justify-between py-3 border-b border-border">

@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation"
 import { SharedNav } from "./shared-nav"
 import { useState, useEffect } from "react"
 
+import { useLocale } from "@/i18n/use-locale"
+
 // 用户评价数据
 const testimonials = [
   {
@@ -50,6 +52,7 @@ const testimonials = [
 
 export function MorningHome() {
   const router = useRouter()
+  const { t } = useLocale()
   const [currentSlide, setCurrentSlide] = useState(0)
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
@@ -86,7 +89,7 @@ export function MorningHome() {
     <div className="min-h-screen bg-white flex flex-col max-w-md mx-auto relative">
       {/* 顶部状态栏 */}
       <div className="bg-white px-4 py-3 flex items-center justify-center border-b border-border">
-        <span className="text-base font-medium text-foreground">Morning</span>
+        <span className="text-base font-medium text-foreground">{t("brand.name")}</span>
       </div>
 
       {/* Hero区域 */}
@@ -97,22 +100,22 @@ export function MorningHome() {
           <div className="absolute top-8 right-8 w-16 h-16 bg-[#D0F5D0] rounded-full opacity-60 animate-float-delayed" />
           <div className="relative z-10">
             <h1 className="text-2xl font-bold text-foreground leading-tight mb-2">
-              私人定制，
+              {t("home.hero.titleLine1")}
               <br />
-              只补充所需。
+              {t("home.hero.titleLine2")}
             </h1>
             <div className="flex gap-3 mt-4">
               <button 
                 onClick={() => router.push("/report")}
                 className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground border border-border"
               >
-                全部产品
+                {t("home.hero.allProducts")}
               </button>
               <button 
                 onClick={() => router.push("/questionnaire")}
                 className="px-4 py-2 bg-primary rounded-full text-sm font-medium text-white"
               >
-                精准测评
+                {t("home.hero.startAssessment")}
               </button>
             </div>
           </div>
@@ -126,17 +129,17 @@ export function MorningHome() {
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                   <span className="text-white text-sm font-bold">M</span>
                 </div>
-                <span className="text-sm font-medium text-foreground">定制营养</span>
+                <span className="text-sm font-medium text-foreground">{t("home.hero.cardTitle")}</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                根据测评了解身体，更有针对性补充营养
+                {t("home.hero.cardBody")}
               </p>
             </div>
             <button 
               onClick={() => router.push("/questionnaire")}
               className="ml-4 px-4 py-2 bg-primary/10 rounded-full text-xs font-medium text-primary"
             >
-              立即测评
+              {t("home.hero.cardCta")}
             </button>
           </div>
         </div>
@@ -144,8 +147,8 @@ export function MorningHome() {
 
       {/* 简单3步 */}
       <div className="px-5 py-6 border-t border-border">
-        <h2 className="text-lg font-bold text-primary text-center mb-2">3 步搞定专属营养，简单到离谱</h2>
-        <p className="text-sm text-muted-foreground text-center mb-6">AI 精准分析 · 无推销纯建议 · 社区陪伴成长</p>
+        <h2 className="text-lg font-bold text-primary text-center mb-2">{t("home.steps.title")}</h2>
+        <p className="text-sm text-muted-foreground text-center mb-6">{t("home.steps.subtitle")}</p>
         
         <div className="flex gap-2">
           {/* 第一步 */}
@@ -158,8 +161,8 @@ export function MorningHome() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
               </svg>
             </div>
-            <h4 className="font-bold text-foreground text-xs text-center mb-1">1 分钟轻量评估</h4>
-            <p className="text-[10px] text-muted-foreground text-center leading-relaxed">不用专业知识，勾选饮食/作息/运动偏好</p>
+            <h4 className="font-bold text-foreground text-xs text-center mb-1">{t("home.steps.assessment.title")}</h4>
+            <p className="text-[10px] text-muted-foreground text-center leading-relaxed">{t("home.steps.assessment.body")}</p>
           </button>
 
           {/* 第二步 */}
@@ -172,8 +175,8 @@ export function MorningHome() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
               </svg>
             </div>
-            <h4 className="font-bold text-foreground text-xs text-center mb-1">AI 科学解读</h4>
-            <p className="text-[10px] text-muted-foreground text-center leading-relaxed">只给科学建议，标注营养缺口，无推销</p>
+            <h4 className="font-bold text-foreground text-xs text-center mb-1">{t("home.steps.ai.title")}</h4>
+            <p className="text-[10px] text-muted-foreground text-center leading-relaxed">{t("home.steps.ai.body")}</p>
           </button>
 
           {/* 第三步 */}
@@ -186,16 +189,16 @@ export function MorningHome() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
               </svg>
             </div>
-            <h4 className="font-bold text-foreground text-xs text-center mb-1">社区打卡同行</h4>
-            <p className="text-[10px] text-muted-foreground text-center leading-relaxed">加入健康圈子，互相监督成长</p>
+            <h4 className="font-bold text-foreground text-xs text-center mb-1">{t("home.steps.community.title")}</h4>
+            <p className="text-[10px] text-muted-foreground text-center leading-relaxed">{t("home.steps.community.body")}</p>
           </button>
         </div>
       </div>
 
       {/* 用户评价轮播 */}
       <div className="px-5 py-6 border-t border-border">
-        <h2 className="text-base font-bold text-foreground mb-1">真实用户，真实反馈</h2>
-        <p className="text-xs text-muted-foreground mb-4">Real Stories from Real Users</p>
+        <h2 className="text-base font-bold text-foreground mb-1">{t("home.testimonials.title")}</h2>
+        <p className="text-xs text-muted-foreground mb-4">{t("home.testimonials.subtitle")}</p>
         
         {/* 轮播容器 - 支持手势滑动 */}
         <div 
