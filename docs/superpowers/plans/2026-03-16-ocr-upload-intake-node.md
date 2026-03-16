@@ -62,7 +62,7 @@
 - [x] **Step 1: Run `node --test frontend/scripts/ocr-upload-translations.test.mjs`**
 - [x] **Step 2: Run `npm run build` in `frontend`**
 - [x] **Step 3: Record the node status in this plan**
-- [ ] **Step 4: Commit and push the node**
+- [x] **Step 4: Commit and push the node**
 
 ## Node Status
 
@@ -71,6 +71,7 @@
   - `node --test frontend/scripts/ocr-upload-translations.test.mjs`
   - `node --test frontend/scripts/report-ocr-translations.test.mjs`
   - `npm run build`
+- Pushed branch: `codex/local-prototype-h5`
 - Implementation notes:
   - OCR flow now lands on `/ocr-upload`, supports file picking, and simulates a processing state before confirmation
   - upload file metadata is persisted through `frontend/src/lib/ocr/session.ts` and surfaced inside the confirmation page
