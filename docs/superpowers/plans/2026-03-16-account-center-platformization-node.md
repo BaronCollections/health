@@ -23,10 +23,10 @@
 - Create: `frontend/src/lib/account/state.test.ts`
 - Create: `frontend/scripts/account-bilingual-resources.test.mjs`
 
-- [ ] **Step 1: Write a failing Node test for notification-summary, feedback-summary, export-state, and deletion-state helpers**
-- [ ] **Step 2: Write a failing resource coverage test that asserts both locale files expose the same account-center keys**
-- [ ] **Step 3: Define typed account-center shapes for profile cards, notification summaries, FAQ modules, feedback records, privacy sections, export requests, deletion requests, and audit explanations**
-- [ ] **Step 4: Implement the minimum state helpers and locale loaders so `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts` and `node --test frontend/scripts/account-bilingual-resources.test.mjs` pass**
+- [x] **Step 1: Write a failing Node test for notification-summary, feedback-summary, export-state, and deletion-state helpers**
+- [x] **Step 2: Write a failing resource coverage test that asserts both locale files expose the same account-center keys**
+- [x] **Step 3: Define typed account-center shapes for profile cards, notification summaries, FAQ modules, feedback records, privacy sections, export requests, deletion requests, and audit explanations**
+- [x] **Step 4: Implement the minimum state helpers and locale loaders so `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts` and `node --test frontend/scripts/account-bilingual-resources.test.mjs` pass**
 
 ### Task 2: Replace the profile shell with the platform account center entry
 
@@ -37,10 +37,10 @@
 - Modify: `frontend/src/components/shared-header.tsx`
 - Delete: `frontend/src/components/morning-profile.tsx`
 
-- [ ] **Step 1: Build the `/profile` dashboard with five sections: messages, help/support, privacy/permissions, data/audit, account/preferences**
-- [ ] **Step 2: Surface unread counts, open feedback counts, export request state, and deletion request state in summary cards**
-- [ ] **Step 3: Route legacy `/pricing` entry into the new account-center shell so the app has one trusted account entry**
-- [ ] **Step 4: Re-run `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`, `node --test frontend/scripts/account-bilingual-resources.test.mjs`, and `npm run build` in `frontend`**
+- [x] **Step 1: Build the `/profile` dashboard with five sections: messages, help/support, privacy/permissions, data/audit, account/preferences**
+- [x] **Step 2: Surface unread counts, open feedback counts, export request state, and deletion request state in summary cards**
+- [x] **Step 3: Route legacy `/pricing` entry into the new account-center shell so the app has one trusted account entry**
+- [x] **Step 4: Re-run `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`, `node --test frontend/scripts/account-bilingual-resources.test.mjs`, and `npm run build` in `frontend`**
 
 ## Chunk 2: Notifications Center
 
@@ -170,7 +170,7 @@
 ## Node Status
 
 - Current node: `account center platformization`
-- Current completion state: `planning approved, implementation not started`
+- Current completion state: `Chunk 1 complete, Chunk 2 notifications in progress`
 - Progress policy:
   - keep overall Phase 1 node progress at `10 / 12 = 83%` until all four internal delivery chunks are complete
   - only move to `11 / 12 = 92%` after account shell, notifications, help/feedback, and privacy/data-control flows are all verified

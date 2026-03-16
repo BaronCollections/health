@@ -1,5 +1,5 @@
-import { MorningProfile } from "@/components/morning-profile"
+import { AccountHome } from "@/components/account/account-home"
 
 export default function Profile() {
-  return <MorningProfile />
+  return <AccountHome />
 }

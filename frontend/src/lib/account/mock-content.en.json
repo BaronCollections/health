@@ -1,0 +1,215 @@
+{
+  "home": {
+    "eyebrow": "Account center",
+    "title": "Keep messages, support, and trust controls in one place",
+    "subtitle": "From notifications and feedback to privacy documents, export requests, and deletion requests, this is the unified MintBit account platform entry.",
+    "cards": [
+      {
+        "id": "messages",
+        "title": "Messages",
+        "body": "Review system notifications, community interactions, and check-in reminders while managing unread state.",
+        "cta": "Open notifications",
+        "href": "/profile/notifications"
+      },
+      {
+        "id": "help",
+        "title": "Help and support",
+        "body": "Read FAQs, contact support, submit feedback, and track handling progress.",
+        "cta": "Open help center",
+        "href": "/profile/help"
+      },
+      {
+        "id": "privacy",
+        "title": "Privacy and permissions",
+        "body": "Review policies, OCR data usage, community visibility, and notification permissions.",
+        "cta": "Open privacy center",
+        "href": "/profile/privacy"
+      },
+      {
+        "id": "data",
+        "title": "Data and audit",
+        "body": "Start export or deletion requests and review key operation transparency notes.",
+        "cta": "Review data controls",
+        "href": "/profile/privacy/export"
+      },
+      {
+        "id": "preferences",
+        "title": "Account and preferences",
+        "body": "Manage binding status, OCR authorization, language, and notification preferences.",
+        "cta": "Review account settings",
+        "href": "/profile/security"
+      }
+    ],
+    "summary": {
+      "unreadLabel": "Unread",
+      "feedbackLabel": "Open feedback",
+      "exportLabel": "Export status",
+      "deleteLabel": "Delete request"
+    }
+  },
+  "notifications": [
+    {
+      "id": "notif-1",
+      "type": "system",
+      "status": "unread",
+      "title": "Your data export package has started generating",
+      "preview": "The export request is accepted. You will see another reminder here when it is ready.",
+      "body": "We have received your export request and it is currently generating. When it is ready, return to the account center to review the delivery method and expiration window.",
+      "relativeTime": "10m ago",
+      "actionHref": "/profile/privacy/export"
+    },
+    {
+      "id": "notif-2",
+      "type": "community",
+      "status": "unread",
+      "title": "Your post moderation status has changed",
+      "preview": "One post in the Stress reset circle moved from pending to approved.",
+      "body": "Your progress post in the Stress reset circle has been approved and is now visible in the public community feed.",
+      "relativeTime": "35m ago",
+      "actionHref": "/community/me"
+    },
+    {
+      "id": "notif-3",
+      "type": "checkin",
+      "status": "read",
+      "title": "Today's check-in reminder is ready",
+      "preview": "The current plan suggests logging today's intake about 30 minutes after dinner.",
+      "body": "Based on your current plan rhythm, the system suggests finishing today's supplement check-in within 30 minutes after dinner for steadier tracking.",
+      "relativeTime": "Today",
+      "actionHref": "/checkin"
+    }
+  ],
+  "feedbackRecords": [
+    {
+      "id": "fb-1",
+      "category": "OCR recognition",
+      "subject": "I want manual field ordering on the OCR confirmation page",
+      "status": "in_review",
+      "submittedAt": "2026-03-15 18:20",
+      "reply": "The team has received this and is reviewing form-ordering support."
+    },
+    {
+      "id": "fb-2",
+      "category": "Notification experience",
+      "subject": "Please separate community interactions from system notices",
+      "status": "responded",
+      "submittedAt": "2026-03-14 10:12",
+      "reply": "This is included in the account-center platformization node."
+    }
+  ],
+  "exportRequests": [
+    {
+      "id": "export-1",
+      "requestedAt": "2026-03-16T09:30:00.000Z",
+      "status": "generating",
+      "scopeSummary": "Assessment history, OCR enrichment, check-in records, and community-record summary"
+    }
+  ],
+  "deleteRequests": [
+    {
+      "id": "delete-1",
+      "status": "cooling_off",
+      "submittedAt": "2026-03-16 09:45",
+      "impactSummary": "Account profile, assessment history, OCR enrichment, check-in records, and visible community profile data"
+    }
+  ],
+  "faqCategories": [
+    {
+      "id": "assessment",
+      "title": "Assessment and report",
+      "items": [
+        {
+          "question": "Why do the report page and OCR enrichment both exist?",
+          "answer": "The questionnaire is the base input, while OCR enrichment strengthens it with past checkup data so the explanation can be more complete."
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy and data",
+      "items": [
+        {
+          "question": "What data is included in an export request?",
+          "answer": "Phase 1 export scope covers assessment history, OCR enrichment, check-in records, and community-record summaries."
+        }
+      ]
+    }
+  ],
+  "documents": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "body": [
+        "In Phase 1, MintBit collects questionnaire inputs, optional OCR enrichment, check-in history, and community interactions to generate an explainable personalized nutrition journey.",
+        "The platform explicitly distinguishes system-generated content, user-entered content, and user-authorized uploads."
+      ]
+    },
+    "userAgreement": {
+      "title": "User Agreement",
+      "body": [
+        "Notifications, feedback, export requests, and deletion requests in the account center all operate against the current signed-in account.",
+        "Feedback submissions and deletion requests keep visible status trails for later handling and tracking."
+      ]
+    },
+    "ocrUsage": {
+      "title": "OCR Data Usage",
+      "body": [
+        "OCR enrichment is only used to strengthen your own nutrition explanation and follow-up tracking. It is not published publicly.",
+        "Users can review OCR usage notes and authorization state inside the account center."
+      ]
+    },
+    "communityVisibility": {
+      "title": "Community Visibility",
+      "body": [
+        "Public community posts and comments only appear after moderation review.",
+        "The account center explains visibility and moderation rules but does not expose controls that bypass moderation."
+      ]
+    },
+    "auditLog": {
+      "title": "Audit and Operation Transparency",
+      "body": [
+        "To preserve user trust and request traceability, the platform keeps user-visible summaries for export requests, deletion requests, feedback records, and some moderation-state changes.",
+        "This page is a transparency explanation with visible summaries, not an internal operations console."
+      ]
+    }
+  },
+  "security": {
+    "accountBinding": "unbound",
+    "ocrAuthorization": "granted",
+    "notificationPreferences": {
+      "system": true,
+      "community": true,
+      "checkin": false
+    }
+  },
+  "labels": {
+    "status": {
+      "draft": "Draft",
+      "submitted": "Submitted",
+      "in_review": "In review",
+      "responded": "Responded",
+      "closed": "Closed",
+      "idle": "Idle",
+      "requested": "Requested",
+      "generating": "Generating",
+      "ready": "Ready",
+      "expired": "Expired",
+      "failed": "Failed",
+      "cooling_off": "Cooling-off",
+      "confirmed": "Confirmed",
+      "executed": "Executed",
+      "rejected": "Rejected"
+    },
+    "notificationTypes": {
+      "system": "System",
+      "community": "Community",
+      "checkin": "Check-in"
+    },
+    "sections": {
+      "messages": "Messages",
+      "help": "Help and support",
+      "privacy": "Privacy and permissions",
+      "data": "Data and audit",
+      "preferences": "Account and preferences"
+    }
+  }
+}

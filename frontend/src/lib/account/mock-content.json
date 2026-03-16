@@ -1,0 +1,215 @@
+{
+  "home": {
+    "eyebrow": "账户中心",
+    "title": "把消息、支持与信任控制收进一个地方",
+    "subtitle": "从通知、反馈到隐私说明、导出申请和删除申请，这里是 MintBit 的统一账户平台入口。",
+    "cards": [
+      {
+        "id": "messages",
+        "title": "消息中心",
+        "body": "查看系统通知、社区互动和打卡提醒，并管理未读状态。",
+        "cta": "进入消息中心",
+        "href": "/profile/notifications"
+      },
+      {
+        "id": "help",
+        "title": "帮助与支持",
+        "body": "查看 FAQ、联系支持、提交反馈并跟踪处理进度。",
+        "cta": "进入帮助中心",
+        "href": "/profile/help"
+      },
+      {
+        "id": "privacy",
+        "title": "隐私与权限",
+        "body": "查看协议、OCR 数据说明、社区可见性与通知权限。",
+        "cta": "进入隐私中心",
+        "href": "/profile/privacy"
+      },
+      {
+        "id": "data",
+        "title": "数据与审计",
+        "body": "发起导出、删除申请，并查看关键操作留痕说明。",
+        "cta": "查看数据控制",
+        "href": "/profile/privacy/export"
+      },
+      {
+        "id": "preferences",
+        "title": "账户与偏好",
+        "body": "管理账号绑定状态、OCR 授权、语言与通知偏好。",
+        "cta": "查看账户设置",
+        "href": "/profile/security"
+      }
+    ],
+    "summary": {
+      "unreadLabel": "未读消息",
+      "feedbackLabel": "处理中反馈",
+      "exportLabel": "导出状态",
+      "deleteLabel": "删除申请"
+    }
+  },
+  "notifications": [
+    {
+      "id": "notif-1",
+      "type": "system",
+      "status": "unread",
+      "title": "你的数据导出包已开始生成",
+      "preview": "系统已受理导出请求，生成完成后会在账户中心提醒你。",
+      "body": "我们已经收到你的导出请求，当前状态为生成中。完成后你可以回到账户中心查看下载方式与有效期。",
+      "relativeTime": "10 分钟前",
+      "actionHref": "/profile/privacy/export"
+    },
+    {
+      "id": "notif-2",
+      "type": "community",
+      "status": "unread",
+      "title": "你的帖子审核状态已更新",
+      "preview": "压力恢复圈中的一条帖子从审核中更新为已通过。",
+      "body": "你在压力恢复圈发布的进展动态已通过审核，现在已经可以在公开社区中被其他用户看到。",
+      "relativeTime": "35 分钟前",
+      "actionHref": "/community/me"
+    },
+    {
+      "id": "notif-3",
+      "type": "checkin",
+      "status": "read",
+      "title": "今天的打卡提醒已准备好",
+      "preview": "建议在晚饭后 30 分钟完成今天的补充记录。",
+      "body": "根据你当前的计划节奏，系统建议你在晚饭后 30 分钟内完成今天的补充打卡，这样更有利于持续跟踪。",
+      "relativeTime": "今天",
+      "actionHref": "/checkin"
+    }
+  ],
+  "feedbackRecords": [
+    {
+      "id": "fb-1",
+      "category": "OCR 识别",
+      "subject": "报告页的 OCR 字段想要手动排序",
+      "status": "in_review",
+      "submittedAt": "2026-03-15 18:20",
+      "reply": "团队已收到，正在评估表单排序能力。"
+    },
+    {
+      "id": "fb-2",
+      "category": "通知体验",
+      "subject": "希望把社区互动和系统通知拆开",
+      "status": "responded",
+      "submittedAt": "2026-03-14 10:12",
+      "reply": "已纳入账户中心平台化节点。"
+    }
+  ],
+  "exportRequests": [
+    {
+      "id": "export-1",
+      "requestedAt": "2026-03-16T09:30:00.000Z",
+      "status": "generating",
+      "scopeSummary": "评估记录、OCR 补录、打卡记录、社区记录摘要"
+    }
+  ],
+  "deleteRequests": [
+    {
+      "id": "delete-1",
+      "status": "cooling_off",
+      "submittedAt": "2026-03-16 09:45",
+      "impactSummary": "删除账户、评估记录、OCR 补录、打卡记录与社区可见资料"
+    }
+  ],
+  "faqCategories": [
+    {
+      "id": "assessment",
+      "title": "评估与报告",
+      "items": [
+        {
+          "question": "为什么报告页和 OCR 补录会同时存在？",
+          "answer": "问卷是基础输入，OCR 补录用于增强已有体检信息，两者结合后系统会输出更完整的解释。"
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "隐私与数据",
+      "items": [
+        {
+          "question": "导出请求会包含哪些数据？",
+          "answer": "Phase 1 的导出说明覆盖评估记录、OCR 补录、打卡记录以及社区记录摘要。"
+        }
+      ]
+    }
+  ],
+  "documents": {
+    "privacyPolicy": {
+      "title": "隐私政策",
+      "body": [
+        "MintBit 在 Phase 1 中收集问卷、可选 OCR 补录、打卡记录和社区互动数据，用于生成可解释的个性化营养体验。",
+        "平台会明确区分系统生成内容、用户手动输入内容和用户授权上传内容。"
+      ]
+    },
+    "userAgreement": {
+      "title": "用户协议",
+      "body": [
+        "账户中心中的通知、反馈、导出和删除申请均以用户当前登录身份为准。",
+        "用户提交的反馈和删除申请会保留状态留痕，用于后续处理与追踪。"
+      ]
+    },
+    "ocrUsage": {
+      "title": "OCR 数据使用说明",
+      "body": [
+        "OCR 补录仅用于增强你自己的营养解释和后续追踪，不直接对外公开。",
+        "用户可在账户中心查看 OCR 使用说明和授权状态。"
+      ]
+    },
+    "communityVisibility": {
+      "title": "社区可见性说明",
+      "body": [
+        "社区中的公开帖子和评论会经过审核后展示。",
+        "账户中心只说明可见性和审核规则，不提供绕过审核的控制项。"
+      ]
+    },
+    "auditLog": {
+      "title": "审核与操作留痕说明",
+      "body": [
+        "为保证用户信任与请求可追踪，平台会对导出申请、删除申请、反馈记录和部分审核状态更新保留用户可见摘要。",
+        "该页面展示的是透明说明和摘要，不是内部后台日志系统。"
+      ]
+    }
+  },
+  "security": {
+    "accountBinding": "unbound",
+    "ocrAuthorization": "granted",
+    "notificationPreferences": {
+      "system": true,
+      "community": true,
+      "checkin": false
+    }
+  },
+  "labels": {
+    "status": {
+      "draft": "草稿",
+      "submitted": "已提交",
+      "in_review": "处理中",
+      "responded": "已回复",
+      "closed": "已关闭",
+      "idle": "未发起",
+      "requested": "已申请",
+      "generating": "生成中",
+      "ready": "已就绪",
+      "expired": "已过期",
+      "failed": "失败",
+      "cooling_off": "冷静期中",
+      "confirmed": "已确认",
+      "executed": "已执行",
+      "rejected": "已驳回"
+    },
+    "notificationTypes": {
+      "system": "系统通知",
+      "community": "社区互动",
+      "checkin": "打卡提醒"
+    },
+    "sections": {
+      "messages": "消息中心",
+      "help": "帮助与支持",
+      "privacy": "隐私与权限",
+      "data": "数据与审计",
+      "preferences": "账户与偏好"
+    }
+  }
+}
