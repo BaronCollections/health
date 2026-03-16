@@ -43,6 +43,12 @@ export type DeleteRequest = {
   impactSummary: string
 }
 
+export type AccountSecurity = {
+  accountBinding: AccountBindingStatus
+  ocrAuthorization: OcrAuthorizationStatus
+  notificationPreferences: Record<AccountNotificationType, boolean>
+}
+
 export type AccountDocument = {
   title: string
   body: string[]
@@ -141,6 +147,50 @@ export type AccountContent = {
   feedbackRecords: FeedbackRecord[]
   exportRequests: ExportRequest[]
   deleteRequests: DeleteRequest[]
+  privacyCenter: {
+    title: string
+    subtitle: string
+    notificationPrefsLabel: string
+    securityCta: string
+    exportCta: string
+    deleteCta: string
+    auditCta: string
+  }
+  exportCenter: {
+    title: string
+    subtitle: string
+    scopeLabel: string
+    scopePlaceholder: string
+    requestCta: string
+    activeLabel: string
+    emptyTitle: string
+    emptyBody: string
+    defaultScopeSummary: string
+  }
+  deleteCenter: {
+    title: string
+    subtitle: string
+    impactLabel: string
+    impactPlaceholder: string
+    requestCta: string
+    emptyTitle: string
+    emptyBody: string
+    withdrawLabel: string
+  }
+  securityView: {
+    title: string
+    subtitle: string
+    bindingLabel: string
+    ocrLabel: string
+    notificationLabel: string
+    enabledLabel: string
+    disabledLabel: string
+  }
+  auditView: {
+    title: string
+    subtitle: string
+    trailTitle: string
+  }
   faqCategories: AccountFaqCategory[]
   documents: {
     privacyPolicy: AccountDocument
@@ -149,15 +199,13 @@ export type AccountContent = {
     communityVisibility: AccountDocument
     auditLog: AccountDocument
   }
-  security: {
-    accountBinding: AccountBindingStatus
-    ocrAuthorization: OcrAuthorizationStatus
-    notificationPreferences: Record<AccountNotificationType, boolean>
-  }
+  security: AccountSecurity
   labels: {
     status: Record<FeedbackStatus | ExportRequestStatus | DeleteRequestStatus, string>
     notificationTypes: Record<AccountNotificationType, string>
     notificationStatus: Record<AccountNotificationStatus, string>
+    accountBindingStatus: Record<AccountBindingStatus, string>
+    ocrAuthorizationStatus: Record<OcrAuthorizationStatus, string>
     sections: {
       messages: string
       help: string

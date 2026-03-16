@@ -5,13 +5,21 @@ import type {
   AccountFaqCategory,
   AccountNotification,
   AccountNotificationStatus,
+  AccountSecurity,
+  DeleteRequest,
+  ExportRequest,
   FeedbackRecord,
 } from "@/lib/account/types"
 
 import { mergeAccountNotifications, mergeFeedbackRecords } from "./merge"
 import type {
   ApiResult,
+  AccountSecuritySnapshotApiResponse,
   CreateFeedbackInput,
+  CreateDeleteInput,
+  CreateExportInput,
+  DeleteRequestApiResponse,
+  ExportRequestApiResponse,
   FeedbackRecordsApiResponse,
   NotificationFilter,
   NotificationListApiResponse,
@@ -20,6 +28,8 @@ import type {
 
 const fallbackStatusOverrides = new Map<string, AccountNotificationStatus>()
 const fallbackCreatedFeedbackRecords = new Map<string, FeedbackRecord>()
+const fallbackCreatedExportRequests = new Map<string, ExportRequest>()
+const fallbackCreatedDeleteRequests = new Map<string, DeleteRequest>()
 
 function getFallbackNotifications(locale: Locale) {
   return getAccountContent(locale).notifications.map((notification) => ({
@@ -45,6 +55,56 @@ function getFallbackFeedbackRecords(locale: Locale) {
 
 function mergeLocalizedFeedbackRecords(locale: Locale, records: FeedbackRecord[]) {
   return mergeFeedbackRecords(getFallbackFeedbackRecords(locale), records)
+}
+
+function getFallbackExportRequests(locale: Locale) {
+  return [
+    ...fallbackCreatedExportRequests.values(),
+    ...getAccountContent(locale).exportRequests,
+  ]
+}
+
+function getFallbackDeleteRequests(locale: Locale) {
+  return [
+    ...fallbackCreatedDeleteRequests.values(),
+    ...getAccountContent(locale).deleteRequests,
+  ]
+}
+
+function getFallbackSecuritySnapshot(locale: Locale) {
+  return getAccountContent(locale).security
+}
+
+function mergeLocalizedExportRequests(locale: Locale, requests: ExportRequest[]) {
+  const localById = new Map(getAccountContent(locale).exportRequests.map((request) => [request.id, request]))
+  return requests.map((request) => {
+    const localizedSeed = localById.get(request.id)
+    if (!localizedSeed) {
+      return request
+    }
+
+    return {
+      ...request,
+      scopeSummary: localizedSeed.scopeSummary,
+      requestedAt: localizedSeed.requestedAt,
+    }
+  })
+}
+
+function mergeLocalizedDeleteRequests(locale: Locale, requests: DeleteRequest[]) {
+  const localById = new Map(getAccountContent(locale).deleteRequests.map((request) => [request.id, request]))
+  return requests.map((request) => {
+    const localizedSeed = localById.get(request.id)
+    if (!localizedSeed) {
+      return request
+    }
+
+    return {
+      ...request,
+      impactSummary: localizedSeed.impactSummary,
+      submittedAt: localizedSeed.submittedAt,
+    }
+  })
 }
 
 function filterNotifications(notifications: AccountNotification[], filter: NotificationFilter) {
@@ -192,5 +252,91 @@ export async function createFeedbackRecord(locale: Locale, input: CreateFeedback
 
     fallbackCreatedFeedbackRecords.set(createdRecord.id, createdRecord)
     return createdRecord
+  }
+}
+
+export async function fetchExportRequests(locale: Locale) {
+  try {
+    const response = (await api.get("/account/privacy/export")) as ApiResult<ExportRequestApiResponse[]>
+
+    if (response.code !== 200 || !response.data) {
+      throw new Error(response.message || "Export requests fetch failed")
+    }
+
+    return mergeLocalizedExportRequests(locale, response.data)
+  } catch {
+    return getFallbackExportRequests(locale)
+  }
+}
+
+export async function createExportRequest(locale: Locale, input: CreateExportInput) {
+  try {
+    const response = (await api.post("/account/privacy/export", input)) as ApiResult<ExportRequestApiResponse>
+
+    if (response.code !== 200 || !response.data) {
+      throw new Error(response.message || "Create export request failed")
+    }
+
+    return mergeLocalizedExportRequests(locale, [response.data])[0] ?? response.data
+  } catch {
+    const createdRequest: ExportRequest = {
+      id: `export-local-${Date.now()}`,
+      requestedAt: new Date().toISOString(),
+      status: "requested",
+      scopeSummary: input.scopeSummary,
+    }
+
+    fallbackCreatedExportRequests.set(createdRequest.id, createdRequest)
+    return createdRequest
+  }
+}
+
+export async function fetchDeleteRequests(locale: Locale) {
+  try {
+    const response = (await api.get("/account/privacy/delete-request")) as ApiResult<DeleteRequestApiResponse[]>
+
+    if (response.code !== 200 || !response.data) {
+      throw new Error(response.message || "Delete requests fetch failed")
+    }
+
+    return mergeLocalizedDeleteRequests(locale, response.data)
+  } catch {
+    return getFallbackDeleteRequests(locale)
+  }
+}
+
+export async function createDeleteRequest(locale: Locale, input: CreateDeleteInput) {
+  try {
+    const response = (await api.post("/account/privacy/delete-request", input)) as ApiResult<DeleteRequestApiResponse>
+
+    if (response.code !== 200 || !response.data) {
+      throw new Error(response.message || "Create delete request failed")
+    }
+
+    return mergeLocalizedDeleteRequests(locale, [response.data])[0] ?? response.data
+  } catch {
+    const createdRequest: DeleteRequest = {
+      id: `delete-local-${Date.now()}`,
+      status: "submitted",
+      submittedAt: locale === "zh-CN" ? "刚刚" : "Just now",
+      impactSummary: input.impactSummary,
+    }
+
+    fallbackCreatedDeleteRequests.set(createdRequest.id, createdRequest)
+    return createdRequest
+  }
+}
+
+export async function fetchAccountSecuritySnapshot(locale: Locale): Promise<AccountSecurity> {
+  try {
+    const response = (await api.get("/account/security")) as ApiResult<AccountSecuritySnapshotApiResponse>
+
+    if (response.code !== 200 || !response.data) {
+      throw new Error(response.message || "Security snapshot fetch failed")
+    }
+
+    return response.data
+  } catch {
+    return getFallbackSecuritySnapshot(locale)
   }
 }

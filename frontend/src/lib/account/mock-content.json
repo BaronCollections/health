@@ -173,6 +173,50 @@
       "closed": "已关闭"
     }
   },
+  "privacyCenter": {
+    "title": "隐私、权限与数据控制",
+    "subtitle": "查看协议、OCR 使用说明、社区可见性、通知权限，以及导出和删除申请入口。",
+    "notificationPrefsLabel": "当前通知权限",
+    "securityCta": "查看安全与偏好",
+    "exportCta": "发起数据导出",
+    "deleteCta": "发起删除申请",
+    "auditCta": "查看留痕说明"
+  },
+  "exportCenter": {
+    "title": "数据导出申请",
+    "subtitle": "导出入口覆盖评估、OCR、打卡和社区记录摘要。本阶段以用户可见状态流为准。",
+    "scopeLabel": "导出范围说明",
+    "scopePlaceholder": "描述要导出的数据范围",
+    "requestCta": "发起导出申请",
+    "activeLabel": "当前进行中的请求",
+    "emptyTitle": "还没有导出申请",
+    "emptyBody": "提交第一条导出申请后，这里会展示状态变化与范围说明。",
+    "defaultScopeSummary": "评估记录、OCR 补录、打卡记录、社区记录摘要"
+  },
+  "deleteCenter": {
+    "title": "删除申请",
+    "subtitle": "删除申请会保留用户可见状态留痕，用于说明冷静期、确认和执行结果。",
+    "impactLabel": "影响范围说明",
+    "impactPlaceholder": "说明希望删除的数据范围",
+    "requestCta": "提交删除申请",
+    "emptyTitle": "还没有删除申请",
+    "emptyBody": "提交后这里会展示申请状态、时间和影响范围。",
+    "withdrawLabel": "当前申请仍可撤回"
+  },
+  "securityView": {
+    "title": "安全与账户偏好",
+    "subtitle": "集中查看绑定状态、OCR 授权与通知偏好，作为企业微信和 Web 扩展前的统一账户快照。",
+    "bindingLabel": "账号绑定状态",
+    "ocrLabel": "OCR 授权状态",
+    "notificationLabel": "通知偏好",
+    "enabledLabel": "已开启",
+    "disabledLabel": "已关闭"
+  },
+  "auditView": {
+    "title": "审核与操作留痕",
+    "subtitle": "这里展示用户可见的请求留痕和平台透明说明，不是内部运营后台。",
+    "trailTitle": "最近可见留痕"
+  },
   "exportRequests": [
     {
       "id": "export-1",
@@ -284,6 +328,15 @@
       "unread": "未读",
       "read": "已读",
       "archived": "已归档"
+    },
+    "accountBindingStatus": {
+      "bound": "已绑定",
+      "unbound": "未绑定",
+      "risk_notice": "风险提醒"
+    },
+    "ocrAuthorizationStatus": {
+      "granted": "已授权",
+      "revoked": "已撤销"
     },
     "sections": {
       "messages": "消息中心",

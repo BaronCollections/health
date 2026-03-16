@@ -1,4 +1,5 @@
 import type {
+  AccountSecurity,
   AccountNotification,
   DeleteRequest,
   ExportRequest,
@@ -43,4 +44,16 @@ export function canWithdrawDeleteRequest(request: DeleteRequest | null | undefin
   }
 
   return request.status === "submitted" || request.status === "cooling_off"
+}
+
+export function getLatestDeleteRequest(requests: DeleteRequest[]) {
+  return [...requests].sort((left, right) => right.submittedAt.localeCompare(left.submittedAt))[0] ?? null
+}
+
+export function summarizeAccountPreferences(security: AccountSecurity) {
+  return {
+    enabledNotifications: Object.values(security.notificationPreferences).filter(Boolean).length,
+    bindingStatus: security.accountBinding,
+    ocrAuthorization: security.ocrAuthorization,
+  }
 }

@@ -173,6 +173,50 @@
       "closed": "Closed"
     }
   },
+  "privacyCenter": {
+    "title": "Privacy, permissions, and data controls",
+    "subtitle": "Review policies, OCR usage, community visibility, notification permissions, plus export and deletion entry points.",
+    "notificationPrefsLabel": "Current notification permissions",
+    "securityCta": "Open security and preferences",
+    "exportCta": "Start data export",
+    "deleteCta": "Start deletion request",
+    "auditCta": "Open transparency notes"
+  },
+  "exportCenter": {
+    "title": "Data export requests",
+    "subtitle": "The export entry covers assessment, OCR, check-in, and community-record summaries. In this phase the visible status flow is the source of truth.",
+    "scopeLabel": "Export scope summary",
+    "scopePlaceholder": "Describe the data scope you want to export",
+    "requestCta": "Create export request",
+    "activeLabel": "Current active request",
+    "emptyTitle": "No export requests yet",
+    "emptyBody": "After you create your first export request, this page will show status changes and scope details.",
+    "defaultScopeSummary": "Assessment history, OCR enrichment, check-in records, and community-record summary"
+  },
+  "deleteCenter": {
+    "title": "Deletion requests",
+    "subtitle": "Deletion requests keep a user-visible status trail so cooling-off, confirmation, and execution outcomes stay transparent.",
+    "impactLabel": "Impact summary",
+    "impactPlaceholder": "Describe the data scope you want deleted",
+    "requestCta": "Submit deletion request",
+    "emptyTitle": "No deletion requests yet",
+    "emptyBody": "After you submit one, this page will show its status, timestamp, and impact summary.",
+    "withdrawLabel": "This request can still be withdrawn"
+  },
+  "securityView": {
+    "title": "Security and account preferences",
+    "subtitle": "Review binding status, OCR authorization, and notification preferences as the unified account snapshot before WeCom and Web expansion.",
+    "bindingLabel": "Account binding",
+    "ocrLabel": "OCR authorization",
+    "notificationLabel": "Notification preferences",
+    "enabledLabel": "Enabled",
+    "disabledLabel": "Disabled"
+  },
+  "auditView": {
+    "title": "Audit and operation transparency",
+    "subtitle": "This page shows user-visible request trails and transparency notes, not the internal operations console.",
+    "trailTitle": "Recent visible trail"
+  },
   "exportRequests": [
     {
       "id": "export-1",
@@ -284,6 +328,15 @@
       "unread": "Unread",
       "read": "Read",
       "archived": "Archived"
+    },
+    "accountBindingStatus": {
+      "bound": "Bound",
+      "unbound": "Unbound",
+      "risk_notice": "Risk notice"
+    },
+    "ocrAuthorizationStatus": {
+      "granted": "Granted",
+      "revoked": "Revoked"
     },
     "sections": {
       "messages": "Messages",

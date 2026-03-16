@@ -132,9 +132,9 @@
 - Modify: `frontend/src/lib/account/state.ts`
 - Modify: `frontend/src/lib/account/state.test.ts`
 
-- [ ] **Step 1: Add failing tests for export-request states, deletion-request states, and account-preference summary logic**
-- [ ] **Step 2: Extend the mock contract with export-request and deletion-request flows plus account security/status metadata**
-- [ ] **Step 3: Re-run `mvn test -Dtest=MockAccountServiceTest` and `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`**
+- [x] **Step 1: Add failing tests for export-request states, deletion-request states, and account-preference summary logic**
+- [x] **Step 2: Extend the mock contract with export-request and deletion-request flows plus account security/status metadata**
+- [x] **Step 3: Re-run `mvn test -Dtest=MockAccountServiceTest` and `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`**
 
 ### Task 8: Build privacy, security, export, deletion, audit pages, and update project progress
 
@@ -155,24 +155,24 @@
 - Modify: `frontend/src/lib/account/mock-content.json`
 - Modify: `frontend/src/lib/account/mock-content.en.json`
 
-- [ ] **Step 1: Build the privacy center home with links for privacy policy, user agreement, OCR usage, community visibility, and notification permissions**
-- [ ] **Step 2: Build export-request and deletion-request pages with full user-visible lifecycle states and explicit confirmation copy**
-- [ ] **Step 3: Build security and audit-log pages that explain binding status, notification preferences, OCR authorization, and platform logging transparency**
-- [ ] **Step 4: Wire these pages to the account API client and keep long-form documents in structured bilingual resources**
-- [ ] **Step 5: Run `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`**
-- [ ] **Step 6: Run `node --test frontend/scripts/account-bilingual-resources.test.mjs`**
-- [ ] **Step 7: Run `mvn test -Dtest=MockAccountServiceTest` in `backend`**
-- [ ] **Step 8: Run `npm run build` in `frontend`**
-- [ ] **Step 9: Update `README.md` so the project homepage reflects the platform account center and current Phase 1 progress**
-- [ ] **Step 10: Mark this node complete and update `docs/superpowers/plans/2026-03-16-phase1-node-progress.md` from `10 / 12 = 83%` to `11 / 12 = 92%`**
-- [ ] **Step 11: Commit and push the completed node on the account-center branch**
+- [x] **Step 1: Build the privacy center home with links for privacy policy, user agreement, OCR usage, community visibility, and notification permissions**
+- [x] **Step 2: Build export-request and deletion-request pages with full user-visible lifecycle states and explicit confirmation copy**
+- [x] **Step 3: Build security and audit-log pages that explain binding status, notification preferences, OCR authorization, and platform logging transparency**
+- [x] **Step 4: Wire these pages to the account API client and keep long-form documents in structured bilingual resources**
+- [x] **Step 5: Run `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`**
+- [x] **Step 6: Run `node --test frontend/scripts/account-bilingual-resources.test.mjs`**
+- [x] **Step 7: Run `mvn test -Dtest=MockAccountServiceTest` in `backend`**
+- [x] **Step 8: Run `npm run build` in `frontend`**
+- [x] **Step 9: Update `README.md` so the project homepage reflects the platform account center and current Phase 1 progress**
+- [x] **Step 10: Mark this node complete and update `docs/superpowers/plans/2026-03-16-phase1-node-progress.md` from `10 / 12 = 83%` to `11 / 12 = 92%`**
+- [x] **Step 11: Commit and push the completed node on the account-center branch**
 
 ## Node Status
 
 - Current node: `account center platformization`
-- Current completion state: `Chunk 3 complete, Chunk 4 privacy and data controls in progress`
+- Current completion state: `completed`
 - Progress policy:
   - keep overall Phase 1 node progress at `10 / 12 = 83%` until all four internal delivery chunks are complete
-  - only move to `11 / 12 = 92%` after account shell, notifications, help/feedback, and privacy/data-control flows are all verified
+  - moved to `11 / 12 = 92%` after account shell, notifications, help/feedback, and privacy/data-control flows were all verified
 - Deferred to later node:
   - release hardening and WeCom/Web readiness prep

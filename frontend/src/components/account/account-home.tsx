@@ -8,12 +8,18 @@ import { useRouter } from "next/navigation"
 import { SharedNav } from "@/components/shared-nav"
 import { useLocale } from "@/i18n/use-locale"
 import { getAccountContent } from "@/lib/account"
-import { fetchAccountNotifications } from "@/lib/account-api/client"
-import type { AccountNotification } from "@/lib/account/types"
+import {
+  fetchAccountNotifications,
+  fetchDeleteRequests,
+  fetchExportRequests,
+  fetchFeedbackRecords,
+} from "@/lib/account-api/client"
+import type { AccountNotification, DeleteRequest, ExportRequest, FeedbackRecord } from "@/lib/account/types"
 import {
   canWithdrawDeleteRequest,
   countOpenFeedbackRecords,
   getActiveExportRequest,
+  getLatestDeleteRequest,
   summarizeUnreadNotifications,
 } from "@/lib/account/state"
 
@@ -30,18 +36,33 @@ export function AccountHome() {
   const { locale } = useLocale()
   const content = getAccountContent(locale)
   const [notifications, setNotifications] = useState<AccountNotification[]>(content.notifications)
+  const [feedbackRecords, setFeedbackRecords] = useState<FeedbackRecord[]>(content.feedbackRecords)
+  const [exportRequests, setExportRequests] = useState<ExportRequest[]>(content.exportRequests)
+  const [deleteRequests, setDeleteRequests] = useState<DeleteRequest[]>(content.deleteRequests)
 
   useEffect(() => {
     setNotifications(content.notifications)
+    setFeedbackRecords(content.feedbackRecords)
+    setExportRequests(content.exportRequests)
+    setDeleteRequests(content.deleteRequests)
     void fetchAccountNotifications(locale, "all").then((response) => {
       setNotifications(response.items)
     })
-  }, [content.notifications, locale])
+    void fetchFeedbackRecords(locale).then((records) => {
+      setFeedbackRecords(records)
+    })
+    void fetchExportRequests(locale).then((requests) => {
+      setExportRequests(requests)
+    })
+    void fetchDeleteRequests(locale).then((requests) => {
+      setDeleteRequests(requests)
+    })
+  }, [content.deleteRequests, content.exportRequests, content.feedbackRecords, content.notifications, locale])
 
   const unreadSummary = summarizeUnreadNotifications(notifications)
-  const openFeedbackCount = countOpenFeedbackRecords(content.feedbackRecords)
-  const activeExportRequest = getActiveExportRequest(content.exportRequests)
-  const activeDeleteRequest = content.deleteRequests[0] ?? null
+  const openFeedbackCount = countOpenFeedbackRecords(feedbackRecords)
+  const activeExportRequest = getActiveExportRequest(exportRequests)
+  const activeDeleteRequest = getLatestDeleteRequest(deleteRequests)
 
   return (
     <div className="mx-auto flex min-h-screen max-w-md flex-col bg-[radial-gradient(circle_at_top,_rgba(109,181,120,0.22),_transparent_44%),linear-gradient(180deg,_#F2FAF2_0%,_#FFFFFF_40%,_#F7FBF8_100%)]">

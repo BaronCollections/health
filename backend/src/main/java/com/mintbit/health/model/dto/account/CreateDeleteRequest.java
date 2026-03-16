@@ -1,0 +1,9 @@
+package com.mintbit.health.model.dto.account;
+
+import lombok.Data;
+
+@Data
+public class CreateDeleteRequest {
+
+    private String impactSummary;
+}

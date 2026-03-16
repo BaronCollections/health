@@ -1,7 +1,10 @@
 import type {
+  AccountSecurity,
   AccountFaqCategory,
   AccountNotification,
   AccountNotificationType,
+  DeleteRequest,
+  ExportRequest,
   FeedbackRecord,
 } from "../account/types"
 
@@ -38,4 +41,16 @@ export type CreateFeedbackInput = {
   description: string
   contact: string
   screenshotName?: string
+}
+
+export type ExportRequestApiResponse = ExportRequest
+export type DeleteRequestApiResponse = DeleteRequest
+export type AccountSecuritySnapshotApiResponse = AccountSecurity
+
+export type CreateExportInput = {
+  scopeSummary: string
+}
+
+export type CreateDeleteInput = {
+  impactSummary: string
 }

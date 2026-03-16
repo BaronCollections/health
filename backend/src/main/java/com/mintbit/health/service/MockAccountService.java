@@ -3,7 +3,12 @@ package com.mintbit.health.service;
 import com.mintbit.health.model.dto.account.AccountNotificationDto;
 import com.mintbit.health.model.dto.account.AccountFaqCategoryDto;
 import com.mintbit.health.model.dto.account.AccountFaqItemDto;
+import com.mintbit.health.model.dto.account.AccountSecuritySnapshotDto;
+import com.mintbit.health.model.dto.account.CreateDeleteRequest;
+import com.mintbit.health.model.dto.account.CreateExportRequest;
 import com.mintbit.health.model.dto.account.CreateFeedbackRequest;
+import com.mintbit.health.model.dto.account.DeleteRequestDto;
+import com.mintbit.health.model.dto.account.ExportRequestDto;
 import com.mintbit.health.model.dto.account.FeedbackRecordDto;
 import com.mintbit.health.model.dto.account.FeedbackRecordsResponse;
 import com.mintbit.health.model.dto.account.NotificationListResponse;
@@ -22,11 +27,15 @@ public class MockAccountService {
     private final Map<String, AccountNotificationDto> notificationsById = new LinkedHashMap<>();
     private final List<AccountFaqCategoryDto> faqCategories = new java.util.ArrayList<>();
     private final Map<String, FeedbackRecordDto> feedbackRecordsById = new LinkedHashMap<>();
+    private final Map<String, ExportRequestDto> exportRequestsById = new LinkedHashMap<>();
+    private final Map<String, DeleteRequestDto> deleteRequestsById = new LinkedHashMap<>();
 
     public MockAccountService() {
         seedNotifications();
         seedFaqCategories();
         seedFeedbackRecords();
+        seedExportRequests();
+        seedDeleteRequests();
     }
 
     public NotificationListResponse getNotifications(String type) {
@@ -86,6 +95,48 @@ public class MockAccountService {
         return copyFeedbackRecord(record);
     }
 
+    public List<ExportRequestDto> getExportRequests() {
+        return exportRequestsById.values().stream().map(this::copyExportRequest).toList();
+    }
+
+    public ExportRequestDto createExportRequest(CreateExportRequest request) {
+        ExportRequestDto exportRequest = new ExportRequestDto();
+        exportRequest.setId("export-" + UUID.randomUUID());
+        exportRequest.setRequestedAt(OffsetDateTime.now().toString());
+        exportRequest.setStatus("requested");
+        exportRequest.setScopeSummary(blankToDefault(request.getScopeSummary(), "Assessment history, OCR enrichment, check-in records, and community summary"));
+
+        exportRequestsById.put(exportRequest.getId(), exportRequest);
+        return copyExportRequest(exportRequest);
+    }
+
+    public List<DeleteRequestDto> getDeleteRequests() {
+        return deleteRequestsById.values().stream().map(this::copyDeleteRequest).toList();
+    }
+
+    public DeleteRequestDto createDeleteRequest(CreateDeleteRequest request) {
+        DeleteRequestDto deleteRequest = new DeleteRequestDto();
+        deleteRequest.setId("delete-" + UUID.randomUUID());
+        deleteRequest.setStatus("submitted");
+        deleteRequest.setSubmittedAt(OffsetDateTime.now().toLocalDateTime().toString());
+        deleteRequest.setImpactSummary(blankToDefault(request.getImpactSummary(), "Delete account, assessment history, OCR enrichment, check-in records, and visible community profile data"));
+
+        deleteRequestsById.put(deleteRequest.getId(), deleteRequest);
+        return copyDeleteRequest(deleteRequest);
+    }
+
+    public AccountSecuritySnapshotDto getSecuritySnapshot() {
+        AccountSecuritySnapshotDto snapshot = new AccountSecuritySnapshotDto();
+        snapshot.setAccountBinding("unbound");
+        snapshot.setOcrAuthorization("granted");
+        snapshot.setNotificationPreferences(Map.of(
+                "system", true,
+                "community", true,
+                "checkin", false
+        ));
+        return snapshot;
+    }
+
     private AccountNotificationDto requireNotification(String notificationId) {
         AccountNotificationDto notification = notificationsById.get(notificationId);
         if (notification == null) {
@@ -133,6 +184,24 @@ public class MockAccountService {
         target.setStatus(source.getStatus());
         target.setSubmittedAt(source.getSubmittedAt());
         target.setReply(source.getReply());
+        return target;
+    }
+
+    private ExportRequestDto copyExportRequest(ExportRequestDto source) {
+        ExportRequestDto target = new ExportRequestDto();
+        target.setId(source.getId());
+        target.setRequestedAt(source.getRequestedAt());
+        target.setStatus(source.getStatus());
+        target.setScopeSummary(source.getScopeSummary());
+        return target;
+    }
+
+    private DeleteRequestDto copyDeleteRequest(DeleteRequestDto source) {
+        DeleteRequestDto target = new DeleteRequestDto();
+        target.setId(source.getId());
+        target.setStatus(source.getStatus());
+        target.setSubmittedAt(source.getSubmittedAt());
+        target.setImpactSummary(source.getImpactSummary());
         return target;
     }
 
@@ -235,6 +304,24 @@ public class MockAccountService {
         ));
     }
 
+    private void seedExportRequests() {
+        exportRequestsById.put("export-1", createExportRequest(
+                "export-1",
+                "2026-03-16T09:30:00.000Z",
+                "generating",
+                "Assessment history, OCR enrichment, check-in records, and community-record summary"
+        ));
+    }
+
+    private void seedDeleteRequests() {
+        deleteRequestsById.put("delete-1", createDeleteRequest(
+                "delete-1",
+                "cooling_off",
+                "2026-03-16 09:45",
+                "Account profile, assessment history, OCR enrichment, check-in records, and visible community profile data"
+        ));
+    }
+
     private AccountFaqCategoryDto createFaqCategory(String id, String title, List<AccountFaqItemDto> items) {
         AccountFaqCategoryDto category = new AccountFaqCategoryDto();
         category.setId(id);
@@ -272,6 +359,24 @@ public class MockAccountService {
         record.setSubmittedAt(submittedAt);
         record.setReply(reply);
         return record;
+    }
+
+    private ExportRequestDto createExportRequest(String id, String requestedAt, String status, String scopeSummary) {
+        ExportRequestDto request = new ExportRequestDto();
+        request.setId(id);
+        request.setRequestedAt(requestedAt);
+        request.setStatus(status);
+        request.setScopeSummary(scopeSummary);
+        return request;
+    }
+
+    private DeleteRequestDto createDeleteRequest(String id, String status, String submittedAt, String impactSummary) {
+        DeleteRequestDto request = new DeleteRequestDto();
+        request.setId(id);
+        request.setStatus(status);
+        request.setSubmittedAt(submittedAt);
+        request.setImpactSummary(impactSummary);
+        return request;
     }
 
     private String blankToDefault(String value, String defaultValue) {

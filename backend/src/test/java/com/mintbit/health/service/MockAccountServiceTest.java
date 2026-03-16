@@ -1,8 +1,13 @@
 package com.mintbit.health.service;
 
 import com.mintbit.health.model.dto.account.AccountNotificationDto;
+import com.mintbit.health.model.dto.account.AccountSecuritySnapshotDto;
 import com.mintbit.health.model.dto.account.AccountFaqCategoryDto;
+import com.mintbit.health.model.dto.account.CreateDeleteRequest;
+import com.mintbit.health.model.dto.account.CreateExportRequest;
 import com.mintbit.health.model.dto.account.CreateFeedbackRequest;
+import com.mintbit.health.model.dto.account.DeleteRequestDto;
+import com.mintbit.health.model.dto.account.ExportRequestDto;
 import com.mintbit.health.model.dto.account.FeedbackRecordDto;
 import com.mintbit.health.model.dto.account.FeedbackRecordsResponse;
 import com.mintbit.health.model.dto.account.NotificationListResponse;
@@ -106,5 +111,48 @@ class MockAccountServiceTest {
 
         FeedbackRecordsResponse response = service.getFeedbackRecords();
         assertTrue(response.getRecords().stream().anyMatch(record -> created.getId().equals(record.getId())));
+    }
+
+    @Test
+    void exportRequestsKeepLifecycleStateAndNewRequests() {
+        List<ExportRequestDto> requests = service.getExportRequests();
+        assertTrue(requests.stream().anyMatch(request -> "generating".equals(request.getStatus())));
+
+        CreateExportRequest request = new CreateExportRequest();
+        request.setScopeSummary("评估记录、OCR 补录、社区摘要");
+
+        ExportRequestDto created = service.createExportRequest(request);
+
+        assertNotNull(created.getId());
+        assertEquals("requested", created.getStatus());
+        assertEquals("评估记录、OCR 补录、社区摘要", created.getScopeSummary());
+        assertTrue(service.getExportRequests().stream().anyMatch(item -> created.getId().equals(item.getId())));
+    }
+
+    @Test
+    void deleteRequestsKeepLifecycleStateAndNewRequests() {
+        List<DeleteRequestDto> requests = service.getDeleteRequests();
+        assertTrue(requests.stream().anyMatch(request -> "cooling_off".equals(request.getStatus())));
+
+        CreateDeleteRequest request = new CreateDeleteRequest();
+        request.setImpactSummary("删除账户与历史评估记录");
+
+        DeleteRequestDto created = service.createDeleteRequest(request);
+
+        assertNotNull(created.getId());
+        assertEquals("submitted", created.getStatus());
+        assertEquals("删除账户与历史评估记录", created.getImpactSummary());
+        assertTrue(service.getDeleteRequests().stream().anyMatch(item -> created.getId().equals(item.getId())));
+    }
+
+    @Test
+    void securitySnapshotExposesBindingAuthorizationAndNotificationPreferences() {
+        AccountSecuritySnapshotDto snapshot = service.getSecuritySnapshot();
+
+        assertEquals("unbound", snapshot.getAccountBinding());
+        assertEquals("granted", snapshot.getOcrAuthorization());
+        assertTrue(snapshot.getNotificationPreferences().containsKey("system"));
+        assertTrue(snapshot.getNotificationPreferences().get("system"));
+        assertFalse(snapshot.getNotificationPreferences().get("checkin"));
     }
 }

@@ -6,6 +6,8 @@ type NotificationStatus = "unread" | "read" | "archived"
 type FeedbackStatus = "draft" | "submitted" | "in_review" | "responded" | "closed"
 type ExportStatus = "idle" | "requested" | "generating" | "ready" | "expired" | "failed"
 type DeleteStatus = "idle" | "submitted" | "cooling_off" | "confirmed" | "executed" | "rejected"
+type AccountBindingStatus = "bound" | "unbound" | "risk_notice"
+type OcrAuthorizationStatus = "granted" | "revoked"
 
 type NotificationRecord = {
   id: string
@@ -27,6 +29,13 @@ type ExportRequestRecord = {
 type DeleteRequestRecord = {
   id: string
   status: DeleteStatus
+  submittedAt: string
+}
+
+type SecurityRecord = {
+  accountBinding: AccountBindingStatus
+  ocrAuthorization: OcrAuthorizationStatus
+  notificationPreferences: Record<NotificationType, boolean>
 }
 
 async function loadAccountStateModule() {
@@ -93,11 +102,48 @@ test("account state exposes whether a deletion request can still be withdrawn", 
   const accountState = await loadAccountStateModule()
   assert.ok(accountState?.canWithdrawDeleteRequest, "canWithdrawDeleteRequest should be implemented")
 
-  const submitted: DeleteRequestRecord = { id: "d1", status: "submitted" }
-  const coolingOff: DeleteRequestRecord = { id: "d2", status: "cooling_off" }
-  const executed: DeleteRequestRecord = { id: "d3", status: "executed" }
+  const submitted: DeleteRequestRecord = { id: "d1", status: "submitted", submittedAt: "2026-03-16 08:00" }
+  const coolingOff: DeleteRequestRecord = { id: "d2", status: "cooling_off", submittedAt: "2026-03-16 09:00" }
+  const executed: DeleteRequestRecord = { id: "d3", status: "executed", submittedAt: "2026-03-16 10:00" }
 
   assert.equal(accountState.canWithdrawDeleteRequest(submitted), true)
   assert.equal(accountState.canWithdrawDeleteRequest(coolingOff), true)
   assert.equal(accountState.canWithdrawDeleteRequest(executed), false)
+})
+
+test("account state returns the latest deletion request", async () => {
+  const accountState = await loadAccountStateModule()
+  assert.ok(accountState?.getLatestDeleteRequest, "getLatestDeleteRequest should be implemented")
+
+  const requests: DeleteRequestRecord[] = [
+    { id: "d1", status: "submitted", submittedAt: "2026-03-15 21:00" },
+    { id: "d2", status: "cooling_off", submittedAt: "2026-03-16 09:45" },
+    { id: "d3", status: "executed", submittedAt: "2026-03-14 08:30" },
+  ]
+
+  const activeRequest = accountState.getLatestDeleteRequest(requests)
+
+  assert.equal(activeRequest?.id, "d2")
+  assert.equal(activeRequest?.status, "cooling_off")
+})
+
+test("account state summarizes account preference toggles", async () => {
+  const accountState = await loadAccountStateModule()
+  assert.ok(accountState?.summarizeAccountPreferences, "summarizeAccountPreferences should be implemented")
+
+  const security: SecurityRecord = {
+    accountBinding: "unbound",
+    ocrAuthorization: "granted",
+    notificationPreferences: {
+      system: true,
+      community: true,
+      checkin: false,
+    },
+  }
+
+  assert.deepEqual(accountState.summarizeAccountPreferences(security), {
+    enabledNotifications: 2,
+    bindingStatus: "unbound",
+    ocrAuthorization: "granted",
+  })
 })
