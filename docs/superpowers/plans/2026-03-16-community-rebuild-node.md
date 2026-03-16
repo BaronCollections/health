@@ -23,10 +23,10 @@
 - Create: `frontend/src/lib/community/visibility.test.ts`
 - Create: `frontend/scripts/community-bilingual-resources.test.mjs`
 
-- [ ] **Step 1: Write a failing Node test for moderation visibility rules**
-- [ ] **Step 2: Write a failing resource coverage test that asserts both locale files expose the same community keys**
-- [ ] **Step 3: Define the typed community shapes for circles, posts, comments, badges, create-form copy, and operations queue copy**
-- [ ] **Step 4: Implement the minimum visibility helper and resource loaders to make `node --experimental-strip-types --test frontend/src/lib/community/visibility.test.ts` and `node --test frontend/scripts/community-bilingual-resources.test.mjs` pass**
+- [x] **Step 1: Write a failing Node test for moderation visibility rules**
+- [x] **Step 2: Write a failing resource coverage test that asserts both locale files expose the same community keys**
+- [x] **Step 3: Define the typed community shapes for circles, posts, comments, badges, create-form copy, and operations queue copy**
+- [x] **Step 4: Implement the minimum visibility helper and resource loaders to make `node --experimental-strip-types --test frontend/src/lib/community/visibility.test.ts` and `node --test frontend/scripts/community-bilingual-resources.test.mjs` pass**
 
 ### Task 2: Rebuild the user-facing community routes and components
 
@@ -44,12 +44,12 @@
 - Modify: `frontend/src/app/community/page.tsx`
 - Delete: `frontend/src/components/morning-community.tsx`
 
-- [ ] **Step 1: Build the recommended feed and circle view on top of the new structured community resources**
-- [ ] **Step 2: Build the create page with circle selection, bilingual helper copy, image placeholders, and submit-to-review behavior**
-- [ ] **Step 3: Build the post detail page with moderation-aware comments and status badges**
-- [ ] **Step 4: Build the “my posts” page grouped by pending, approved, rejected, and flagged**
-- [ ] **Step 5: Point `/community` at the new component tree and remove the legacy `morning-community` dependency**
-- [ ] **Step 6: Run `node --experimental-strip-types --test frontend/src/lib/community/visibility.test.ts`, `node --test frontend/scripts/community-bilingual-resources.test.mjs`, and `npm run build` in `frontend`**
+- [x] **Step 1: Build the recommended feed and circle view on top of the new structured community resources**
+- [x] **Step 2: Build the create page with circle selection, bilingual helper copy, image placeholders, and submit-to-review behavior**
+- [x] **Step 3: Build the post detail page with moderation-aware comments and status badges**
+- [x] **Step 4: Build the “my posts” page grouped by pending, approved, rejected, and flagged**
+- [x] **Step 5: Point `/community` at the new component tree and remove the legacy `morning-community` dependency**
+- [x] **Step 6: Run `node --experimental-strip-types --test frontend/src/lib/community/visibility.test.ts`, `node --test frontend/scripts/community-bilingual-resources.test.mjs`, and `npm run build` in `frontend`**
 
 ## Chunk 2: Backend Contract And Frontend Integration
 
@@ -131,7 +131,7 @@
 ## Node Status
 
 - Current node: `community rewrite with moderation and ops H5`
-- Current completion state: `planning approved, implementation not started`
+- Current completion state: `Chunk 1 complete, Chunk 2 pending`
 - Progress policy:
   - keep overall Phase 1 node progress at `9 / 12 = 75%` until all three internal delivery blocks are complete
   - only move to `10 / 12 = 83%` after user community rewrite, backend contract integration, and operations H5 moderation are all verified

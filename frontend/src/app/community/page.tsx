@@ -1,5 +1,5 @@
-import { MorningCommunity } from "@/components/morning-community"
+import { CommunityHome } from "@/components/community/community-home"
 
 export default function Community() {
-  return <MorningCommunity />
+  return <CommunityHome />
 }

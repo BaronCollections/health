@@ -1,0 +1,228 @@
+{
+  "home": {
+    "title": "Stay consistent with people on the same path",
+    "subtitle": "Carry assessment insights, check-ins, and daily body feedback back into the community loop.",
+    "recommendedTab": "Recommended",
+    "circlesTab": "Circles",
+    "allCircles": "All",
+    "createCta": "Create post",
+    "myPostsCta": "My posts",
+    "emptyTitle": "No public updates yet",
+    "emptyBody": "Share a recent update so people at the same stage can see your progress.",
+    "timelineBridge": {
+      "eyebrow": "Poster history bridge",
+      "title": "Bring timeline progress back into the community",
+      "body": "Review recent reports, OCR enrichments, and check-in milestones, then see how people with similar goals keep going.",
+      "cta": "Open history timeline"
+    }
+  },
+  "create": {
+    "title": "Share a new progress update",
+    "subtitle": "Describe today's food, supplementation, and body feedback. The post enters review before it becomes public.",
+    "circleLabel": "Choose a circle",
+    "contentLabel": "Post content",
+    "contentPlaceholder": "Example: after 14 days of magnesium, I fell asleep faster and I also stopped evening coffee today.",
+    "tagsLabel": "Suggested tags",
+    "addImage": "Add images",
+    "imageHint": "Phase 1 keeps image upload as a placeholder flow without real storage.",
+    "submit": "Submit for review",
+    "successTitle": "Sent to review",
+    "successBody": "Your post is now in the moderation queue and will appear in the public community after approval.",
+    "pendingHint": "Pending content is only visible to you and the operations reviewer."
+  },
+  "detail": {
+    "backCta": "Back to community",
+    "commentsTitle": "Comments",
+    "commentPlaceholder": "Share your experience, ask a question, or leave encouragement",
+    "submitComment": "Post comment",
+    "noComments": "No comments yet. Write the first response.",
+    "like": "Like",
+    "save": "Save"
+  },
+  "myPosts": {
+    "title": "My posts",
+    "subtitle": "Track every visible moderation state here so each update has a clear next step.",
+    "tabs": {
+      "pending_review": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "flagged": "Flagged"
+    },
+    "emptyTitle": "Nothing in this tab yet",
+    "emptyBody": "Go back to the community and publish a new update.",
+    "resubmit": "Edit and resubmit"
+  },
+  "review": {
+    "title": "Community review",
+    "subtitle": "Process pending posts and comments from a phone-first moderation view.",
+    "tabs": {
+      "pending_review": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "flagged": "Flagged"
+    },
+    "targetPost": "Post",
+    "targetComment": "Comment",
+    "queueEmptyTitle": "This queue is empty",
+    "queueEmptyBody": "Switch tabs to review recent decisions.",
+    "actions": {
+      "approve": "Approve",
+      "reject": "Reject",
+      "flag": "Flag",
+      "restore": "Restore"
+    }
+  },
+  "statuses": {
+    "draft": "Draft",
+    "pending_review": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "flagged": "Flagged",
+    "hidden": "Hidden"
+  },
+  "circles": [
+    {
+      "id": "gut-balance",
+      "name": "Gut balance",
+      "description": "Track how probiotics, fiber, and routine changes affect your digestion.",
+      "members": 12680,
+      "accent": "from-[#BFE4C8] to-[#6DB578]"
+    },
+    {
+      "id": "stress-reset",
+      "name": "Stress reset",
+      "description": "Check in with each other around sleep, mood, and recovery rhythm.",
+      "members": 9310,
+      "accent": "from-[#DDE7A3] to-[#BFD46C]"
+    },
+    {
+      "id": "movement-energy",
+      "name": "Movement energy",
+      "description": "Share real feedback on training, recovery, and nutrition support.",
+      "members": 7842,
+      "accent": "from-[#BFD8F5] to-[#78AEE8]"
+    }
+  ],
+  "seedPosts": [
+    {
+      "id": "post-101",
+      "authorName": "Yu Chen",
+      "authorAvatar": "Y",
+      "authorRole": "Gut reset stage",
+      "viewerOwned": false,
+      "circleId": "gut-balance",
+      "circleName": "Gut balance",
+      "status": "approved",
+      "relativeTime": "2h ago",
+      "content": "On day 12, switching breakfast to higher protein plus soluble fiber finally reduced my afternoon bloating.",
+      "tags": ["Probiotics", "Fiber", "Breakfast"],
+      "images": [],
+      "likes": 42,
+      "saves": 18,
+      "comments": [
+        {
+          "id": "comment-101-1",
+          "authorName": "Xiaoya",
+          "authorAvatar": "X",
+          "authorRole": "Particle assistant user",
+          "viewerOwned": true,
+          "status": "approved",
+          "relativeTime": "1h ago",
+          "content": "I also started with breakfast changes first, and my appetite stabilized after a week.",
+          "likes": 8
+        }
+      ]
+    },
+    {
+      "id": "post-102",
+      "authorName": "Xiaoya",
+      "authorAvatar": "X",
+      "authorRole": "Particle assistant user",
+      "viewerOwned": true,
+      "circleId": "stress-reset",
+      "circleName": "Stress reset",
+      "status": "pending_review",
+      "relativeTime": "Just now",
+      "content": "I moved magnesium to right after dinner today and felt sleepy by 11:10 PM. I want to track this for 7 days.",
+      "tags": ["Magnesium", "Sleep", "Rhythm"],
+      "images": [],
+      "likes": 0,
+      "saves": 0,
+      "comments": [
+        {
+          "id": "comment-102-1",
+          "authorName": "Review status",
+          "authorAvatar": "R",
+          "authorRole": "System note",
+          "viewerOwned": false,
+          "status": "pending_review",
+          "relativeTime": "Just now",
+          "content": "Comment content will appear after moderation.",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "post-103",
+      "authorName": "Xiaoya",
+      "authorAvatar": "X",
+      "authorRole": "Particle assistant user",
+      "viewerOwned": true,
+      "circleId": "movement-energy",
+      "circleName": "Movement energy",
+      "status": "rejected",
+      "relativeTime": "Yesterday",
+      "content": "Electrolytes before my last three strength sessions reduced calf cramps, but the copy still sounded too much like a guaranteed result.",
+      "tags": ["Electrolytes", "Recovery"],
+      "images": [],
+      "likes": 0,
+      "saves": 1,
+      "comments": [],
+      "moderationReason": "The copy may be read as a definite efficacy claim. Rewrite it as a personal experience."
+    },
+    {
+      "id": "post-104",
+      "authorName": "Xiaoya",
+      "authorAvatar": "X",
+      "authorRole": "Particle assistant user",
+      "viewerOwned": true,
+      "circleId": "gut-balance",
+      "circleName": "Gut balance",
+      "status": "flagged",
+      "relativeTime": "2 days ago",
+      "content": "I missed two days while traveling, so I restarted my meal-response notes and logged this fluctuation separately.",
+      "tags": ["Travel", "Review"],
+      "images": [],
+      "likes": 3,
+      "saves": 4,
+      "comments": [],
+      "moderationReason": "Operations flagged this content for a second review. Check back for the next status update."
+    }
+  ],
+  "reviewQueue": [
+    {
+      "id": "queue-201",
+      "targetId": "post-102",
+      "targetType": "post",
+      "authorName": "Xiaoya",
+      "authorAvatar": "X",
+      "circleName": "Stress reset",
+      "currentStatus": "pending_review",
+      "relativeTime": "Just now",
+      "contentPreview": "I moved magnesium to right after dinner today and felt sleepy by 11:10 PM. I want to track this for 7 days.",
+      "moderationReason": "Needs a human check for dosage-sensitive phrasing."
+    },
+    {
+      "id": "queue-202",
+      "targetId": "comment-102-1",
+      "targetType": "comment",
+      "authorName": "Anonymous user",
+      "authorAvatar": "A",
+      "circleName": "Stress reset",
+      "currentStatus": "flagged",
+      "relativeTime": "10m ago",
+      "contentPreview": "Can this supplement directly cure insomnia?",
+      "moderationReason": "Contains explicit treatment language and needs moderation."
+    }
+  ]
+}
