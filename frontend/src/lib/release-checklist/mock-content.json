@@ -172,10 +172,10 @@
       "items": [
         {
           "id": "platform-wecom",
-          "title": "企业微信回调骨架已接入",
-          "description": "需要提供企业微信回调占位路由和降级安全的适配层。",
+          "title": "企业微信回调骨架与降级适配层已接入",
+          "description": "当前已提供企业微信回调占位路由和降级安全的适配层，真实 SDK 接入延后到 Phase 2。",
           "checkType": "auto",
-          "status": "blocked",
+          "status": "ready",
           "href": "/auth/wecom/callback"
         },
         {

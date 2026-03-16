@@ -172,10 +172,10 @@
       "items": [
         {
           "id": "platform-wecom",
-          "title": "WeCom callback skeleton is connected",
-          "description": "Provide a WeCom callback placeholder route and downgrade-safe adapter boundary.",
+          "title": "WeCom callback skeleton and downgrade-safe adapter are connected",
+          "description": "A WeCom callback placeholder route and downgrade-safe adapter boundary now exist, while the production SDK stays deferred to Phase 2.",
           "checkType": "auto",
-          "status": "blocked",
+          "status": "ready",
           "href": "/auth/wecom/callback"
         },
         {
