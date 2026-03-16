@@ -56,10 +56,10 @@
 - Create: `frontend/src/lib/account-api/types.ts`
 - Create: `frontend/src/lib/account-api/client.ts`
 
-- [ ] **Step 1: Write a failing backend test that covers notification list filtering, detail lookup, single read, and batch read**
-- [ ] **Step 2: Add DTO skeletons and a controller/service boundary for account notifications**
-- [ ] **Step 3: Run `mvn test -Dtest=MockAccountServiceTest` in `backend` and confirm the account test fails before implementation**
-- [ ] **Step 4: Implement the minimal notification mock contract and frontend client methods required for list/detail/read flows**
+- [x] **Step 1: Write a failing backend test that covers notification list filtering, detail lookup, single read, and batch read**
+- [x] **Step 2: Add DTO skeletons and a controller/service boundary for account notifications**
+- [x] **Step 3: Run `mvn test -Dtest=MockAccountServiceTest` in `backend` and confirm the account test fails before implementation**
+- [x] **Step 4: Implement the minimal notification mock contract and frontend client methods required for list/detail/read flows**
 
 ### Task 4: Build the notification list and detail routes
 
@@ -72,11 +72,11 @@
 - Modify: `frontend/src/lib/account/mock-content.json`
 - Modify: `frontend/src/lib/account/mock-content.en.json`
 
-- [ ] **Step 1: Build the notification list with filters for all, system, community, and check-in**
-- [ ] **Step 2: Add unread/read state, batch mark-as-read, and notification summary badges**
-- [ ] **Step 3: Build notification detail with title, source, time, body, and related action CTA**
-- [ ] **Step 4: Wire the list and detail pages to the account API client with a local mock fallback**
-- [ ] **Step 5: Re-run `mvn test -Dtest=MockAccountServiceTest`, `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`, `node --test frontend/scripts/account-bilingual-resources.test.mjs`, and `npm run build`**
+- [x] **Step 1: Build the notification list with filters for all, system, community, and check-in**
+- [x] **Step 2: Add unread/read state, batch mark-as-read, and notification summary badges**
+- [x] **Step 3: Build notification detail with title, source, time, body, and related action CTA**
+- [x] **Step 4: Wire the list and detail pages to the account API client with a local mock fallback**
+- [x] **Step 5: Re-run `mvn test -Dtest=MockAccountServiceTest`, `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`, `node --test frontend/scripts/account-bilingual-resources.test.mjs`, and `npm run build`**
 
 ## Chunk 3: Help And Feedback Center
 
@@ -170,7 +170,7 @@
 ## Node Status
 
 - Current node: `account center platformization`
-- Current completion state: `Chunk 1 complete, Chunk 2 notifications in progress`
+- Current completion state: `Chunk 2 complete, Chunk 3 help and feedback in progress`
 - Progress policy:
   - keep overall Phase 1 node progress at `10 / 12 = 83%` until all four internal delivery chunks are complete
   - only move to `11 / 12 = 92%` after account shell, notifications, help/feedback, and privacy/data-control flows are all verified

@@ -44,8 +44,30 @@
       "unreadLabel": "Unread",
       "feedbackLabel": "Open feedback",
       "exportLabel": "Export status",
-      "deleteLabel": "Delete request"
+      "deleteLabel": "Delete request",
+      "withdrawHint": "Withdraw available"
     }
+  },
+  "notificationsView": {
+    "eyebrow": "Notifications",
+    "title": "Separate system notices, community interactions, and check-in reminders",
+    "subtitle": "Filter by stream, mark items read in batch, and open each notification for full context.",
+    "batchRead": "Mark selected stream as read",
+    "emptyTitle": "No messages in this filter",
+    "emptyBody": "Switch filters or check back later for new system notices, community interactions, and check-in reminders.",
+    "filters": {
+      "all": "All",
+      "system": "System",
+      "community": "Community",
+      "checkin": "Check-in"
+    }
+  },
+  "notificationDetail": {
+    "backCta": "Back to notifications",
+    "sourceLabel": "Source",
+    "timeLabel": "Sent at",
+    "relatedActionCta": "Open related page",
+    "autoReadHint": "Opening the detail will automatically mark it as read."
   },
   "notifications": [
     {
@@ -203,6 +225,11 @@
       "system": "System",
       "community": "Community",
       "checkin": "Check-in"
+    },
+    "notificationStatus": {
+      "unread": "Unread",
+      "read": "Read",
+      "archived": "Archived"
     },
     "sections": {
       "messages": "Messages",

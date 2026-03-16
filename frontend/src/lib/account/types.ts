@@ -75,7 +75,29 @@ export type AccountContent = {
       feedbackLabel: string
       exportLabel: string
       deleteLabel: string
+      withdrawHint: string
     }
+  }
+  notificationsView: {
+    eyebrow: string
+    title: string
+    subtitle: string
+    batchRead: string
+    emptyTitle: string
+    emptyBody: string
+    filters: {
+      all: string
+      system: string
+      community: string
+      checkin: string
+    }
+  }
+  notificationDetail: {
+    backCta: string
+    sourceLabel: string
+    timeLabel: string
+    relatedActionCta: string
+    autoReadHint: string
   }
   notifications: AccountNotification[]
   feedbackRecords: FeedbackRecord[]
@@ -97,6 +119,7 @@ export type AccountContent = {
   labels: {
     status: Record<FeedbackStatus | ExportRequestStatus | DeleteRequestStatus, string>
     notificationTypes: Record<AccountNotificationType, string>
+    notificationStatus: Record<AccountNotificationStatus, string>
     sections: {
       messages: string
       help: string

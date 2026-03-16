@@ -1,11 +1,15 @@
 "use client"
 
+import { useEffect, useState } from "react"
+
 import { BellDot, ChevronRight, FileLock2, Headset, ShieldCheck, SlidersHorizontal } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 import { SharedNav } from "@/components/shared-nav"
 import { useLocale } from "@/i18n/use-locale"
 import { getAccountContent } from "@/lib/account"
+import { fetchAccountNotifications } from "@/lib/account-api/client"
+import type { AccountNotification } from "@/lib/account/types"
 import {
   canWithdrawDeleteRequest,
   countOpenFeedbackRecords,
@@ -25,8 +29,16 @@ export function AccountHome() {
   const router = useRouter()
   const { locale } = useLocale()
   const content = getAccountContent(locale)
+  const [notifications, setNotifications] = useState<AccountNotification[]>(content.notifications)
 
-  const unreadSummary = summarizeUnreadNotifications(content.notifications)
+  useEffect(() => {
+    setNotifications(content.notifications)
+    void fetchAccountNotifications(locale, "all").then((response) => {
+      setNotifications(response.items)
+    })
+  }, [content.notifications, locale])
+
+  const unreadSummary = summarizeUnreadNotifications(notifications)
   const openFeedbackCount = countOpenFeedbackRecords(content.feedbackRecords)
   const activeExportRequest = getActiveExportRequest(content.exportRequests)
   const activeDeleteRequest = content.deleteRequests[0] ?? null
@@ -62,7 +74,7 @@ export function AccountHome() {
                 {activeDeleteRequest ? content.labels.status[activeDeleteRequest.status] : content.labels.status.idle}
               </p>
               {activeDeleteRequest && canWithdrawDeleteRequest(activeDeleteRequest) ? (
-                <p className="mt-1 text-[11px] text-primary">可撤回</p>
+                <p className="mt-1 text-[11px] text-primary">{content.home.summary.withdrawHint}</p>
               ) : null}
             </div>
           </div>
