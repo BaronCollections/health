@@ -64,7 +64,7 @@
 - [x] **Step 2: Run `node --test frontend/scripts/ocr-upload-translations.test.mjs`**
 - [x] **Step 3: Run `npm run build` in `frontend`**
 - [x] **Step 4: Record the node status and current Phase 1 completion percentage in this plan**
-- [ ] **Step 5: Commit and push the node**
+- [x] **Step 5: Commit and push the node**
 
 ## Node Status
 
