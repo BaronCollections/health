@@ -28,6 +28,7 @@ nginx/certs/*.pem
 nginx/certs/*.key
 
 # ──── IDE ────
+.agent/
 .vscode/
 *.swp
 *.swo
