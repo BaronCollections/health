@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react"
 import { ArrowRight, Clock3, Layers3, Plus, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+import { FallbackBadge } from "@/components/shared/fallback-badge"
+import { PageState } from "@/components/shared/page-state"
 import { SharedNav } from "@/components/shared-nav"
 import { useLocale } from "@/i18n/use-locale"
 import { getCommunityContent, getPublicCommunityPosts } from "@/lib/community"
@@ -19,18 +21,29 @@ export function CommunityHome() {
   const content = getCommunityContent(locale)
   const [circles, setCircles] = useState<CommunityCircle[]>(content.circles)
   const [publicPosts, setPublicPosts] = useState<CommunityPost[]>(getPublicCommunityPosts(locale))
+  const [isRefreshing, setIsRefreshing] = useState(true)
 
   const [activeTab, setActiveTab] = useState<"recommended" | "circles">("recommended")
   const [selectedCircleId, setSelectedCircleId] = useState<string | null>(null)
 
+  const fallbackLabel =
+    locale === "zh-CN"
+      ? "社区流在后端不可用时会回退到本地双语种子内容。"
+      : "The community feed falls back to bundled bilingual seed content when the backend is unavailable."
+
   useEffect(() => {
     setCircles(content.circles)
     setPublicPosts(getPublicCommunityPosts(locale))
+    setIsRefreshing(true)
 
-    void fetchCommunityFeed(locale).then((response) => {
-      setCircles(response.circles)
-      setPublicPosts(response.posts)
-    })
+    void fetchCommunityFeed(locale)
+      .then((response) => {
+        setCircles(response.circles)
+        setPublicPosts(response.posts)
+      })
+      .finally(() => {
+        setIsRefreshing(false)
+      })
   }, [content.circles, locale])
 
   const filteredPosts = useMemo(() => {
@@ -73,6 +86,8 @@ export function CommunityHome() {
         </section>
 
         <section className="mt-5 rounded-[28px] border border-white/70 bg-white/90 p-4 shadow-[0_20px_60px_rgba(109,181,120,0.12)] backdrop-blur">
+          <FallbackBadge label={fallbackLabel} />
+
           <div className="flex rounded-full bg-[#F1F6F2] p-1">
             <button
               type="button"
@@ -206,11 +221,18 @@ export function CommunityHome() {
                 }}
               />
             ))
+          ) : isRefreshing ? (
+            <PageState
+              tone="loading"
+              title={locale === "zh-CN" ? "社区内容加载中" : "Loading community posts"}
+              body={
+                locale === "zh-CN"
+                  ? "正在同步推荐流和圈子内容。"
+                  : "Syncing the recommended feed and circle content."
+              }
+            />
           ) : (
-            <div className="rounded-[28px] border border-dashed border-[#CFE2CF] bg-white/80 px-4 py-10 text-center">
-              <p className="text-base font-semibold text-foreground">{content.home.emptyTitle}</p>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{content.home.emptyBody}</p>
-            </div>
+            <PageState tone="empty" title={content.home.emptyTitle} body={content.home.emptyBody} />
           )}
         </section>
       </main>

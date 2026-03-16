@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 import { FileLock2, History, ShieldCheck, Trash2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+import { FallbackBadge } from "@/components/shared/fallback-badge"
+import { PageState } from "@/components/shared/page-state"
 import { SharedNav } from "@/components/shared-nav"
 import { useLocale } from "@/i18n/use-locale"
 import { getAccountContent } from "@/lib/account"
@@ -18,13 +20,26 @@ export function PrivacyCenterPage() {
   const { locale } = useLocale()
   const content = getAccountContent(locale)
   const [security, setSecurity] = useState<AccountSecurity>(content.security)
+  const [isRefreshing, setIsRefreshing] = useState(true)
+
+  const fallbackLabel =
+    locale === "zh-CN"
+      ? "隐私、OCR 和审计文档内置在应用中，确保接口异常时仍可访问。"
+      : "Privacy, OCR, and audit documents are bundled with the app so they stay reachable during API outages."
 
   useEffect(() => {
     setSecurity(content.security)
-    void fetchAccountSecuritySnapshot(locale).then((snapshot) => {
-      setSecurity(snapshot)
-    })
+    setIsRefreshing(true)
+    void fetchAccountSecuritySnapshot(locale)
+      .then((snapshot) => {
+        setSecurity(snapshot)
+      })
+      .finally(() => {
+        setIsRefreshing(false)
+      })
   }, [content.security, locale])
+
+  const notificationEntries = Object.entries(security.notificationPreferences)
 
   return (
     <div className="mx-auto flex min-h-screen max-w-md flex-col bg-[radial-gradient(circle_at_top,_rgba(109,181,120,0.18),_transparent_38%),linear-gradient(180deg,_#F3FAF3_0%,_#FFFFFF_40%,_#F8FBF8_100%)]">
@@ -39,19 +54,37 @@ export function PrivacyCenterPage() {
         </section>
 
         <section className="mt-5 rounded-[28px] border border-white/70 bg-white/90 p-4 shadow-[0_18px_40px_rgba(109,181,120,0.1)]">
+          <FallbackBadge label={fallbackLabel} />
+
           <p className="text-xs font-medium text-muted-foreground">{content.privacyCenter.notificationPrefsLabel}</p>
           <div className="mt-3 flex flex-wrap gap-2">
-            {Object.entries(security.notificationPreferences).map(([key, enabled]) => (
-              <span
-                key={key}
-                className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
-                  enabled ? "bg-[#E8F6EA] text-primary" : "bg-[#F4F5F7] text-muted-foreground"
-                }`}
-              >
-                {content.labels.notificationTypes[key as keyof typeof content.labels.notificationTypes]} ·{" "}
-                {enabled ? content.securityView.enabledLabel : content.securityView.disabledLabel}
-              </span>
-            ))}
+            {notificationEntries.length ? (
+              notificationEntries.map(([key, enabled]) => (
+                <span
+                  key={key}
+                  className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
+                    enabled ? "bg-[#E8F6EA] text-primary" : "bg-[#F4F5F7] text-muted-foreground"
+                  }`}
+                >
+                  {content.labels.notificationTypes[key as keyof typeof content.labels.notificationTypes]} ·{" "}
+                  {enabled ? content.securityView.enabledLabel : content.securityView.disabledLabel}
+                </span>
+              ))
+            ) : (
+              <PageState
+                tone={isRefreshing ? "loading" : "empty"}
+                title={isRefreshing ? (locale === "zh-CN" ? "权限信息加载中" : "Loading permissions") : locale === "zh-CN" ? "暂无权限信息" : "No permissions available"}
+                body={
+                  isRefreshing
+                    ? locale === "zh-CN"
+                      ? "正在同步通知和 OCR 授权状态。"
+                      : "Syncing notification and OCR authorization states."
+                    : locale === "zh-CN"
+                      ? "稍后再试，或从账户设置页重新进入。"
+                      : "Try again later, or reopen this page from account settings."
+                }
+              />
+            )}
           </div>
         </section>
 

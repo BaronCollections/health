@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react"
 import { BellDot, CheckCheck, ChevronRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+import { FallbackBadge } from "@/components/shared/fallback-badge"
+import { PageState } from "@/components/shared/page-state"
 import { SharedNav } from "@/components/shared-nav"
 import { useLocale } from "@/i18n/use-locale"
 import { getAccountContent } from "@/lib/account"
@@ -21,12 +23,23 @@ export function NotificationsPage() {
   const content = getAccountContent(locale)
   const [notifications, setNotifications] = useState<AccountNotification[]>(content.notifications)
   const [activeFilter, setActiveFilter] = useState<NotificationFilter>("all")
+  const [isRefreshing, setIsRefreshing] = useState(true)
+
+  const fallbackLabel =
+    locale === "zh-CN"
+      ? "消息中心在接口不可用时会回退到本地合并后的双语通知流。"
+      : "Notifications fall back to a locally merged bilingual stream when the API is unavailable."
 
   useEffect(() => {
     setNotifications(content.notifications)
-    void fetchAccountNotifications(locale, "all").then((response) => {
-      setNotifications(response.items)
-    })
+    setIsRefreshing(true)
+    void fetchAccountNotifications(locale, "all")
+      .then((response) => {
+        setNotifications(response.items)
+      })
+      .finally(() => {
+        setIsRefreshing(false)
+      })
   }, [content.notifications, locale])
 
   const visibleNotifications = useMemo(() => {
@@ -80,6 +93,10 @@ export function NotificationsPage() {
             ))}
           </div>
         </section>
+
+        <div className="mt-5">
+          <FallbackBadge label={fallbackLabel} />
+        </div>
 
         <div className="mt-5 flex items-center justify-between rounded-[24px] border border-white/70 bg-white/90 px-4 py-3 shadow-[0_18px_40px_rgba(109,181,120,0.1)]">
           <div>
@@ -136,11 +153,18 @@ export function NotificationsPage() {
                 <p className="mt-4 text-xs font-medium text-muted-foreground">{notification.relativeTime}</p>
               </button>
             ))
+          ) : isRefreshing ? (
+            <PageState
+              tone="loading"
+              title={locale === "zh-CN" ? "消息同步中" : "Loading notifications"}
+              body={
+                locale === "zh-CN"
+                  ? "正在同步系统通知、社区互动和打卡提醒。"
+                  : "Syncing system notices, community activity, and check-in reminders."
+              }
+            />
           ) : (
-            <div className="rounded-[28px] border border-dashed border-[#CFE2CF] bg-white/80 px-4 py-10 text-center">
-              <p className="text-base font-semibold text-foreground">{content.notificationsView.emptyTitle}</p>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{content.notificationsView.emptyBody}</p>
-            </div>
+            <PageState tone="empty" title={content.notificationsView.emptyTitle} body={content.notificationsView.emptyBody} />
           )}
         </section>
       </main>

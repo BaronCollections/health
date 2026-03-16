@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowLeft, FileText, LoaderCircle, Sparkles, Upload } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+import { FallbackBadge } from "@/components/shared/fallback-badge"
 import { useLocale } from "@/i18n/use-locale"
 import { uploadOcrReport } from "@/lib/ocr-api/client"
 import { getOcrUploadContent } from "@/lib/ocr-upload"
@@ -23,6 +24,7 @@ export function OcrUploadPage() {
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [status, setStatus] = useState<UploadStatus>("idle")
+  const [fallbackNotice, setFallbackNotice] = useState<string | null>(null)
 
   useEffect(() => {
     return () => {
@@ -48,6 +50,7 @@ export function OcrUploadPage() {
 
     setSelectedFile(nextFile)
     setStatus("ready")
+    setFallbackNotice(null)
   }
 
   const handleStartRecognition = async () => {
@@ -79,11 +82,17 @@ export function OcrUploadPage() {
         taskId: uploadResponse.taskId,
         syncStatus: "uploaded",
       })
+      setFallbackNotice(null)
     } catch {
       saveOcrUploadSession({
         ...nextSession,
         syncStatus: "sync-failed",
       })
+      setFallbackNotice(
+        locale === "zh-CN"
+          ? "OCR 上传接口异常，当前已回退到本地确认流。"
+          : "The OCR upload API is unavailable, so the flow has fallen back to local confirmation."
+      )
     }
 
     processingTimeoutRef.current = window.setTimeout(() => {
@@ -191,6 +200,12 @@ export function OcrUploadPage() {
                 </p>
               </div>
             </div>
+
+            {fallbackNotice ? (
+              <div className="mt-4">
+                <FallbackBadge label={fallbackNotice} tone="warning" />
+              </div>
+            ) : null}
 
             <div className="mt-5 rounded-2xl bg-[#F7FBF6] border border-[#E0EBDD] p-4 space-y-3">
               <div className="flex items-center justify-between gap-4">

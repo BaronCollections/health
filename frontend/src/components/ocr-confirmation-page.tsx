@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react"
 import { ArrowLeft, CheckCircle2, ShieldAlert, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+import { FallbackBadge } from "@/components/shared/fallback-badge"
+import { PageState } from "@/components/shared/page-state"
 import { useLocale } from "@/i18n/use-locale"
 import { fetchOcrResult } from "@/lib/ocr-api/client"
 import type { OcrResultApiResponse } from "@/lib/ocr-api/types"
@@ -27,6 +29,7 @@ export function OcrConfirmationPage() {
   const confidenceBadges = content.confidenceBadges as Record<OcrFieldConfidence, string>
   const [uploadSession, setUploadSession] = useState<OcrUploadSession | null>(null)
   const [apiResult, setApiResult] = useState<OcrResultApiResponse | null>(null)
+  const [isLoadingResult, setIsLoadingResult] = useState(false)
 
   useEffect(() => {
     setUploadSession(getOcrUploadSession())
@@ -38,6 +41,7 @@ export function OcrConfirmationPage() {
     }
 
     let cancelled = false
+    setIsLoadingResult(true)
 
     fetchOcrResult(uploadSession.assessmentId)
       .then((result) => {
@@ -48,6 +52,11 @@ export function OcrConfirmationPage() {
       .catch(() => {
         if (!cancelled) {
           setApiResult(null)
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setIsLoadingResult(false)
         }
       })
 
@@ -110,6 +119,31 @@ export function OcrConfirmationPage() {
     })
   }, [apiResult, content.sections])
 
+  const fallbackNotice =
+    !apiResult || uploadSession?.syncStatus !== "uploaded"
+      ? locale === "zh-CN"
+        ? "当前先展示本地确认模板，接口结果可用后会覆盖字段值。"
+        : "The local confirmation template is shown first and will be replaced when API results are available."
+      : null
+
+  if (!uploadSession) {
+    return (
+      <div className="min-h-screen bg-[#F6FAF4] flex flex-col max-w-md mx-auto px-4 py-16">
+        <PageState
+          tone="error"
+          title={locale === "zh-CN" ? "没有可确认的 OCR 记录" : "No OCR record to confirm"}
+          body={
+            locale === "zh-CN"
+              ? "请先返回报告页重新上传体检报告。"
+              : "Return to the report page and upload a health report first."
+          }
+          actionLabel={locale === "zh-CN" ? "返回报告页" : "Back to report"}
+          onAction={() => router.push("/report")}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-[#F6FAF4] flex flex-col max-w-md mx-auto">
       <header className="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-border">
@@ -145,6 +179,10 @@ export function OcrConfirmationPage() {
             </div>
           </div>
         </section>
+
+        {fallbackNotice ? (
+          <FallbackBadge label={fallbackNotice} tone={isLoadingResult ? "info" : "warning"} />
+        ) : null}
 
         <section className="rounded-3xl bg-white p-5 border border-border shadow-sm">
           <div className="flex items-center justify-between gap-3">

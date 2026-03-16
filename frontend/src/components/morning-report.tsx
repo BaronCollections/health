@@ -5,6 +5,8 @@ import React, { useEffect, useRef, useState } from "react"
 import { ChevronRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+import { FallbackBadge } from "@/components/shared/fallback-badge"
+import { PageState } from "@/components/shared/page-state"
 import { useLocale } from "@/i18n/use-locale"
 import { loadSavedPlanSession, saveSavedPlanSession, type SavedPlanSnapshot } from "@/lib/plan/session"
 import { getReportContent } from "@/lib/report"
@@ -45,6 +47,7 @@ export function MorningReport() {
   const touchEndX = useRef(0)
 
   const primaryGoal = report.goalsSection.items.find((goal) => goal.id === report.goalsSection.primaryGoalId)
+  const selectedNutritionCards = nutritionCards[selectedGoal]
   const planActions = locale === "zh-CN"
     ? {
         save: "保存到我的方案",
@@ -115,10 +118,14 @@ export function MorningReport() {
   }
 
   const handleSavePlan = () => {
+    if (!selectedNutritionCards) {
+      return
+    }
+
     const snapshot: SavedPlanSnapshot = {
       goalId: selectedGoal,
       savedAt: new Date().toISOString(),
-      cards: nutritionCards[selectedGoal].map((card) => ({
+      cards: selectedNutritionCards.map((card) => ({
         id: card.id,
         category: card.category,
         name: card.name,
@@ -157,6 +164,24 @@ export function MorningReport() {
     document.addEventListener("mouseup", handleMouseUp)
   }
 
+  if (!primaryGoal || !selectedNutritionCards) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col max-w-md mx-auto px-4 py-16">
+        <PageState
+          tone="error"
+          title={locale === "zh-CN" ? "报告内容暂不可用" : "Report content is unavailable"}
+          body={
+            locale === "zh-CN"
+              ? "当前报告数据不完整，请返回首页重新开始。"
+              : "The current report data is incomplete. Return to the home screen and try again."
+          }
+          actionLabel={locale === "zh-CN" ? "返回首页" : "Back to home"}
+          onAction={() => router.push("/")}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-white flex flex-col max-w-md mx-auto relative">
       <div className="flex items-center justify-center px-4 py-3 bg-white border-b border-border">
@@ -164,6 +189,16 @@ export function MorningReport() {
       </div>
 
       <div className="flex-1 overflow-y-auto">
+        <div className="px-4 pt-4">
+          <FallbackBadge
+            label={
+              locale === "zh-CN"
+                ? "当前报告基于 Phase 1 内置双语画报数据渲染。"
+                : "This report currently renders from bundled Phase 1 bilingual poster data."
+            }
+          />
+        </div>
+
         <div
           ref={containerRef}
           className="min-h-[calc(100vh-140px)] relative overflow-hidden select-none cursor-grab active:cursor-grabbing bg-white"
@@ -418,7 +453,7 @@ export function MorningReport() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            {nutritionCards[selectedGoal].map((card) => (
+                    {selectedNutritionCards.map((card) => (
               <button
                 key={card.id}
                 className="bg-white rounded-xl p-4 text-left active:scale-[0.98] transition-transform"
