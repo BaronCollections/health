@@ -5,12 +5,13 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 ## Phase 1 Snapshot
 
 - 当前交付重点：`手机端 H5` + `完整双语` + `生命绿 #6DB578` 品牌视觉
-- 当前工程进度：`11 / 12 = 92%`
-- 当前已完成主链路：首页、问卷、报告、OCR 上传与确认、历史画报时间轴、打卡、社区、社区审核 H5
+- 当前工程进度：`12 / 12 = 100%`
+- 当前已完成主链路：首页、问卷、报告、OCR 上传与确认、历史画报时间轴、打卡、社区、社区审核 H5、管理员发布检查、WeCom 骨架、Web 双壳层基础
 - 当前账户中心能力：统一 `/profile` 入口、通知中心分类流、消息详情页、批量已读、帮助中心 FAQ、反馈表单、反馈记录、隐私中心、导出申请、删除申请、安全快照、审核与操作留痕页
 - 当前社区能力：推荐 feed、发帖、帖子详情、评论、我的帖子、审核状态、运营审核列表页
-- 当前账户中心进展：`平台级账户中心节点已完成`，下一步进入发布加固、企业微信接入预留、Web 扩展预留
-- 后续节点：通知/帮助/隐私双语化、发布加固、企业微信接入预留、Web 扩展预留
+- 当前发布基线：`/profile/admin/release-checklist` 管理员发布检查页、关键页面 fallback 可见化、WeCom 回调占位 `/auth/wecom/callback`、桌面双壳层 foundation
+- 当前非阻塞工程警告：Next.js workspace root lockfile 警告、`baseline-browser-mapping` 数据过期警告
+- 后续工作将转入：真实 WeCom OAuth/JS-SDK、Web 业务页面深度桌面化、发布自动化
 
 ## Current Product Shape
 
@@ -29,6 +30,7 @@ MintBit Phase 1 目前围绕一条完整的“评估 -> 报告 -> 打卡 -> 社�
 - `/profile/privacy/delete-request`：删除申请状态流
 - `/profile/security`：账户安全与偏好快照
 - `/profile/audit-log`：审核与操作留痕说明
+- `/profile/admin/release-checklist`：管理员发布检查页，展示运行时、关键路径、合规入口和平台预留状态
 - `/pricing`：兼容旧入口，已重定向到 `/profile`
 
 当前社区模块已经重构为移动优先结构：
@@ -38,6 +40,13 @@ MintBit Phase 1 目前围绕一条完整的“评估 -> 报告 -> 打卡 -> 社�
 - `/community/post/[id]`：帖子详情与评论
 - `/community/me`：我的帖子与审核状态
 - `/ops/community-review`：手机 H5 运营审核页
+
+当前平台预留已经形成代码骨架：
+
+- `/auth/wecom/callback`：企业微信回调占位页
+- `frontend/src/lib/platform/wecom.ts`：企业微信降级安全 adapter skeleton
+- `frontend/src/components/shells/*`：移动端 / 桌面端双壳层基础
+- `docs/release-checklist.md`：与产品内管理员检查页对齐的发布术语文档
 
 ## Tech Stack
 

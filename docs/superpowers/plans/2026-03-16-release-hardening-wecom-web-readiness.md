@@ -157,7 +157,7 @@
 ## Node Status
 
 - Current node: `Release hardening and WeCom/Web readiness prep`
-- Current completion state: `planning approved, implementation not started`
+- Current completion state: `implemented, verified, and ready for push`
 - Progress policy:
-  - keep overall Phase 1 node progress at `11 / 12 = 92%` until release hardening, release checklist, WeCom skeleton, and Web dual-shell work are all verified
-  - only move to `12 / 12 = 100%` after the final release gate and platform-readiness work are fully verified
+  - overall Phase 1 node progress is now `12 / 12 = 100%`
+  - remaining work shifts to future delivery beyond this node, not unfinished Phase 1 engineering scope

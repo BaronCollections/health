@@ -5,8 +5,8 @@
 This tracker measures **current H5 Phase 1 engineering node progress**, not final commercial readiness.
 
 - Total planned engineering nodes in the current roadmap: `12`
-- Completed nodes after the account-center platformization node: `11`
-- Current completion percentage: `92%`
+- Completed nodes after the release-hardening final node: `12`
+- Current completion percentage: `100%`
 
 ## Node Status
 
@@ -21,4 +21,4 @@ This tracker measures **current H5 Phase 1 engineering node progress**, not fina
 9. `Check-in and saved-plan persistence integration` — completed
 10. `Community rewrite with moderation and ops H5` — completed
 11. `Account center platformization` — completed
-12. `Release hardening and WeCom/Web readiness prep` — pending
+12. `Release hardening and WeCom/Web readiness prep` — completed
