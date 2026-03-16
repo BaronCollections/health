@@ -312,7 +312,7 @@ export function MorningReport() {
 
                 <div className="space-y-3 pt-8">
                   <button
-                    onClick={() => router.push("/ocr-confirmation")}
+                    onClick={() => router.push("/ocr-upload")}
                     className="w-full py-3.5 border border-border rounded-full text-foreground font-medium bg-white"
                   >
                     {report.closingSection.secondaryCta}

@@ -1,0 +1,53 @@
+{
+  "header": {
+    "title": "Upload a health report",
+    "subtitle": "Upload a PDF or a clear photo to strengthen the evidence behind your nutrition guidance."
+  },
+  "hero": {
+    "eyebrow": "Optional enhancement",
+    "title": "Upload first, then review OCR output",
+    "body": "This step does not replace your questionnaire answers. It adds key biomarkers so the later guidance is easier to explain and trust."
+  },
+  "formatsLabel": "Supports PDF / JPG / PNG, with a recommended file size under 10 MB",
+  "steps": [
+    {
+      "id": "upload",
+      "title": "Upload the original report",
+      "body": "Use a physical exam or lab result from the last 90 days when possible."
+    },
+    {
+      "id": "processing",
+      "title": "System extracts biomarkers",
+      "body": "We identify key data first and then route you into manual confirmation."
+    },
+    {
+      "id": "confirm",
+      "title": "Confirm before it enters the report",
+      "body": "Low-confidence items stay flagged so you remain the final reviewer."
+    }
+  ],
+  "idleCard": {
+    "title": "Choose a file to get started",
+    "body": "A full frame, no occlusion, and sharp text will reduce follow-up confirmation work.",
+    "primaryCta": "Choose file",
+    "secondaryCta": "Maybe later"
+  },
+  "readyCard": {
+    "title": "Your file is ready",
+    "body": "Once the file looks right, start recognition and we will move you into the confirmation page automatically.",
+    "fileNameLabel": "File name",
+    "fileSizeLabel": "File size",
+    "replaceCta": "Replace file",
+    "primaryCta": "Start recognition"
+  },
+  "processingCard": {
+    "title": "Recognizing now",
+    "body": "We are extracting key biomarkers and shaping them into a review-ready result.",
+    "items": [
+      "Reading layout structure",
+      "Locating key biomarkers",
+      "Building review-ready entries"
+    ]
+  },
+  "footerNote": "Uploads are used only to explain nutrition guidance and never replace medical diagnosis."
+}

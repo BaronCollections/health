@@ -1,10 +1,13 @@
 "use client"
 
+import { useEffect, useMemo, useState } from "react"
+
 import { ArrowLeft, CheckCircle2, ShieldAlert, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 import { useLocale } from "@/i18n/use-locale"
 import { getOcrConfirmationContent } from "@/lib/ocr"
+import { formatOcrFileSize, getOcrUploadSession, type OcrUploadSession } from "@/lib/ocr/session"
 import type { OcrFieldConfidence } from "@/lib/ocr/types"
 
 import { SharedNav } from "./shared-nav"
@@ -20,10 +23,30 @@ export function OcrConfirmationPage() {
   const { locale, t } = useLocale()
   const content = getOcrConfirmationContent(locale)
   const confidenceBadges = content.confidenceBadges as Record<OcrFieldConfidence, string>
+  const [uploadSession, setUploadSession] = useState<OcrUploadSession | null>(null)
+
+  useEffect(() => {
+    setUploadSession(getOcrUploadSession())
+  }, [])
 
   const getConfidenceLabel = (confidence: OcrFieldConfidence) => {
     return confidenceBadges[confidence]
   }
+
+  const uploadMeta = useMemo(() => {
+    if (!uploadSession) {
+      return null
+    }
+
+    const dateFormatter = new Intl.DateTimeFormat(locale === "zh-CN" ? "zh-CN" : "en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+
+    return `${formatOcrFileSize(uploadSession.fileSize)} · ${dateFormatter.format(new Date(uploadSession.uploadedAt))}`
+  }, [locale, uploadSession])
 
   return (
     <div className="min-h-screen bg-[#F6FAF4] flex flex-col max-w-md mx-auto">
@@ -62,7 +85,8 @@ export function OcrConfirmationPage() {
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-xs text-muted-foreground">{content.fileMeta.label}</p>
-              <p className="text-sm font-medium text-foreground mt-1">{content.fileMeta.value}</p>
+              <p className="text-sm font-medium text-foreground mt-1">{uploadSession?.fileName ?? content.fileMeta.value}</p>
+              {uploadMeta && <p className="text-xs text-muted-foreground mt-1">{uploadMeta}</p>}
             </div>
             <div className="text-right">
               <p className="text-xs text-muted-foreground">{content.fileMeta.confidenceLabel}</p>

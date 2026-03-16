@@ -1,0 +1,53 @@
+{
+  "header": {
+    "title": "上传体检报告",
+    "subtitle": "上传 PDF 或清晰拍照，用于增强营养建议的解释链。"
+  },
+  "hero": {
+    "eyebrow": "可选增强",
+    "title": "先上传，再进入 OCR 确认",
+    "body": "这一步不会替代问卷答案，只会补充关键指标，让后续建议更可解释。"
+  },
+  "formatsLabel": "支持 PDF / JPG / PNG，建议单个文件不超过 10 MB",
+  "steps": [
+    {
+      "id": "upload",
+      "title": "上传原始报告",
+      "body": "建议使用最近 90 天内的体检或化验结果。"
+    },
+    {
+      "id": "processing",
+      "title": "系统提取指标",
+      "body": "我们会先识别关键数据，再进入人工确认。"
+    },
+    {
+      "id": "confirm",
+      "title": "确认后再入报告",
+      "body": "低置信度项目会被标记，交由你最终确认。"
+    }
+  ],
+  "idleCard": {
+    "title": "选择一个文件开始",
+    "body": "建议拍照完整、无遮挡、文字清晰，减少后续确认成本。",
+    "primaryCta": "选择文件",
+    "secondaryCta": "稍后再说"
+  },
+  "readyCard": {
+    "title": "文件已准备就绪",
+    "body": "确认文件无误后开始识别，完成后会自动进入确认页。",
+    "fileNameLabel": "文件名",
+    "fileSizeLabel": "文件大小",
+    "replaceCta": "重新选择",
+    "primaryCta": "开始识别"
+  },
+  "processingCard": {
+    "title": "正在识别中",
+    "body": "我们会先提取关键指标，再整理成待确认结果。",
+    "items": [
+      "读取版面结构",
+      "定位关键指标",
+      "生成待确认记录"
+    ]
+  },
+  "footerNote": "上传内容只用于营养建议解释，不会替代医生诊断。"
+}
