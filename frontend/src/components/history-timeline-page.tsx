@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, ChevronRight, Clock3, Sparkles, TrendingUp } from "lucide-react"
+import { ArrowLeft, ChevronRight, Clock3, Sparkles, TrendingUp, Users } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 import { useLocale } from "@/i18n/use-locale"
@@ -128,6 +128,29 @@ export function HistoryTimelinePage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section className="rounded-3xl border border-[#DDECDC] bg-gradient-to-br from-[#F4FBF1] via-white to-[#E7F4E2] p-5 shadow-sm">
+          <div className="flex items-start gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10">
+              <Users className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/80">
+                {content.communityBridge.eyebrow}
+              </p>
+              <h2 className="mt-1 text-base font-bold text-foreground">{content.communityBridge.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{content.communityBridge.body}</p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => router.push("/community")}
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-medium text-foreground border border-border"
+          >
+            {content.communityBridge.cta}
+            <ChevronRight className="w-4 h-4" />
+          </button>
         </section>
       </main>
 

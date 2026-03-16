@@ -1,11 +1,13 @@
 "use client"
 import { useState, useRef, useEffect } from "react"
 import React from "react"
+import { useRouter } from "next/navigation"
 
-import { Heart, MessageCircle, Share2, MoreHorizontal, ImageIcon, Plus, ChevronRight, ArrowLeft, X, Download } from "lucide-react"
+import { Clock3, Download, Heart, ImageIcon, MoreHorizontal, Plus, Share2, MessageCircle, ChevronRight, ArrowLeft, X } from "lucide-react"
 import { SharedNav } from "./shared-nav"
 
 import { useLocale } from "@/i18n/use-locale"
+import { getCommunityTimelineContent } from "@/lib/community-timeline"
 
 // 评论数据类型
 type Comment = {
@@ -123,7 +125,9 @@ const allCircles = [
 const posts = initialPosts; // Declare the posts variable
 
 export function MorningCommunity() {
-  const { t } = useLocale()
+  const router = useRouter()
+  const { locale, t } = useLocale()
+  const timelineBridge = getCommunityTimelineContent(locale)
   const [activeTab, setActiveTab] = useState<"recommended" | "circles">("recommended")
   const [postsState, setPostsState] = useState<Post[]>(initialPosts)
   const [showPostModal, setShowPostModal] = useState(false)
@@ -575,6 +579,50 @@ setCommentText("")
       {/* 帖子列表 */}
       {activeTab === "recommended" && (
         <div className="flex-1 mt-2 space-y-2">
+        <div className="bg-white px-4 py-4">
+          <div className="rounded-[28px] border border-[#DDECDC] bg-gradient-to-br from-[#F4FBF1] via-white to-[#E8F4E4] p-5 shadow-sm">
+            <div className="flex items-start justify-between gap-4">
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/80">
+                  {timelineBridge.entryCard.eyebrow}
+                </p>
+                <h3 className="mt-2 text-lg font-bold text-foreground">
+                  {timelineBridge.entryCard.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {timelineBridge.entryCard.body}
+                </p>
+              </div>
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10">
+                <Clock3 className="h-5 w-5 text-primary" />
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              {timelineBridge.entryCard.stats.map((item) => (
+                <div key={item.id} className="rounded-2xl border border-white/80 bg-white/90 px-3 py-3">
+                  <p className="text-sm font-bold text-foreground">{item.value}</p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{item.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 flex gap-2">
+              <button
+                onClick={() => router.push("/timeline")}
+                className="flex-1 rounded-full bg-primary px-4 py-3 text-sm font-medium text-white"
+              >
+                {timelineBridge.entryCard.primaryCta}
+              </button>
+              <button
+                onClick={() => router.push("/report")}
+                className="rounded-full border border-border bg-white px-4 py-3 text-sm font-medium text-foreground"
+              >
+                {timelineBridge.entryCard.secondaryCta}
+              </button>
+            </div>
+          </div>
+        </div>
         {postsState.map((post) => (
           <div key={post.id} className="bg-white px-4 py-4">
             {/* 用户信息 */}

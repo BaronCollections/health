@@ -1,0 +1,26 @@
+{
+  "entryCard": {
+    "eyebrow": "历史联动",
+    "title": "把社区陪伴和个人变化放到一条线里",
+    "body": "打开历史画报时间轴，查看这几次测评、OCR 增补和打卡节点，再去社区里看看同阶段用户是怎么坚持下来的。",
+    "stats": [
+      {
+        "id": "snapshots",
+        "value": "3 次",
+        "label": "历史画报快照"
+      },
+      {
+        "id": "streak",
+        "value": "21 天",
+        "label": "最长连续打卡"
+      },
+      {
+        "id": "community",
+        "value": "2,318",
+        "label": "同主题社区成员"
+      }
+    ],
+    "primaryCta": "查看时间轴",
+    "secondaryCta": "返回当前报告"
+  }
+}

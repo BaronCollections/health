@@ -1,0 +1,26 @@
+{
+  "entryCard": {
+    "eyebrow": "History bridge",
+    "title": "Put community support and personal change on one line",
+    "body": "Open the poster history timeline to review your recent assessments, OCR enrichments, and check-in milestones, then head back to the community to see how people at the same stage keep going.",
+    "stats": [
+      {
+        "id": "snapshots",
+        "value": "3 runs",
+        "label": "Poster snapshots"
+      },
+      {
+        "id": "streak",
+        "value": "21 days",
+        "label": "Longest check-in streak"
+      },
+      {
+        "id": "community",
+        "value": "2,318",
+        "label": "Members with similar goals"
+      }
+    ],
+    "primaryCta": "Open timeline",
+    "secondaryCta": "Back to current report"
+  }
+}

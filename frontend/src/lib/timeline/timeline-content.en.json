@@ -81,6 +81,12 @@
       "The first OCR enhancement extended the report from self-reported inputs into structured biomarkers."
     ]
   },
+  "communityBridge": {
+    "eyebrow": "Community support",
+    "title": "Bring this progress back into the community",
+    "body": "Head into the community to see how people with similar goals record habits, compare body feedback, and turn the next milestone into a repeatable routine.",
+    "cta": "Go to community"
+  },
   "actions": {
     "primary": "Retake assessment",
     "secondary": "Back to current report"
