@@ -1,9 +1,11 @@
 "use client"
-import { useState, useRef, useEffect, useCallback } from "react"
+import { useState, useRef, useEffect } from "react"
 import { ChevronRight, Calendar, Flame, MessageCircle, ArrowLeft, X } from "lucide-react"
 import { SharedNav } from "./shared-nav"
 
+import { applyDailyCheckIn, createInitialCheckInState, loadCheckInSession, saveCheckInSession } from "@/lib/checkin/session"
 import { useLocale } from "@/i18n/use-locale"
+import { loadSavedPlanSession, type SavedPlanSnapshot } from "@/lib/plan/session"
 
 // 数字滚动动画组件
 function AnimatedNumber({ value, duration = 1000 }: { value: number, duration?: number }) {
@@ -178,6 +180,8 @@ export function MorningCheckin() {
   const [showSuccess, setShowSuccess] = useState(false)
   const [checkedIn, setCheckedIn] = useState(false)
   const [selectedSupplement, setSelectedSupplement] = useState<typeof allSupplements[0] | null>(null)
+  const [savedPlan, setSavedPlan] = useState<SavedPlanSnapshot | null>(null)
+  const [checkInState, setCheckInState] = useState(() => createInitialCheckInState())
   const [streakDays, setStreakDays] = useState(7)
   const [monthlyCheckins, setMonthlyCheckins] = useState(25)
   const [totalCheckins, setTotalCheckins] = useState(180)
@@ -228,12 +232,15 @@ export function MorningCheckin() {
       triggerHaptic("success")
       setCheckedIn(true)
       setShowSuccess(true)
+      const nextState = applyDailyCheckIn(checkInState, new Date())
+      setCheckInState(nextState)
+      saveCheckInSession(nextState)
       // 延迟更新数值，让动画更流畅
       setTimeout(() => {
-        setStreakDays(prev => prev + 1)
-        setMonthlyCheckins(prev => prev + 1)
-        setTotalCheckins(prev => prev + 1)
-        setHealthPoints(prev => prev + 10)
+        setStreakDays(nextState.streakDays)
+        setMonthlyCheckins(nextState.monthlyCheckins)
+        setTotalCheckins(nextState.totalCheckins)
+        setHealthPoints(nextState.healthPoints)
       }, 300)
       setTimeout(() => {
         setShowSuccess(false)
@@ -258,6 +265,23 @@ export function MorningCheckin() {
     }
   }, [])
 
+  useEffect(() => {
+    const restoredPlan = loadSavedPlanSession()
+    if (restoredPlan) {
+      setSavedPlan(restoredPlan)
+    }
+
+    const restoredCheckInState = loadCheckInSession() ?? createInitialCheckInState()
+    setCheckInState(restoredCheckInState)
+    setStreakDays(restoredCheckInState.streakDays)
+    setMonthlyCheckins(restoredCheckInState.monthlyCheckins)
+    setTotalCheckins(restoredCheckInState.totalCheckins)
+    setHealthPoints(restoredCheckInState.healthPoints)
+
+    const todayKey = new Date().toISOString().slice(0, 10)
+    setCheckedIn(restoredCheckInState.lastCheckInDate === todayKey)
+  }, [])
+
   // 日历计算
   const today = new Date()
   const displayYear = calendarMonth.getFullYear()
@@ -272,6 +296,18 @@ export function MorningCheckin() {
     [`${today.getFullYear()}-${today.getMonth() - 1}`]: [1, 2, 4, 5, 6, 9, 10, 11, 12, 15, 16, 17, 18, 22, 23, 24, 25, 26, 29, 30],
   }
   const checkedDays = checkedDaysData[`${displayYear}-${displayMonth}`] || []
+  const savedPlanCards = savedPlan?.cards ?? []
+  const savedPlanCopy = locale === "zh-CN"
+    ? {
+        title: "已保存的推荐方案",
+        empty: "还没有保存方案，先去营养画报挑选适合你的推荐。",
+        savedAtPrefix: "最近保存",
+      }
+    : {
+        title: "Saved recommendation plan",
+        empty: "No plan saved yet. Head back to the report and save the recommendation set that fits you.",
+        savedAtPrefix: "Last saved",
+      }
 
   // 补剂详情页
   if (selectedSupplement) {
@@ -582,8 +618,42 @@ export function MorningCheckin() {
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-medium text-foreground">我的营养方案</h3>
           <div className="flex items-center gap-1 text-muted-foreground">
-            <span className="text-xs">共{allSupplements.length}款</span>
+            <span className="text-xs">共{savedPlanCards.length || allSupplements.length}款</span>
           </div>
+        </div>
+
+        <div className="mb-6 rounded-2xl border border-[#DDECDC] bg-gradient-to-br from-[#F4FBF1] via-white to-[#E8F4E4] p-4">
+          <p className="text-sm font-semibold text-foreground">{savedPlanCopy.title}</p>
+          {savedPlan?.savedAt && (
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              {savedPlanCopy.savedAtPrefix}{" "}
+              {new Intl.DateTimeFormat(locale === "zh-CN" ? "zh-CN" : "en-US", {
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              }).format(new Date(savedPlan.savedAt))}
+            </p>
+          )}
+          {!savedPlanCards.length && (
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{savedPlanCopy.empty}</p>
+          )}
+          {!!savedPlanCards.length && (
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {savedPlanCards.map((card) => (
+                <div key={card.id} className="rounded-xl border border-white/80 bg-white/90 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="text-lg font-light text-foreground">{card.category}</span>
+                    <div className="w-10 h-10 flex items-center justify-center shrink-0">
+                      <PillIcon color={card.color} type={card.type} />
+                    </div>
+                  </div>
+                  <p className="mt-2 text-sm font-bold text-foreground">{card.name}</p>
+                  <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground line-clamp-3">{card.benefit}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         
         {/* 三个分类介绍卡片 - 暂时隐藏 */}

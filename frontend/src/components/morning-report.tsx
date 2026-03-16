@@ -1,11 +1,12 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 import { ChevronRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 import { useLocale } from "@/i18n/use-locale"
+import { loadSavedPlanSession, saveSavedPlanSession, type SavedPlanSnapshot } from "@/lib/plan/session"
 import { getReportContent } from "@/lib/report"
 import type { ReportGoalId } from "@/lib/report/types"
 
@@ -37,16 +38,32 @@ export function MorningReport() {
 
   const [currentPage, setCurrentPage] = useState(0)
   const [selectedGoal, setSelectedGoal] = useState<ReportGoalId>(defaultGoalId)
+  const [savedPlan, setSavedPlan] = useState<SavedPlanSnapshot | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const nutritionSectionRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
 
   const primaryGoal = report.goalsSection.items.find((goal) => goal.id === report.goalsSection.primaryGoalId)
+  const planActions = locale === "zh-CN"
+    ? {
+        save: "保存到我的方案",
+        saved: "已保存到我的方案",
+        openCheckIn: "去打卡页查看",
+      }
+    : {
+        save: "Save to my plan",
+        saved: "Saved to my plan",
+        openCheckIn: "Open in check-in",
+      }
   const scores = report.dimensions.map((dimension) => ({
     ...dimension,
     value: report.metrics.scores[dimension.id as keyof typeof report.metrics.scores],
   }))
+
+  useEffect(() => {
+    setSavedPlan(loadSavedPlanSession())
+  }, [])
 
   const scrollToNutritionPlan = (goalId: ReportGoalId) => {
     setSelectedGoal(goalId)
@@ -95,6 +112,24 @@ export function MorningReport() {
 
   const goToPage = (index: number) => {
     setCurrentPage(index)
+  }
+
+  const handleSavePlan = () => {
+    const snapshot: SavedPlanSnapshot = {
+      goalId: selectedGoal,
+      savedAt: new Date().toISOString(),
+      cards: nutritionCards[selectedGoal].map((card) => ({
+        id: card.id,
+        category: card.category,
+        name: card.name,
+        benefit: card.benefit,
+        color: card.color,
+        type: card.type,
+      })),
+    }
+
+    saveSavedPlanSession(snapshot)
+    setSavedPlan(snapshot)
   }
 
   const handleMouseDown = (event: React.MouseEvent) => {
@@ -361,6 +396,25 @@ export function MorningReport() {
                 {goal.label}
               </button>
             ))}
+          </div>
+
+          <div className="flex gap-2 mb-4">
+            <button
+              onClick={handleSavePlan}
+              className={`flex-1 rounded-full px-4 py-3 text-sm font-medium transition-colors ${
+                savedPlan?.goalId === selectedGoal
+                  ? "bg-[#E8F5E8] text-primary"
+                  : "bg-primary text-white"
+              }`}
+            >
+              {savedPlan?.goalId === selectedGoal ? planActions.saved : planActions.save}
+            </button>
+            <button
+              onClick={() => router.push("/checkin")}
+              className="rounded-full border border-border bg-white px-4 py-3 text-sm font-medium text-foreground"
+            >
+              {planActions.openCheckIn}
+            </button>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
