@@ -5,8 +5,8 @@
 This tracker measures **current H5 Phase 1 engineering node progress**, not final commercial readiness.
 
 - Total planned engineering nodes in the current roadmap: `12`
-- Completed nodes after the OCR contract layer: `8`
-- Current completion percentage: `67%`
+- Completed nodes after the check-in persistence node: `9`
+- Current completion percentage: `75%`
 
 ## Node Status
 
@@ -18,7 +18,7 @@ This tracker measures **current H5 Phase 1 engineering node progress**, not fina
 6. `AIHealthChat bilingualization` — completed
 7. `Community and history timeline linkage` — completed
 8. `OCR contract layer` — completed
-9. `Check-in and saved-plan persistence integration` — pending
+9. `Check-in and saved-plan persistence integration` — completed
 10. `Community deep bilingualization and moderation states` — pending
 11. `Notifications, help, and privacy settings bilingualization` — pending
 12. `Release hardening and WeCom/Web readiness prep` — pending
