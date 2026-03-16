@@ -6,6 +6,8 @@ import { ArrowLeft, CheckCircle2, ShieldAlert, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 import { useLocale } from "@/i18n/use-locale"
+import { fetchOcrResult } from "@/lib/ocr-api/client"
+import type { OcrResultApiResponse } from "@/lib/ocr-api/types"
 import { getOcrConfirmationContent } from "@/lib/ocr"
 import { formatOcrFileSize, getOcrUploadSession, type OcrUploadSession } from "@/lib/ocr/session"
 import type { OcrFieldConfidence } from "@/lib/ocr/types"
@@ -24,10 +26,35 @@ export function OcrConfirmationPage() {
   const content = getOcrConfirmationContent(locale)
   const confidenceBadges = content.confidenceBadges as Record<OcrFieldConfidence, string>
   const [uploadSession, setUploadSession] = useState<OcrUploadSession | null>(null)
+  const [apiResult, setApiResult] = useState<OcrResultApiResponse | null>(null)
 
   useEffect(() => {
     setUploadSession(getOcrUploadSession())
   }, [])
+
+  useEffect(() => {
+    if (!uploadSession?.assessmentId) {
+      return
+    }
+
+    let cancelled = false
+
+    fetchOcrResult(uploadSession.assessmentId)
+      .then((result) => {
+        if (!cancelled) {
+          setApiResult(result)
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setApiResult(null)
+        }
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [uploadSession?.assessmentId])
 
   const getConfidenceLabel = (confidence: OcrFieldConfidence) => {
     return confidenceBadges[confidence]
@@ -47,6 +74,41 @@ export function OcrConfirmationPage() {
 
     return `${formatOcrFileSize(uploadSession.fileSize)} · ${dateFormatter.format(new Date(uploadSession.uploadedAt))}`
   }, [locale, uploadSession])
+
+  const resolvedSections = useMemo(() => {
+    if (!apiResult) {
+      return content.sections
+    }
+
+    const sectionMap = new Map(apiResult.sections.map((section) => [section.id, section]))
+
+    return content.sections.map((section) => {
+      const apiSection = sectionMap.get(section.id)
+
+      if (!apiSection) {
+        return section
+      }
+
+      const fieldMap = new Map(apiSection.fields.map((field) => [field.id, field]))
+
+      return {
+        ...section,
+        fields: section.fields.map((field) => {
+          const apiField = fieldMap.get(field.id)
+
+          if (!apiField) {
+            return field
+          }
+
+          return {
+            ...field,
+            value: apiField.value,
+            confidence: apiField.confidence,
+          }
+        }),
+      }
+    })
+  }, [apiResult, content.sections])
 
   return (
     <div className="min-h-screen bg-[#F6FAF4] flex flex-col max-w-md mx-auto">
@@ -77,6 +139,9 @@ export function OcrConfirmationPage() {
               <h1 className="text-lg font-bold text-foreground mt-1">{content.statusCard.title}</h1>
               <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{content.header.subtitle}</p>
               <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{content.statusCard.description}</p>
+              {apiResult?.sourceSummary && (
+                <p className="text-xs text-muted-foreground mt-3">{apiResult.sourceSummary}</p>
+              )}
             </div>
           </div>
         </section>
@@ -97,7 +162,7 @@ export function OcrConfirmationPage() {
           </div>
         </section>
 
-        {content.sections.map((section) => (
+        {resolvedSections.map((section) => (
           <section key={section.id} className="rounded-3xl bg-white p-5 border border-border shadow-sm">
             <div className="flex items-center justify-between gap-3 mb-4">
               <h2 className="text-base font-bold text-foreground">{section.title}</h2>

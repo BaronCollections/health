@@ -5,6 +5,9 @@ export type OcrUploadSession = {
   fileSize: number
   fileType: string
   uploadedAt: string
+  assessmentId?: number
+  taskId?: string
+  syncStatus?: "local-only" | "uploaded" | "sync-failed"
 }
 
 function canUseWindow() {

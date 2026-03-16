@@ -6,8 +6,9 @@ import { ArrowLeft, FileText, LoaderCircle, Sparkles, Upload } from "lucide-reac
 import { useRouter } from "next/navigation"
 
 import { useLocale } from "@/i18n/use-locale"
+import { uploadOcrReport } from "@/lib/ocr-api/client"
 import { getOcrUploadContent } from "@/lib/ocr-upload"
-import { formatOcrFileSize, saveOcrUploadSession } from "@/lib/ocr/session"
+import { formatOcrFileSize, getOcrUploadSession, saveOcrUploadSession } from "@/lib/ocr/session"
 
 import { SharedNav } from "./shared-nav"
 
@@ -49,18 +50,41 @@ export function OcrUploadPage() {
     setStatus("ready")
   }
 
-  const handleStartRecognition = () => {
+  const handleStartRecognition = async () => {
     if (!selectedFile) {
       return
     }
 
     setStatus("processing")
-    saveOcrUploadSession({
+    const previousSession = getOcrUploadSession()
+    const fallbackAssessmentId = previousSession?.assessmentId ?? Date.now()
+
+    const nextSession = {
       fileName: selectedFile.name,
       fileSize: selectedFile.size,
       fileType: selectedFile.type || "application/octet-stream",
       uploadedAt: new Date().toISOString(),
-    })
+      assessmentId: fallbackAssessmentId,
+      syncStatus: "local-only" as const,
+    }
+
+    try {
+      const uploadResponse = await uploadOcrReport(fallbackAssessmentId, selectedFile)
+      saveOcrUploadSession({
+        fileName: uploadResponse.fileName,
+        fileSize: uploadResponse.fileSize,
+        fileType: uploadResponse.fileType,
+        uploadedAt: uploadResponse.uploadedAt,
+        assessmentId: uploadResponse.assessmentId,
+        taskId: uploadResponse.taskId,
+        syncStatus: "uploaded",
+      })
+    } catch {
+      saveOcrUploadSession({
+        ...nextSession,
+        syncStatus: "sync-failed",
+      })
+    }
 
     processingTimeoutRef.current = window.setTimeout(() => {
       router.push("/ocr-confirmation")

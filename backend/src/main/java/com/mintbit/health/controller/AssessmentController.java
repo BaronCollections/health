@@ -1,8 +1,12 @@
 package com.mintbit.health.controller;
 
 import com.mintbit.health.model.dto.Result;
+import com.mintbit.health.model.dto.ocr.OcrResultResponse;
+import com.mintbit.health.model.dto.ocr.OcrUploadResponse;
+import com.mintbit.health.service.MockOcrContractService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,6 +16,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/assessment")
 public class AssessmentController {
+
+    @Autowired
+    private MockOcrContractService mockOcrContractService;
 
     @Operation(summary = "创建评估会话")
     @PostMapping("/create")
@@ -31,18 +38,21 @@ public class AssessmentController {
 
     @Operation(summary = "上传体检报告")
     @PostMapping("/{assessmentId}/report/upload")
-    public Result<Map<String, Object>> uploadReport(
+    public Result<OcrUploadResponse> uploadReport(
             @PathVariable Long assessmentId,
             @RequestParam("file") MultipartFile file) {
-        // TODO: 上传体检报告到MinIO，触发OCR异步解析
-        return Result.ok();
+        return Result.ok(mockOcrContractService.createUploadResponse(
+                assessmentId,
+                file.getOriginalFilename() == null ? "report.pdf" : file.getOriginalFilename(),
+                file.getSize(),
+                file.getContentType() == null ? "application/octet-stream" : file.getContentType()
+        ));
     }
 
     @Operation(summary = "获取OCR解析结果")
     @GetMapping("/{assessmentId}/report/result")
-    public Result<Map<String, Object>> getOcrResult(@PathVariable Long assessmentId) {
-        // TODO: 获取OCR解析结果，含人机协同校验数据
-        return Result.ok();
+    public Result<OcrResultResponse> getOcrResult(@PathVariable Long assessmentId) {
+        return Result.ok(mockOcrContractService.createResultResponse(assessmentId));
     }
 
     @Operation(summary = "恢复未完成的评估")
