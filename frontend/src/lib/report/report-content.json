@@ -149,6 +149,11 @@
   "nutritionSection": {
     "title": "改善目标营养方案",
     "description": "根据你的改善目标，推荐以下营养补充方案",
+    "historyEntry": {
+      "title": "查看历史画报时间轴",
+      "body": "把每次评估、OCR 增补和打卡变化放到一条连续轨迹里。",
+      "cta": "进入时间轴"
+    },
     "cards": {
       "immunity": [
         {

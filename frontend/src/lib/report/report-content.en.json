@@ -149,6 +149,11 @@
   "nutritionSection": {
     "title": "Goal-based nutrition plan",
     "description": "Recommended nutrients based on your current improvement goals",
+    "historyEntry": {
+      "title": "View poster history timeline",
+      "body": "Place each assessment, OCR enhancement, and check-in change on one continuous track.",
+      "cta": "Open timeline"
+    },
     "cards": {
       "immunity": [
         {

@@ -1,0 +1,88 @@
+{
+  "header": {
+    "title": "Poster history timeline",
+    "subtitle": "Turn each assessment, check-in streak, and improvement goal into a visible path of change."
+  },
+  "overview": {
+    "eyebrow": "Long-term change",
+    "title": "Your overall score has climbed steadily over the last six months",
+    "body": "Poster history places key scores, primary goals, and habit shifts on one line so you can see which actions are actually working.",
+    "scoreLabel": "Current overall score",
+    "scoreValue": "49 / 100",
+    "deltaLabel": "vs. first assessment",
+    "deltaValue": "+11"
+  },
+  "trendSection": {
+    "title": "Trend summary",
+    "items": [
+      {
+        "id": "diet",
+        "label": "Diet dimension",
+        "value": "+8",
+        "note": "Score quality improved after hydration and breakfast rhythm became more consistent."
+      },
+      {
+        "id": "stress",
+        "label": "Stress / mood",
+        "value": "+5",
+        "note": "Check-in consistency and sleep management led to steadier recovery patterns."
+      },
+      {
+        "id": "movement",
+        "label": "Movement habits",
+        "value": "+3",
+        "note": "This is still the weakest dimension and is a strong candidate for the next improvement cycle."
+      }
+    ]
+  },
+  "snapshotsSection": {
+    "title": "Historical snapshots",
+    "items": [
+      {
+        "id": "2026-03",
+        "dateLabel": "2026.03",
+        "title": "Rebuilding a stable baseline",
+        "score": "49",
+        "delta": "+4",
+        "primaryGoal": "Stress / Mood",
+        "habit": "Hydration streak: 12 days",
+        "highlight": "OCR added vitamin D and ferritin markers, making the explanation chain more complete.",
+        "gradient": "from-[#F4FBF1] to-[#E2F4DE]"
+      },
+      {
+        "id": "2025-12",
+        "dateLabel": "2025.12",
+        "title": "Turning check-in into the default",
+        "score": "45",
+        "delta": "+5",
+        "primaryGoal": "Gut health",
+        "habit": "21-day check-in streak",
+        "highlight": "More consistent probiotic and fiber execution led to steadier gut feedback.",
+        "gradient": "from-[#FFF8EE] to-[#FDEBCF]"
+      },
+      {
+        "id": "2025-09",
+        "dateLabel": "2025.09",
+        "title": "First full assessment complete",
+        "score": "38",
+        "delta": "Starting point",
+        "primaryGoal": "Immunity",
+        "habit": "Created the first daily reminder",
+        "highlight": "The first report exposed the gap between nutrition and movement and created an executable plan.",
+        "gradient": "from-[#F3F6FF] to-[#DFE8FF]"
+      }
+    ]
+  },
+  "milestonesSection": {
+    "title": "Key milestones",
+    "items": [
+      "Finished the first personal nutrition poster and established the baseline.",
+      "Execution stability improved notably after a 21-day check-in streak.",
+      "The first OCR enhancement extended the report from self-reported inputs into structured biomarkers."
+    ]
+  },
+  "actions": {
+    "primary": "Retake assessment",
+    "secondary": "Back to current report"
+  }
+}

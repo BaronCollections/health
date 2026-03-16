@@ -1,0 +1,88 @@
+{
+  "header": {
+    "title": "历史画报时间轴",
+    "subtitle": "把每次评估、打卡和改善目标连成一条看得见的变化轨迹。"
+  },
+  "overview": {
+    "eyebrow": "长期变化",
+    "title": "过去 6 个月，你的综合得分稳步上升",
+    "body": "历史画报会把关键得分、主要目标和习惯变化放在同一条时间线上，方便你判断哪些行动真正有效。",
+    "scoreLabel": "当前综合得分",
+    "scoreValue": "49 / 100",
+    "deltaLabel": "较首次评估",
+    "deltaValue": "+11"
+  },
+  "trendSection": {
+    "title": "趋势摘要",
+    "items": [
+      {
+        "id": "diet",
+        "label": "饮食维度",
+        "value": "+8",
+        "note": "规律补水和早餐稳定后，饮食结构得分持续改善。"
+      },
+      {
+        "id": "stress",
+        "label": "情绪/压力",
+        "value": "+5",
+        "note": "连续打卡和睡眠管理带来更稳定的恢复表现。"
+      },
+      {
+        "id": "movement",
+        "label": "运动习惯",
+        "value": "+3",
+        "note": "目前仍是最薄弱维度，适合下一阶段继续强化。"
+      }
+    ]
+  },
+  "snapshotsSection": {
+    "title": "历史快照",
+    "items": [
+      {
+        "id": "2026-03",
+        "dateLabel": "2026.03",
+        "title": "重新建立基础节奏",
+        "score": "49",
+        "delta": "+4",
+        "primaryGoal": "情绪/压力",
+        "habit": "补水连续 12 天",
+        "highlight": "OCR 增补了维生素 D 和铁蛋白数据，解释链更完整。",
+        "gradient": "from-[#F4FBF1] to-[#E2F4DE]"
+      },
+      {
+        "id": "2025-12",
+        "dateLabel": "2025.12",
+        "title": "把打卡变成默认动作",
+        "score": "45",
+        "delta": "+5",
+        "primaryGoal": "胃肠道功能",
+        "habit": "连续打卡 21 天",
+        "highlight": "益生菌和膳食纤维执行率提升后，胃肠道反馈更稳定。",
+        "gradient": "from-[#FFF8EE] to-[#FDEBCF]"
+      },
+      {
+        "id": "2025-09",
+        "dateLabel": "2025.09",
+        "title": "第一次完成完整评估",
+        "score": "38",
+        "delta": "起点",
+        "primaryGoal": "免疫力",
+        "habit": "建立第一个每日提醒",
+        "highlight": "首次识别出饮食和运动之间的缺口，开始形成可执行方案。",
+        "gradient": "from-[#F3F6FF] to-[#DFE8FF]"
+      }
+    ]
+  },
+  "milestonesSection": {
+    "title": "关键里程碑",
+    "items": [
+      "完成第一份个人营养画报，建立基准线。",
+      "连续打卡 21 天后，方案执行稳定性明显提升。",
+      "首次补充 OCR 数据后，报告解释链从主观输入延伸到结构化指标。"
+    ]
+  },
+  "actions": {
+    "primary": "重新开始测评",
+    "secondary": "返回当前报告"
+  }
+}

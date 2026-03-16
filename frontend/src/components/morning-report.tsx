@@ -380,6 +380,22 @@ export function MorningReport() {
               </button>
             ))}
           </div>
+
+          <button
+            onClick={() => router.push("/timeline")}
+            className="w-full mt-4 rounded-3xl bg-white border border-border px-4 py-4 text-left shadow-sm"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold text-foreground">{report.nutritionSection.historyEntry.title}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed mt-2">{report.nutritionSection.historyEntry.body}</p>
+              </div>
+              <span className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                {report.nutritionSection.historyEntry.cta}
+                <ChevronRight className="w-4 h-4" />
+              </span>
+            </div>
+          </button>
         </div>
       </div>
 
