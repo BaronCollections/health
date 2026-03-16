@@ -8,6 +8,7 @@
   --life-green: #6DB578;
   --safe-gold: #F39C12;
   --bg-cool: #F8FAFB;
+  --shell-width: 430px;
 }
 
 body {
@@ -23,6 +24,17 @@ body {
 
   .glass-card {
     @apply bg-white/80 backdrop-blur-md rounded-2xl border border-white/30 shadow-md;
+  }
+
+  .mintbit-desktop-shell {
+    background:
+      radial-gradient(circle at top left, rgba(109, 181, 120, 0.16), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(179, 221, 186, 0.2), transparent 24%),
+      linear-gradient(180deg, #eef7ef 0%, #f7fbf8 42%, #ffffff 100%);
+  }
+
+  .mintbit-desktop-frame {
+    width: min(100%, var(--shell-width));
   }
 }
 

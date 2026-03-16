@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 
-import { LanguageSwitcher } from "@/components/language-switcher"
+import { AppShell } from "@/components/shells/app-shell"
 import { LocaleProvider } from "@/i18n/locale-context"
 import "@/styles/globals.css"
 
@@ -41,12 +41,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className={`font-sans antialiased ${inter.className}`}>
         <LocaleProvider>
-          <div className="pointer-events-none fixed inset-x-0 top-4 z-50 mx-auto flex w-full max-w-md justify-end px-4">
-            <div className="pointer-events-auto">
-              <LanguageSwitcher />
-            </div>
-          </div>
-          {children}
+          <AppShell>{children}</AppShell>
           <Analytics />
         </LocaleProvider>
       </body>
