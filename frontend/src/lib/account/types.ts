@@ -23,6 +23,9 @@ export type FeedbackRecord = {
   subject: string
   status: FeedbackStatus
   submittedAt: string
+  description?: string
+  contact?: string
+  screenshotName?: string
   reply?: string
 }
 
@@ -100,6 +103,41 @@ export type AccountContent = {
     autoReadHint: string
   }
   notifications: AccountNotification[]
+  helpCenter: {
+    eyebrow: string
+    title: string
+    subtitle: string
+    faqTitle: string
+    backCta: string
+    supportLabel: string
+    supportValue: string
+    feedbackCta: string
+    feedbackRecordsCta: string
+  }
+  feedbackForm: {
+    title: string
+    subtitle: string
+    categoryLabel: string
+    subjectLabel: string
+    subjectPlaceholder: string
+    descriptionLabel: string
+    descriptionPlaceholder: string
+    contactLabel: string
+    contactPlaceholder: string
+    screenshotLabel: string
+    screenshotPlaceholder: string
+    submitCta: string
+    successTitle: string
+    successBody: string
+    categories: string[]
+  }
+  feedbackRecordsView: {
+    title: string
+    subtitle: string
+    emptyTitle: string
+    emptyBody: string
+    groupTitles: Record<FeedbackStatus, string>
+  }
   feedbackRecords: FeedbackRecord[]
   exportRequests: ExportRequest[]
   deleteRequests: DeleteRequest[]

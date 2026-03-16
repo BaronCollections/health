@@ -1,17 +1,25 @@
 import api from "@/lib/api"
 import type { Locale } from "@/i18n/types"
 import { getAccountContent } from "@/lib/account"
-import type { AccountNotification, AccountNotificationStatus } from "@/lib/account/types"
+import type {
+  AccountFaqCategory,
+  AccountNotification,
+  AccountNotificationStatus,
+  FeedbackRecord,
+} from "@/lib/account/types"
 
-import { mergeAccountNotifications } from "./merge"
+import { mergeAccountNotifications, mergeFeedbackRecords } from "./merge"
 import type {
   ApiResult,
+  CreateFeedbackInput,
+  FeedbackRecordsApiResponse,
   NotificationFilter,
   NotificationListApiResponse,
   NotificationReadInput,
 } from "./types"
 
 const fallbackStatusOverrides = new Map<string, AccountNotificationStatus>()
+const fallbackCreatedFeedbackRecords = new Map<string, FeedbackRecord>()
 
 function getFallbackNotifications(locale: Locale) {
   return getAccountContent(locale).notifications.map((notification) => ({
@@ -22,6 +30,21 @@ function getFallbackNotifications(locale: Locale) {
 
 function mergeLocalizedNotifications(locale: Locale, notifications: AccountNotification[]) {
   return mergeAccountNotifications(getFallbackNotifications(locale), notifications)
+}
+
+function getFallbackFaqCategories(locale: Locale) {
+  return getAccountContent(locale).faqCategories
+}
+
+function getFallbackFeedbackRecords(locale: Locale) {
+  return [
+    ...fallbackCreatedFeedbackRecords.values(),
+    ...getAccountContent(locale).feedbackRecords,
+  ]
+}
+
+function mergeLocalizedFeedbackRecords(locale: Locale, records: FeedbackRecord[]) {
+  return mergeFeedbackRecords(getFallbackFeedbackRecords(locale), records)
 }
 
 function filterNotifications(notifications: AccountNotification[], filter: NotificationFilter) {
@@ -113,5 +136,61 @@ export async function markAccountNotificationsRead(locale: Locale, ids: string[]
   } catch {
     ids.forEach((id) => fallbackStatusOverrides.set(id, "read"))
     return fetchAccountNotifications(locale, "all")
+  }
+}
+
+export async function fetchAccountFaqCategories(locale: Locale): Promise<AccountFaqCategory[]> {
+  try {
+    const response = (await api.get("/account/help/faq")) as ApiResult<AccountFaqCategory[]>
+
+    if (response.code !== 200 || !response.data) {
+      throw new Error(response.message || "Account FAQ fetch failed")
+    }
+
+    const localizedSeed = new Map(getFallbackFaqCategories(locale).map((category) => [category.id, category]))
+    return response.data.map((category) => localizedSeed.get(category.id) ?? category)
+  } catch {
+    return getFallbackFaqCategories(locale)
+  }
+}
+
+export async function fetchFeedbackRecords(locale: Locale) {
+  try {
+    const response = (await api.get("/account/help/feedback/records")) as ApiResult<FeedbackRecordsApiResponse>
+
+    if (response.code !== 200 || !response.data) {
+      throw new Error(response.message || "Feedback records fetch failed")
+    }
+
+    return mergeLocalizedFeedbackRecords(locale, response.data.records)
+  } catch {
+    return getFallbackFeedbackRecords(locale)
+  }
+}
+
+export async function createFeedbackRecord(locale: Locale, input: CreateFeedbackInput) {
+  try {
+    const response = (await api.post("/account/help/feedback", input)) as ApiResult<FeedbackRecord>
+
+    if (response.code !== 200 || !response.data) {
+      throw new Error(response.message || "Create feedback failed")
+    }
+
+    const merged = mergeLocalizedFeedbackRecords(locale, [response.data])
+    return merged[0] ?? response.data
+  } catch {
+    const createdRecord: FeedbackRecord = {
+      id: `feedback-local-${Date.now()}`,
+      category: input.category,
+      subject: input.subject,
+      description: input.description,
+      contact: input.contact,
+      screenshotName: input.screenshotName,
+      status: "submitted",
+      submittedAt: locale === "zh-CN" ? "刚刚" : "Just now",
+    }
+
+    fallbackCreatedFeedbackRecords.set(createdRecord.id, createdRecord)
+    return createdRecord
   }
 }

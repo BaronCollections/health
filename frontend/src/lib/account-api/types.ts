@@ -1,4 +1,9 @@
-import type { AccountNotification, AccountNotificationType } from "../account/types"
+import type {
+  AccountFaqCategory,
+  AccountNotification,
+  AccountNotificationType,
+  FeedbackRecord,
+} from "../account/types"
 
 export type ApiResult<T> = {
   code: number
@@ -18,4 +23,19 @@ export type NotificationListApiResponse = {
 
 export type NotificationReadInput = {
   ids: string[]
+}
+
+export type AccountFaqCategoryApiResponse = AccountFaqCategory
+export type FeedbackRecordApiResponse = FeedbackRecord
+
+export type FeedbackRecordsApiResponse = {
+  records: FeedbackRecordApiResponse[]
+}
+
+export type CreateFeedbackInput = {
+  category: string
+  subject: string
+  description: string
+  contact: string
+  screenshotName?: string
 }

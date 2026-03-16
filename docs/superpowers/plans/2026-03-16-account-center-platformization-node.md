@@ -93,9 +93,9 @@
 - Modify: `frontend/src/lib/account-api/types.ts`
 - Modify: `frontend/src/lib/account-api/client.ts`
 
-- [ ] **Step 1: Add failing backend expectations for FAQ retrieval, feedback submission, and feedback-record status flows**
-- [ ] **Step 2: Extend the account contract types and mock service to satisfy those new behaviors**
-- [ ] **Step 3: Re-run `mvn test -Dtest=MockAccountServiceTest` and confirm the extended account test passes**
+- [x] **Step 1: Add failing backend expectations for FAQ retrieval, feedback submission, and feedback-record status flows**
+- [x] **Step 2: Extend the account contract types and mock service to satisfy those new behaviors**
+- [x] **Step 3: Re-run `mvn test -Dtest=MockAccountServiceTest` and confirm the extended account test passes**
 
 ### Task 6: Build help center, feedback submission, and record tracking
 
@@ -109,11 +109,11 @@
 - Modify: `frontend/src/lib/account/mock-content.json`
 - Modify: `frontend/src/lib/account/mock-content.en.json`
 
-- [ ] **Step 1: Build the help center with FAQ grouping, support-contact entry, and feedback quick actions**
-- [ ] **Step 2: Build the feedback form with issue category, description, optional screenshot placeholder, and contact fields**
-- [ ] **Step 3: Build the feedback records page grouped by state with status pills and visible reply sections**
-- [ ] **Step 4: Wire help and feedback pages to the account API client while preserving bilingual long-form content from local resources**
-- [ ] **Step 5: Re-run `mvn test -Dtest=MockAccountServiceTest`, `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`, `node --test frontend/scripts/account-bilingual-resources.test.mjs`, and `npm run build`**
+- [x] **Step 1: Build the help center with FAQ grouping, support-contact entry, and feedback quick actions**
+- [x] **Step 2: Build the feedback form with issue category, description, optional screenshot placeholder, and contact fields**
+- [x] **Step 3: Build the feedback records page grouped by state with status pills and visible reply sections**
+- [x] **Step 4: Wire help and feedback pages to the account API client while preserving bilingual long-form content from local resources**
+- [x] **Step 5: Re-run `mvn test -Dtest=MockAccountServiceTest`, `node --experimental-strip-types --test frontend/src/lib/account/state.test.ts`, `node --test frontend/scripts/account-bilingual-resources.test.mjs`, and `npm run build`**
 
 ## Chunk 4: Privacy, Security, Data Controls, And Finalization
 
@@ -170,7 +170,7 @@
 ## Node Status
 
 - Current node: `account center platformization`
-- Current completion state: `Chunk 2 complete, Chunk 3 help and feedback in progress`
+- Current completion state: `Chunk 3 complete, Chunk 4 privacy and data controls in progress`
 - Progress policy:
   - keep overall Phase 1 node progress at `10 / 12 = 83%` until all four internal delivery chunks are complete
   - only move to `11 / 12 = 92%` after account shell, notifications, help/feedback, and privacy/data-control flows are all verified

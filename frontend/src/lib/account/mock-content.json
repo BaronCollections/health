@@ -108,6 +108,9 @@
       "subject": "报告页的 OCR 字段想要手动排序",
       "status": "in_review",
       "submittedAt": "2026-03-15 18:20",
+      "description": "希望在 OCR 确认页里支持字段拖拽排序，减少手动核对成本。",
+      "contact": "mintbit@example.com",
+      "screenshotName": "ocr-order.png",
       "reply": "团队已收到，正在评估表单排序能力。"
     },
     {
@@ -116,9 +119,60 @@
       "subject": "希望把社区互动和系统通知拆开",
       "status": "responded",
       "submittedAt": "2026-03-14 10:12",
+      "description": "当前通知流缺少分类切换，希望按系统通知、社区互动和打卡提醒拆开。",
+      "contact": "mintbit@example.com",
       "reply": "已纳入账户中心平台化节点。"
     }
   ],
+  "helpCenter": {
+    "eyebrow": "帮助与支持",
+    "title": "在账户中心里处理说明、反馈与支持入口",
+    "subtitle": "这里承接 FAQ、支持联系入口、反馈提交，以及反馈记录状态追踪。",
+    "faqTitle": "常见问题",
+    "backCta": "返回帮助中心",
+    "supportLabel": "支持邮箱",
+    "supportValue": "support@mintbit.health",
+    "feedbackCta": "提交反馈",
+    "feedbackRecordsCta": "查看反馈记录"
+  },
+  "feedbackForm": {
+    "title": "提交反馈",
+    "subtitle": "告诉我们你在问卷、报告、OCR、打卡、社区或账户中心里遇到的问题。",
+    "categoryLabel": "问题分类",
+    "subjectLabel": "反馈主题",
+    "subjectPlaceholder": "一句话概括问题或建议",
+    "descriptionLabel": "详细描述",
+    "descriptionPlaceholder": "描述触发路径、现象、你的预期结果，以及是否稳定复现。",
+    "contactLabel": "联系方式",
+    "contactPlaceholder": "邮箱、手机号或企业微信，便于后续联系",
+    "screenshotLabel": "截图占位",
+    "screenshotPlaceholder": "填写截图文件名或备注，本阶段先不做真实上传",
+    "submitCta": "提交反馈",
+    "successTitle": "反馈已提交",
+    "successBody": "你可以在反馈记录页查看后续状态变化和回复内容。",
+    "categories": [
+      "问卷评估",
+      "报告与画报",
+      "OCR 识别",
+      "打卡体验",
+      "社区互动",
+      "通知体验",
+      "账户与隐私"
+    ]
+  },
+  "feedbackRecordsView": {
+    "title": "反馈记录",
+    "subtitle": "按状态查看你提交过的反馈，跟踪处理进度与回复内容。",
+    "emptyTitle": "还没有反馈记录",
+    "emptyBody": "当你提交第一条反馈后，这里会展示它的状态变化和官方回复。",
+    "groupTitles": {
+      "draft": "草稿",
+      "submitted": "已提交",
+      "in_review": "处理中",
+      "responded": "已回复",
+      "closed": "已关闭"
+    }
+  },
   "exportRequests": [
     {
       "id": "export-1",

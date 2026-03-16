@@ -108,6 +108,9 @@
       "subject": "I want manual field ordering on the OCR confirmation page",
       "status": "in_review",
       "submittedAt": "2026-03-15 18:20",
+      "description": "I want drag-and-drop field ordering on the OCR confirmation page to reduce manual review time.",
+      "contact": "mintbit@example.com",
+      "screenshotName": "ocr-order.png",
       "reply": "The team has received this and is reviewing form-ordering support."
     },
     {
@@ -116,9 +119,60 @@
       "subject": "Please separate community interactions from system notices",
       "status": "responded",
       "submittedAt": "2026-03-14 10:12",
+      "description": "The current notification stream needs clearer separation between system notices, community interactions, and check-in reminders.",
+      "contact": "mintbit@example.com",
       "reply": "This is included in the account-center platformization node."
     }
   ],
+  "helpCenter": {
+    "eyebrow": "Help and support",
+    "title": "Handle guidance, support, and feedback inside the account center",
+    "subtitle": "This area holds FAQs, a support contact entry, feedback submission, and feedback-status tracking.",
+    "faqTitle": "FAQs",
+    "backCta": "Back to help center",
+    "supportLabel": "Support email",
+    "supportValue": "support@mintbit.health",
+    "feedbackCta": "Submit feedback",
+    "feedbackRecordsCta": "Open feedback records"
+  },
+  "feedbackForm": {
+    "title": "Submit feedback",
+    "subtitle": "Tell us what you ran into across assessment, report, OCR, check-in, community, or the account center.",
+    "categoryLabel": "Issue category",
+    "subjectLabel": "Feedback subject",
+    "subjectPlaceholder": "Summarize the issue or request in one line",
+    "descriptionLabel": "Detailed description",
+    "descriptionPlaceholder": "Describe the trigger path, visible behavior, expected result, and whether the issue is reproducible.",
+    "contactLabel": "Contact",
+    "contactPlaceholder": "Email, phone number, or WeCom contact for follow-up",
+    "screenshotLabel": "Screenshot placeholder",
+    "screenshotPlaceholder": "Provide a screenshot filename or note; real upload is deferred in this phase",
+    "submitCta": "Submit feedback",
+    "successTitle": "Feedback submitted",
+    "successBody": "Open the feedback records page later to follow status changes and replies.",
+    "categories": [
+      "Assessment",
+      "Report and poster",
+      "OCR recognition",
+      "Check-in",
+      "Community",
+      "Notification experience",
+      "Account and privacy"
+    ]
+  },
+  "feedbackRecordsView": {
+    "title": "Feedback records",
+    "subtitle": "Review the feedback you submitted and track status changes and replies by state.",
+    "emptyTitle": "No feedback records yet",
+    "emptyBody": "After you submit your first feedback item, this page will show its status changes and official replies.",
+    "groupTitles": {
+      "draft": "Draft",
+      "submitted": "Submitted",
+      "in_review": "In review",
+      "responded": "Responded",
+      "closed": "Closed"
+    }
+  },
   "exportRequests": [
     {
       "id": "export-1",
