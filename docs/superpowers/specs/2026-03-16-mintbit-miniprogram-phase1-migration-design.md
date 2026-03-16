@@ -2,8 +2,8 @@
 
 > Version: 1.0
 > Date: 2026-03-16
-> Status: Approved for implementation planning
-> Scope: Full Phase 1 migration from MintBit H5 to a native WeChat Mini Program inside the existing `VcGo` project shell
+> Status: Implementation in progress
+> Scope: Full Phase 1 migration from MintBit H5 to a native WeChat Mini Program inside `health/miniprogram/`
 
 ## 1. Purpose
 
@@ -12,7 +12,7 @@ This spec defines the migration of MintBit Phase 1 from the current mobile H5 im
 The user confirmed the following constraints:
 
 - the target platform is a native WeChat Mini Program, not a `web-view` container
-- the existing `VcGo` mini program project should be reused as the executable shell
+- the existing `VcGo` mini program project should be reused as the executable shell and synced into the `health` repository
 - the current TDesign demo app should be replaced by the MintBit application
 - the scope is the full Phase 1 ordinary-user product, not a reduced MVP
 - the mini program should connect directly to the current backend APIs and data models

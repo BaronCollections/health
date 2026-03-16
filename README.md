@@ -13,6 +13,22 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 - 当前非阻塞工程警告：Next.js workspace root lockfile 警告、`baseline-browser-mapping` 数据过期警告
 - 后续工作将转入：真实 WeCom OAuth/JS-SDK、Web 业务页面深度桌面化、发布自动化
 
+## Mini Program Migration Snapshot
+
+- 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
+- 当前迁移阶段：`Mini Program Foundation`
+- 当前基础阶段进度：`约 70%`
+- 当前已完成：
+  - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
+  - Node 基础测试：`9` 个测试全部通过
+  - MintBit 原生壳层：`app.js / app.json / app.wxss / custom-tab-bar`
+  - 首批可运行页面：`home / profile / report / checkin / community / auth/login / auth/bind-phone`
+  - 双语基础：`zh-CN / en` 语言切换、tabBar 文案、首页与账户页基础文案
+- 当前仍待完成：
+  - 真实微信登录后端适配：`/api/miniprogram/auth/*`
+  - 问卷、OCR、报告、时间轴、打卡、社区、账户深页的完整域迁移
+  - 微信开发者工具内的完整交互验收与发布配置收口
+
 ## Current Product Shape
 
 MintBit Phase 1 目前围绕一条完整的“评估 -> 报告 -> 打卡 -> 社区”闭环展开。移动端 H5 已具备双语基础、健康问卷、OCR 报告补录、个性化营养建议、历史画报时间轴、每日打卡，以及带审核状态的社区互动流。
@@ -99,6 +115,7 @@ health/
 ├── docker-compose.yml
 ├── .env.example
 ├── frontend/          # H5 app / bilingual routes / community ops H5
+├── miniprogram/       # Native WeChat Mini Program migration workspace
 ├── backend/           # Spring Boot 3.2
 ├── poster-service/    # Puppeteer renderer
 ├── docs/              # PRD / technical / execution / node plans
