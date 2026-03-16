@@ -57,7 +57,7 @@
 - [x] **Step 1: Run `node --experimental-strip-types --test frontend/src/lib/plan/session.test.ts frontend/src/lib/checkin/session.test.ts`**
 - [x] **Step 2: Run `npm run build` in `frontend`**
 - [x] **Step 3: Record the node status and update the current Phase 1 completion percentage**
-- [ ] **Step 4: Commit and push the node**
+- [x] **Step 4: Commit and push the node**
 
 ## Node Status
 
