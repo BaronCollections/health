@@ -1,0 +1,93 @@
+{
+  "home": {
+    "title": "Health nutrition assessment",
+    "subtitle": "Finish in 3 to 5 minutes and generate a personal report",
+    "primaryCta": "Start assessment",
+    "supportingNote": "Supports saving in the middle and completing step by step",
+    "footerNote": "Designed for ages 3+, with parental help recommended for children"
+  },
+  "submit": {
+    "title": "Confirm submission",
+    "subtitle": "Submitting will generate your personal health report",
+    "progressLabelPrefix": "Completed",
+    "progressLabelSuffix": "questions",
+    "lowAnswerWarning": "Too few answers may reduce report precision",
+    "defaultWarning": "Unanswered questions will be treated as skipped and will not block the base report",
+    "backCta": "Go back",
+    "confirmCta": "Confirm"
+  },
+  "navigation": {
+    "previous": "Previous",
+    "next": "Next",
+    "submit": "Submit"
+  },
+  "questions": [
+    {
+      "id": "B01",
+      "content": "What is your gender?",
+      "type": "single",
+      "options": [
+        { "id": 1, "label": "Male", "icon": "👦" },
+        { "id": 2, "label": "Female", "icon": "👧" }
+      ]
+    },
+    {
+      "id": "B02",
+      "content": "What is your age range?",
+      "type": "single",
+      "options": [
+        { "id": 1, "label": "Under 3" },
+        { "id": 2, "label": "4 to 12" },
+        { "id": 3, "label": "13 to 17" },
+        { "id": 4, "label": "18 to 35" },
+        { "id": 5, "label": "36 to 59" },
+        { "id": 6, "label": "60 to 70" },
+        { "id": 7, "label": "Over 70" }
+      ]
+    },
+    {
+      "id": "B03",
+      "content": "What are your height (cm) and weight (kg)?",
+      "type": "input",
+      "inputs": [
+        {
+          "id": "height",
+          "label": "Height",
+          "unit": "cm",
+          "min": 100,
+          "max": 250,
+          "placeholder": "Enter your height"
+        },
+        {
+          "id": "weight",
+          "label": "Weight",
+          "unit": "kg",
+          "min": 20,
+          "max": 200,
+          "placeholder": "Enter your weight"
+        }
+      ]
+    },
+    {
+      "id": "B04",
+      "content": "Which region do you live in?",
+      "type": "single",
+      "options": [
+        { "id": 1, "label": "North" },
+        { "id": 2, "label": "South" },
+        { "id": 3, "label": "Central" }
+      ]
+    },
+    {
+      "id": "L01",
+      "content": "How many hours do you usually sleep each day?",
+      "type": "single",
+      "options": [
+        { "id": 1, "label": "Less than 6 hours" },
+        { "id": 2, "label": "6 to 7 hours" },
+        { "id": 3, "label": "7 to 8 hours" },
+        { "id": 4, "label": "More than 8 hours" }
+      ]
+    }
+  ]
+}

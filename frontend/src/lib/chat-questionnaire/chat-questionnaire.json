@@ -1,0 +1,93 @@
+{
+  "home": {
+    "title": "健康营养评估",
+    "subtitle": "3-5 分钟完成，生成专属报告",
+    "primaryCta": "开始测评",
+    "supportingNote": "支持中途保存、分步填写",
+    "footerNote": "适合 3 岁以上全人群，儿童需家长协助填写"
+  },
+  "submit": {
+    "title": "确认提交",
+    "subtitle": "提交后将生成专属健康报告",
+    "progressLabelPrefix": "已完成",
+    "progressLabelSuffix": "题",
+    "lowAnswerWarning": "已答题数较少，报告精准度可能下降",
+    "defaultWarning": "未答题将视为放弃，不影响基础报告生成",
+    "backCta": "返回修改",
+    "confirmCta": "确认提交"
+  },
+  "navigation": {
+    "previous": "上一题",
+    "next": "下一题",
+    "submit": "提交"
+  },
+  "questions": [
+    {
+      "id": "B01",
+      "content": "你的性别是？",
+      "type": "single",
+      "options": [
+        { "id": 1, "label": "男", "icon": "👦" },
+        { "id": 2, "label": "女", "icon": "👧" }
+      ]
+    },
+    {
+      "id": "B02",
+      "content": "你的年龄是？",
+      "type": "single",
+      "options": [
+        { "id": 1, "label": "3岁以下" },
+        { "id": 2, "label": "4-12岁" },
+        { "id": 3, "label": "13-17岁" },
+        { "id": 4, "label": "18-35岁" },
+        { "id": 5, "label": "36-59岁" },
+        { "id": 6, "label": "60-70岁" },
+        { "id": 7, "label": "70岁以上" }
+      ]
+    },
+    {
+      "id": "B03",
+      "content": "你的身高（cm）和体重（kg）是？",
+      "type": "input",
+      "inputs": [
+        {
+          "id": "height",
+          "label": "身高",
+          "unit": "cm",
+          "min": 100,
+          "max": 250,
+          "placeholder": "请输入身高"
+        },
+        {
+          "id": "weight",
+          "label": "体重",
+          "unit": "kg",
+          "min": 20,
+          "max": 200,
+          "placeholder": "请输入体重"
+        }
+      ]
+    },
+    {
+      "id": "B04",
+      "content": "你所在的地域是？",
+      "type": "single",
+      "options": [
+        { "id": 1, "label": "北方" },
+        { "id": 2, "label": "南方" },
+        { "id": 3, "label": "中部" }
+      ]
+    },
+    {
+      "id": "L01",
+      "content": "你平均每天的睡眠时长是？",
+      "type": "single",
+      "options": [
+        { "id": 1, "label": "少于6小时" },
+        { "id": 2, "label": "6-7小时" },
+        { "id": 3, "label": "7-8小时" },
+        { "id": 4, "label": "8小时以上" }
+      ]
+    }
+  ]
+}

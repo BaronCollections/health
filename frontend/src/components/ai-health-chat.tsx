@@ -1,104 +1,32 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
+
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useRouter } from "next/navigation"
+
+import { useLocale } from "@/i18n/use-locale"
+import { getChatQuestionnaireContent } from "@/lib/chat-questionnaire"
+
 import { SharedNav } from "./shared-nav"
 
-type QuestionOption = {
-  id: number
-  label: string
-  icon?: string
-}
-
-type QuestionInput = {
-  id: string
-  label: string
-  unit: string
-  min: number
-  max: number
-  placeholder: string
-}
-
-type Question =
-  | {
-      id: string
-      content: string
-      type: "single"
-      options: QuestionOption[]
-    }
-  | {
-      id: string
-      content: string
-      type: "input"
-      inputs: QuestionInput[]
-    }
-
-const questions: Question[] = [
-  {
-    id: "B01",
-    content: "你的性别是？",
-    type: "single",
-    options: [
-      { id: 1, label: "男", icon: "👦" },
-      { id: 2, label: "女", icon: "👧" },
-    ],
-  },
-  {
-    id: "B02",
-    content: "你的年龄是？",
-    type: "single",
-    options: [
-      { id: 1, label: "3岁以下" },
-      { id: 2, label: "4-12岁" },
-      { id: 3, label: "13-17岁" },
-      { id: 4, label: "18-35岁" },
-      { id: 5, label: "36-59岁" },
-      { id: 6, label: "60-70岁" },
-      { id: 7, label: "70岁以上" },
-    ],
-  },
-  {
-    id: "B03",
-    content: "你的身高（cm）和体重（kg）是？",
-    type: "input",
-    inputs: [
-      { id: "height", label: "身高", unit: "cm", min: 100, max: 250, placeholder: "请输入身高" },
-      { id: "weight", label: "体重", unit: "kg", min: 20, max: 200, placeholder: "请输入体重" },
-    ],
-  },
-  {
-    id: "B04",
-    content: "你所在的地域是？",
-    type: "single",
-    options: [
-      { id: 1, label: "北方" },
-      { id: 2, label: "南方" },
-      { id: 3, label: "中部" },
-    ],
-  },
-  {
-    id: "L01",
-    content: "你平均每天的睡眠时长是？",
-    type: "single",
-    options: [
-      { id: 1, label: "少于6小时" },
-      { id: 2, label: "6-7小时" },
-      { id: 3, label: "7-8小时" },
-      { id: 4, label: "8小时以上" },
-    ],
-  },
-]
-
-type PageType = "home" | "fill" | "submit"
+type QuestionAnswer = string | number | Record<string, number>
+type QuestionInputAnswer = Record<string, number>
 
 export function AIHealthChat() {
-  const [page, setPage] = useState<PageType>("home")
+  const router = useRouter()
+  const { locale } = useLocale()
+  const content = getChatQuestionnaireContent(locale)
+  const questions = content.questions
+
+  const [page, setPage] = useState<"home" | "fill" | "submit">("home")
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, string | number | Record<string, number>>>({})
+  const [answers, setAnswers] = useState<Record<string, QuestionAnswer>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     const savedAnswers = localStorage.getItem("questionnaire_answers")
+
     if (savedAnswers) {
       setAnswers(JSON.parse(savedAnswers))
     }
@@ -116,15 +44,15 @@ export function AIHealthChat() {
   const hasAnswer = answers[currentQ?.id] !== undefined
 
   const handleSelectOption = (questionId: string, optionId: number) => {
-    setAnswers(prev => ({ ...prev, [questionId]: optionId }))
+    setAnswers((prev) => ({ ...prev, [questionId]: optionId }))
   }
 
   const handleInputChange = (questionId: string, inputId: string, value: string) => {
-    const numValue = Number.parseInt(value) || 0
-    setAnswers(prev => ({
+    const numValue = Number.parseInt(value, 10) || 0
+    setAnswers((prev) => ({
       ...prev,
       [questionId]: {
-        ...(prev[questionId] as Record<string, number> || {}),
+        ...(((prev[questionId] as QuestionInputAnswer) || {}) as QuestionInputAnswer),
         [inputId]: numValue,
       },
     }))
@@ -132,7 +60,7 @@ export function AIHealthChat() {
 
   const handleNext = () => {
     if (currentQuestion < totalQuestions - 1) {
-      setCurrentQuestion(prev => prev + 1)
+      setCurrentQuestion((prev) => prev + 1)
     } else {
       setPage("submit")
     }
@@ -140,20 +68,19 @@ export function AIHealthChat() {
 
   const handlePrev = () => {
     if (currentQuestion > 0) {
-      setCurrentQuestion(prev => prev - 1)
+      setCurrentQuestion((prev) => prev - 1)
     }
   }
 
   const handleSubmit = () => {
     setIsSubmitting(true)
-    setTimeout(() => {
+    window.setTimeout(() => {
       setIsSubmitting(false)
       localStorage.removeItem("questionnaire_answers")
-      window.location.href = "/report"
+      router.push("/report")
     }, 2000)
   }
 
-  // 问卷首页
   if (page === "home") {
     return (
       <div className="min-h-screen bg-background flex flex-col max-w-md mx-auto">
@@ -161,9 +88,9 @@ export function AIHealthChat() {
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
               <span className="text-xl">🍋</span>
-              <h1 className="text-lg font-bold text-foreground">健康营养评估</h1>
+              <h1 className="text-lg font-bold text-foreground">{content.home.title}</h1>
             </div>
-            <p className="text-sm text-muted-foreground">3-5分钟完成，生成专属报告</p>
+            <p className="text-sm text-muted-foreground">{content.home.subtitle}</p>
           </div>
         </header>
 
@@ -179,14 +106,14 @@ export function AIHealthChat() {
               onClick={() => setPage("fill")}
               className="w-4/5 py-3 bg-background text-primary text-lg font-bold rounded-lg hover:bg-accent transition-colors"
             >
-              开始测评
+              {content.home.primaryCta}
             </button>
-            <p className="text-sm text-primary-foreground mt-4">支持中途保存、分步填写</p>
+            <p className="text-sm text-primary-foreground mt-4">{content.home.supportingNote}</p>
           </div>
         </main>
 
         <footer className="px-5 pb-24 text-center">
-          <p className="text-xs text-muted-foreground">适合3岁以上全人群，儿童需家长协助填写</p>
+          <p className="text-xs text-muted-foreground">{content.home.footerNote}</p>
         </footer>
 
         <SharedNav />
@@ -194,14 +121,14 @@ export function AIHealthChat() {
     )
   }
 
-  // 问卷提交页
   if (page === "submit") {
     const answeredCount = Object.keys(answers).length
+
     return (
       <div className="min-h-screen bg-background flex flex-col max-w-md mx-auto">
         <header className="px-5 pt-14 pb-4 text-center">
-          <h1 className="text-lg font-bold text-foreground">确认提交</h1>
-          <p className="text-sm text-muted-foreground mt-1">提交后将生成专属健康报告</p>
+          <h1 className="text-lg font-bold text-foreground">{content.submit.title}</h1>
+          <p className="text-sm text-muted-foreground mt-1">{content.submit.subtitle}</p>
         </header>
 
         <main className="flex-1 flex flex-col items-center justify-center px-5">
@@ -210,12 +137,10 @@ export function AIHealthChat() {
             style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}
           >
             <p className="text-base font-bold text-foreground">
-              已完成 {answeredCount}/{totalQuestions} 题
+              {content.submit.progressLabelPrefix} {answeredCount}/{totalQuestions} {content.submit.progressLabelSuffix}
             </p>
             <p className="text-sm text-muted-foreground mt-2">
-              {answeredCount < 5
-                ? "已答题数较少，报告精准度可能下降"
-                : "未答题将视为放弃，不影响基础报告生成"}
+              {answeredCount < 5 ? content.submit.lowAnswerWarning : content.submit.defaultWarning}
             </p>
           </div>
 
@@ -224,7 +149,7 @@ export function AIHealthChat() {
               onClick={() => setPage("fill")}
               className="flex-1 py-3 bg-card border border-border text-foreground text-base font-medium rounded-lg"
             >
-              返回修改
+              {content.submit.backCta}
             </button>
             <button
               onClick={handleSubmit}
@@ -234,7 +159,7 @@ export function AIHealthChat() {
               {isSubmitting ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : (
-                "确认提交"
+                content.submit.confirmCta
               )}
             </button>
           </div>
@@ -245,10 +170,8 @@ export function AIHealthChat() {
     )
   }
 
-  // 问卷填写页
   return (
     <div className="min-h-screen bg-background flex flex-col max-w-md mx-auto">
-      {/* 顶部进度条 */}
       <div className="pt-12 px-5">
         <div className="h-1 bg-secondary rounded-full overflow-hidden">
           <div
@@ -261,7 +184,6 @@ export function AIHealthChat() {
         </p>
       </div>
 
-      {/* 题目区域 */}
       <main className="flex-1 px-5 py-6">
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-3">
@@ -270,11 +192,11 @@ export function AIHealthChat() {
           </div>
         </div>
 
-        {/* 选项区域 */}
         {currentQ.type === "single" && (
           <div className="space-y-3">
             {currentQ.options?.map((option) => {
               const isSelected = answers[currentQ.id] === option.id
+
               return (
                 <button
                   key={option.id}
@@ -292,7 +214,7 @@ export function AIHealthChat() {
                   >
                     {isSelected && <div className="w-2 h-2 bg-white rounded-full" />}
                   </div>
-                  {option.icon && <span className="text-xl">{option.icon}</span>}
+                  {"icon" in option && option.icon && <span className="text-xl">{option.icon}</span>}
                   <span className={`text-base ${isSelected ? "text-foreground font-medium" : "text-foreground"}`}>
                     {option.label}
                   </span>
@@ -313,8 +235,8 @@ export function AIHealthChat() {
                     min={input.min}
                     max={input.max}
                     placeholder={input.placeholder}
-                    value={(answers[currentQ.id] as Record<string, number>)?.[input.id] || ""}
-                    onChange={(e) => handleInputChange(currentQ.id, input.id, e.target.value)}
+                    value={(answers[currentQ.id] as QuestionInputAnswer | undefined)?.[input.id] || ""}
+                    onChange={(event) => handleInputChange(currentQ.id, input.id, event.target.value)}
                     className="flex-1 px-4 py-3 rounded-lg border border-border text-base text-foreground focus:border-primary focus:outline-none transition-colors"
                   />
                   <span className="text-sm text-muted-foreground">{input.unit}</span>
@@ -325,7 +247,6 @@ export function AIHealthChat() {
         )}
       </main>
 
-      {/* 操作区域 */}
       <div className="px-5 pb-24">
         <div className="flex gap-3">
           <button
@@ -338,7 +259,7 @@ export function AIHealthChat() {
             }`}
           >
             <ChevronLeft className="w-5 h-5" />
-            上一题
+            {content.navigation.previous}
           </button>
           <button
             onClick={handleNext}
@@ -349,7 +270,7 @@ export function AIHealthChat() {
                 : "bg-secondary text-muted-foreground"
             }`}
           >
-            {currentQuestion === totalQuestions - 1 ? "提交" : "下一题"}
+            {currentQuestion === totalQuestions - 1 ? content.navigation.submit : content.navigation.next}
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
