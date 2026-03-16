@@ -1,0 +1,192 @@
+{
+  "view": {
+    "eyebrow": "Release checks",
+    "title": "Administrator release console",
+    "subtitle": "Use a conservative release gate to review runtime, core journeys, compliance entry points, and platform-readiness status.",
+    "adminOnlyHint": "Administrator-only surface. Admin identity is determined by the environment allowlist of phone numbers or account IDs.",
+    "overallStatusLabel": "Overall status",
+    "diagnosticsTitle": "Runtime diagnostics",
+    "warningsTitle": "Known non-blocking warnings",
+    "groupsTitle": "Checklist groups",
+    "actionsTitle": "Quick links",
+    "backCta": "Back to account center",
+    "markReadyCta": "Mark manually verified",
+    "resetManualCta": "Clear manual verification",
+    "manualConfirmedLabel": "Manual confirmation time",
+    "redirectingTitle": "Checking administrator access",
+    "redirectingBody": "If the current identity is not in the allowlist, this page will return to the account center automatically.",
+    "loadingTitle": "Preparing release checks",
+    "loadingBody": "Loading runtime diagnostics and local manual-confirmation records.",
+    "emptyAllowlistLabel": "No administrator allowlist configured"
+  },
+  "labels": {
+    "status": {
+      "blocked": "Blocked",
+      "attention": "Needs review",
+      "ready": "Ready"
+    },
+    "checkType": {
+      "auto": "Automatic",
+      "manual": "Manual",
+      "document": "Document"
+    },
+    "runtime": {
+      "platform": "Platform",
+      "environment": "Environment",
+      "apiBaseUrl": "API base URL",
+      "identity": "Current identity",
+      "allowlist": "Administrator allowlist"
+    }
+  },
+  "diagnostics": {
+    "actionLinks": [
+      {
+        "label": "Account center",
+        "href": "/profile"
+      },
+      {
+        "label": "Privacy center",
+        "href": "/profile/privacy"
+      },
+      {
+        "label": "Help center",
+        "href": "/profile/help"
+      },
+      {
+        "label": "OCR upload",
+        "href": "/ocr-upload"
+      },
+      {
+        "label": "History timeline",
+        "href": "/timeline"
+      }
+    ],
+    "knownWarnings": [
+      {
+        "id": "workspace-root",
+        "title": "Workspace root warning caused by multiple lockfiles",
+        "body": "Next.js currently warns about workspace-root inference. Before release we need an explicit turbopack.root or the extra lockfile removed."
+      },
+      {
+        "id": "baseline-browser-mapping",
+        "title": "baseline-browser-mapping data is stale",
+        "body": "The current build warns that browser baseline data is outdated. The corresponding dev dependency should be refreshed before release."
+      }
+    ]
+  },
+  "groups": [
+    {
+      "id": "build",
+      "title": "Build and base configuration",
+      "summary": "Verify build output, bilingual resources, and the administrator allowlist first.",
+      "items": [
+        {
+          "id": "build-frontend",
+          "title": "Frontend production build passes",
+          "description": "The current H5 routes must compile successfully under next build.",
+          "checkType": "auto",
+          "status": "ready"
+        },
+        {
+          "id": "build-i18n",
+          "title": "Account and release-check resources are bilingual",
+          "description": "Release-check pages must keep full Chinese and English resource coverage.",
+          "checkType": "auto",
+          "status": "ready"
+        },
+        {
+          "id": "build-admin-allowlist",
+          "title": "Administrator allowlist reviewed manually",
+          "description": "Confirm the phone numbers or account IDs configured for this environment to avoid exposing the release console by mistake.",
+          "checkType": "manual",
+          "status": "attention"
+        }
+      ]
+    },
+    {
+      "id": "journey",
+      "title": "Core user journeys",
+      "summary": "Cover the key loops for assessment, OCR, report, timeline, and check-in.",
+      "items": [
+        {
+          "id": "journey-assessment-report",
+          "title": "Assessment-to-report flow smoke-checked",
+          "description": "Manually walk through questionnaire completion, report navigation, and recommendation rendering.",
+          "checkType": "manual",
+          "status": "attention",
+          "href": "/chat"
+        },
+        {
+          "id": "journey-ocr",
+          "title": "OCR upload and confirmation flow smoke-checked",
+          "description": "Manually confirm the upload page, processing state, confirmation page, and enrichment results.",
+          "checkType": "manual",
+          "status": "attention",
+          "href": "/ocr-upload"
+        },
+        {
+          "id": "journey-checkin",
+          "title": "Saved plan and check-in persistence smoke-checked",
+          "description": "Verify recommendation saving, check-in accumulation, and persisted session behavior after refresh.",
+          "checkType": "manual",
+          "status": "attention",
+          "href": "/checkin"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "title": "Compliance and trust entry points",
+      "summary": "User-facing policies, feedback, export, deletion, and administrator isolation must stay explicit.",
+      "items": [
+        {
+          "id": "trust-privacy",
+          "title": "Privacy, export, and deletion entries are exposed",
+          "description": "The account center should surface privacy, export, deletion, and transparency-note pages.",
+          "checkType": "auto",
+          "status": "ready",
+          "href": "/profile/privacy"
+        },
+        {
+          "id": "trust-help-feedback",
+          "title": "Help and feedback entries are exposed",
+          "description": "FAQ, feedback form, and feedback-record routes should all be reachable.",
+          "checkType": "auto",
+          "status": "ready",
+          "href": "/profile/help"
+        },
+        {
+          "id": "trust-admin-isolation",
+          "title": "Release-console entry is hidden from non-admins",
+          "description": "Manually confirm that the account center does not show the release-check card for ordinary identities.",
+          "checkType": "manual",
+          "status": "attention",
+          "href": "/profile"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "title": "Platform readiness",
+      "summary": "WeCom and Web skeletons stay blocked until their foundations are delivered later in this node.",
+      "items": [
+        {
+          "id": "platform-wecom",
+          "title": "WeCom callback skeleton is connected",
+          "description": "Provide a WeCom callback placeholder route and downgrade-safe adapter boundary.",
+          "checkType": "auto",
+          "status": "blocked",
+          "href": "/auth/wecom/callback"
+        },
+        {
+          "id": "platform-web",
+          "title": "Web dual-shell foundation is connected",
+          "description": "Provide a desktop shell foundation without breaking the current H5 behavior.",
+          "checkType": "auto",
+          "status": "blocked",
+          "href": "/"
+        }
+      ]
+    }
+  ]
+}

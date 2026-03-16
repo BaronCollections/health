@@ -1,0 +1,192 @@
+{
+  "view": {
+    "eyebrow": "发布检查",
+    "title": "管理员发布检查台",
+    "subtitle": "用保守发布门禁核对运行时、关键路径、合规入口和平台预留状态。",
+    "adminOnlyHint": "仅管理员可见，管理员身份由环境白名单中的手机号或账号决定。",
+    "overallStatusLabel": "当前总状态",
+    "diagnosticsTitle": "运行时诊断",
+    "warningsTitle": "已知非阻塞警告",
+    "groupsTitle": "检查分组",
+    "actionsTitle": "快捷入口",
+    "backCta": "返回账户中心",
+    "markReadyCta": "标记已人工确认",
+    "resetManualCta": "清除人工确认",
+    "manualConfirmedLabel": "人工确认时间",
+    "redirectingTitle": "正在校验管理员权限",
+    "redirectingBody": "如果当前身份不在白名单中，将自动返回账户中心。",
+    "loadingTitle": "正在准备发布检查",
+    "loadingBody": "读取运行时诊断和本地人工确认记录。",
+    "emptyAllowlistLabel": "未配置管理员白名单"
+  },
+  "labels": {
+    "status": {
+      "blocked": "阻塞",
+      "attention": "待确认",
+      "ready": "可发布"
+    },
+    "checkType": {
+      "auto": "自动",
+      "manual": "人工",
+      "document": "文档"
+    },
+    "runtime": {
+      "platform": "运行平台",
+      "environment": "运行环境",
+      "apiBaseUrl": "API 地址",
+      "identity": "当前身份",
+      "allowlist": "管理员白名单"
+    }
+  },
+  "diagnostics": {
+    "actionLinks": [
+      {
+        "label": "账户中心",
+        "href": "/profile"
+      },
+      {
+        "label": "隐私中心",
+        "href": "/profile/privacy"
+      },
+      {
+        "label": "帮助中心",
+        "href": "/profile/help"
+      },
+      {
+        "label": "OCR 上传",
+        "href": "/ocr-upload"
+      },
+      {
+        "label": "历史时间轴",
+        "href": "/timeline"
+      }
+    ],
+    "knownWarnings": [
+      {
+        "id": "workspace-root",
+        "title": "存在多份 lockfile 的工作区根目录警告",
+        "body": "当前 Next.js 会提示 workspace root 推断告警，最终发布前需要明确 turbopack.root 或清理多余 lockfile。"
+      },
+      {
+        "id": "baseline-browser-mapping",
+        "title": "baseline-browser-mapping 数据过旧",
+        "body": "当前构建会提示基础浏览器数据过期，发布前需要升级对应开发依赖。"
+      }
+    ]
+  },
+  "groups": [
+    {
+      "id": "build",
+      "title": "构建与基础配置",
+      "summary": "先确认构建、双语资源和管理员白名单的基础状态。",
+      "items": [
+        {
+          "id": "build-frontend",
+          "title": "前端生产构建通过",
+          "description": "要求当前 H5 路由在 next build 下可完整产物化。",
+          "checkType": "auto",
+          "status": "ready"
+        },
+        {
+          "id": "build-i18n",
+          "title": "账户与发布检查双语资源齐备",
+          "description": "发布检查相关页面必须保持完整中英文字段覆盖。",
+          "checkType": "auto",
+          "status": "ready"
+        },
+        {
+          "id": "build-admin-allowlist",
+          "title": "管理员白名单已人工复核",
+          "description": "确认本环境下的管理员手机号或账号配置正确，避免误开放发布检查入口。",
+          "checkType": "manual",
+          "status": "attention"
+        }
+      ]
+    },
+    {
+      "id": "journey",
+      "title": "核心用户路径",
+      "summary": "覆盖问卷、OCR、报告、时间轴和打卡的关键体验闭环。",
+      "items": [
+        {
+          "id": "journey-assessment-report",
+          "title": "问卷到报告链路已冒烟检查",
+          "description": "人工走通问卷填答、报告跳转和推荐结果展示。",
+          "checkType": "manual",
+          "status": "attention",
+          "href": "/chat"
+        },
+        {
+          "id": "journey-ocr",
+          "title": "OCR 上传与确认链路已冒烟检查",
+          "description": "人工确认上传页、处理中、确认页和补录结果可用。",
+          "checkType": "manual",
+          "status": "attention",
+          "href": "/ocr-upload"
+        },
+        {
+          "id": "journey-checkin",
+          "title": "我的方案与打卡持久化已冒烟检查",
+          "description": "确认推荐保存、打卡累计和刷新后会话保留行为正常。",
+          "checkType": "manual",
+          "status": "attention",
+          "href": "/checkin"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "title": "合规与信任入口",
+      "summary": "用户可见的协议、反馈、导出、删除和管理员隔离必须保持清晰。",
+      "items": [
+        {
+          "id": "trust-privacy",
+          "title": "隐私、导出与删除入口已暴露",
+          "description": "账户中心应可进入隐私、导出、删除和留痕说明页面。",
+          "checkType": "auto",
+          "status": "ready",
+          "href": "/profile/privacy"
+        },
+        {
+          "id": "trust-help-feedback",
+          "title": "帮助与反馈入口已暴露",
+          "description": "FAQ、反馈表单和反馈记录页面应可被正常访问。",
+          "checkType": "auto",
+          "status": "ready",
+          "href": "/profile/help"
+        },
+        {
+          "id": "trust-admin-isolation",
+          "title": "非管理员不可见发布检查入口",
+          "description": "需要人工确认普通身份下账户中心不展示发布检查卡片。",
+          "checkType": "manual",
+          "status": "attention",
+          "href": "/profile"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "title": "平台预留",
+      "summary": "企业微信与 Web 扩展的骨架在本节点完成前保持阻塞状态。",
+      "items": [
+        {
+          "id": "platform-wecom",
+          "title": "企业微信回调骨架已接入",
+          "description": "需要提供企业微信回调占位路由和降级安全的适配层。",
+          "checkType": "auto",
+          "status": "blocked",
+          "href": "/auth/wecom/callback"
+        },
+        {
+          "id": "platform-web",
+          "title": "Web 双端壳层已接入",
+          "description": "需要为桌面端提供双壳层基础，且不破坏当前 H5 行为。",
+          "checkType": "auto",
+          "status": "blocked",
+          "href": "/"
+        }
+      ]
+    }
+  ]
+}
