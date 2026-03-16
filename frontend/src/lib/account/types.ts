@@ -79,6 +79,7 @@ export type AccountContent = {
     title: string
     subtitle: string
     cards: AccountHomeCard[]
+    adminToolsCard: AccountHomeCard
     summary: {
       unreadLabel: string
       feedbackLabel: string

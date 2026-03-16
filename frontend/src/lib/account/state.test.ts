@@ -38,6 +38,14 @@ type SecurityRecord = {
   notificationPreferences: Record<NotificationType, boolean>
 }
 
+type HomeCardRecord = {
+  id: string
+  title: string
+  body: string
+  cta: string
+  href: string
+}
+
 async function loadAccountStateModule() {
   try {
     return await import("./state.ts")
@@ -146,4 +154,24 @@ test("account state summarizes account preference toggles", async () => {
     bindingStatus: "unbound",
     ocrAuthorization: "granted",
   })
+})
+
+test("account state appends the administrator tools card only for allowlisted admins", async () => {
+  const accountState = await loadAccountStateModule()
+  assert.ok(accountState?.getVisibleHomeCards, "getVisibleHomeCards should be implemented")
+
+  const cards: HomeCardRecord[] = [
+    { id: "messages", title: "Messages", body: "body", cta: "Open", href: "/profile/notifications" },
+    { id: "help", title: "Help", body: "body", cta: "Open", href: "/profile/help" },
+  ]
+  const adminToolsCard: HomeCardRecord = {
+    id: "admin",
+    title: "Release checklist",
+    body: "body",
+    cta: "Open",
+    href: "/profile/admin/release-checklist",
+  }
+
+  assert.deepEqual(accountState.getVisibleHomeCards(cards, adminToolsCard, false), cards)
+  assert.deepEqual(accountState.getVisibleHomeCards(cards, adminToolsCard, true), [...cards, adminToolsCard])
 })

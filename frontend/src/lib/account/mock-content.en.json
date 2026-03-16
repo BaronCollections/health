@@ -40,6 +40,13 @@
         "href": "/profile/security"
       }
     ],
+    "adminToolsCard": {
+      "id": "admin",
+      "title": "Release checklist",
+      "body": "Administrator-only diagnostics for version state, runtime status, compliance entry checks, and platform-readiness gates.",
+      "cta": "Open release checks",
+      "href": "/profile/admin/release-checklist"
+    },
     "summary": {
       "unreadLabel": "Unread",
       "feedbackLabel": "Open feedback",

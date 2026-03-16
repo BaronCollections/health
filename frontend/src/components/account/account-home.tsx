@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-import { BellDot, ChevronRight, FileLock2, Headset, ShieldCheck, SlidersHorizontal } from "lucide-react"
+import { BellDot, ChevronRight, ClipboardCheck, FileLock2, Headset, ShieldCheck, SlidersHorizontal } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 import { SharedNav } from "@/components/shared-nav"
@@ -18,10 +18,12 @@ import type { AccountNotification, DeleteRequest, ExportRequest, FeedbackRecord 
 import {
   canWithdrawDeleteRequest,
   countOpenFeedbackRecords,
+  getVisibleHomeCards,
   getActiveExportRequest,
   getLatestDeleteRequest,
   summarizeUnreadNotifications,
 } from "@/lib/account/state"
+import { readBrowserRuntimeSnapshot } from "@/lib/runtime/runtime"
 
 const sectionIcons = {
   messages: BellDot,
@@ -29,6 +31,7 @@ const sectionIcons = {
   privacy: FileLock2,
   data: ShieldCheck,
   preferences: SlidersHorizontal,
+  admin: ClipboardCheck,
 }
 
 export function AccountHome() {
@@ -39,12 +42,14 @@ export function AccountHome() {
   const [feedbackRecords, setFeedbackRecords] = useState<FeedbackRecord[]>(content.feedbackRecords)
   const [exportRequests, setExportRequests] = useState<ExportRequest[]>(content.exportRequests)
   const [deleteRequests, setDeleteRequests] = useState<DeleteRequest[]>(content.deleteRequests)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
     setNotifications(content.notifications)
     setFeedbackRecords(content.feedbackRecords)
     setExportRequests(content.exportRequests)
     setDeleteRequests(content.deleteRequests)
+    setIsAdmin(readBrowserRuntimeSnapshot().isAdmin)
     void fetchAccountNotifications(locale, "all").then((response) => {
       setNotifications(response.items)
     })
@@ -63,6 +68,7 @@ export function AccountHome() {
   const openFeedbackCount = countOpenFeedbackRecords(feedbackRecords)
   const activeExportRequest = getActiveExportRequest(exportRequests)
   const activeDeleteRequest = getLatestDeleteRequest(deleteRequests)
+  const visibleCards = getVisibleHomeCards(content.home.cards, content.home.adminToolsCard, isAdmin)
 
   return (
     <div className="mx-auto flex min-h-screen max-w-md flex-col bg-[radial-gradient(circle_at_top,_rgba(109,181,120,0.22),_transparent_44%),linear-gradient(180deg,_#F2FAF2_0%,_#FFFFFF_40%,_#F7FBF8_100%)]">
@@ -102,7 +108,7 @@ export function AccountHome() {
         </section>
 
         <section className="mt-5 space-y-4">
-          {content.home.cards.map((card) => {
+          {visibleCards.map((card) => {
             const Icon = sectionIcons[card.id as keyof typeof sectionIcons]
 
             return (

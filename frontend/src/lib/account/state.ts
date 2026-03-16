@@ -1,5 +1,6 @@
 import type {
   AccountSecurity,
+  AccountHomeCard,
   AccountNotification,
   DeleteRequest,
   ExportRequest,
@@ -56,4 +57,12 @@ export function summarizeAccountPreferences(security: AccountSecurity) {
     bindingStatus: security.accountBinding,
     ocrAuthorization: security.ocrAuthorization,
   }
+}
+
+export function getVisibleHomeCards(cards: AccountHomeCard[], adminToolsCard: AccountHomeCard, isAdmin: boolean) {
+  if (!isAdmin) {
+    return cards
+  }
+
+  return [...cards, adminToolsCard]
 }
