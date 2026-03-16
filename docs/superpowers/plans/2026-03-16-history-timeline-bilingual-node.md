@@ -61,7 +61,7 @@
 - [x] **Step 1: Run `node --test frontend/scripts/history-timeline-translations.test.mjs`**
 - [x] **Step 2: Run `npm run build` in `frontend`**
 - [x] **Step 3: Record the node status in this plan**
-- [ ] **Step 4: Commit and push the node**
+- [x] **Step 4: Commit and push the node**
 
 ## Node Status
 
@@ -70,6 +70,7 @@
   - `node --test frontend/scripts/history-timeline-translations.test.mjs`
   - `node --test frontend/scripts/ocr-upload-translations.test.mjs`
   - `npm run build`
+- Pushed branch: `codex/local-prototype-h5`
 - Implementation notes:
   - added a dedicated `/timeline` page backed by structured bilingual resources under `frontend/src/lib/timeline/`
   - current report page now exposes a timeline entry card through the report resource layer
