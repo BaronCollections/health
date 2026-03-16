@@ -1,0 +1,8 @@
+{
+  "name": "mintbit-miniprogram",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:foundation": "node --test services/request/client.test.mjs services/auth/session.test.mjs services/i18n/index.test.mjs"
+  }
+}
