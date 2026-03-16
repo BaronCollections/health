@@ -106,10 +106,10 @@
 - Modify: `frontend/src/lib/community/mock-content.en.json`
 - Modify: `frontend/src/lib/community-api/client.ts`
 
-- [ ] **Step 1: Build the mobile review page with queue tabs, stacked moderation cards, and content preview**
-- [ ] **Step 2: Add approve, reject, flag, and restore actions with bilingual labels and state feedback**
-- [ ] **Step 3: Keep the review UX mobile-first with cards, chips, and action rows rather than a desktop table layout**
-- [ ] **Step 4: Run `npm run build` in `frontend` and verify the operations route is included**
+- [x] **Step 1: Build the mobile review page with queue tabs, stacked moderation cards, and content preview**
+- [x] **Step 2: Add approve, reject, flag, and restore actions with bilingual labels and state feedback**
+- [x] **Step 3: Keep the review UX mobile-first with cards, chips, and action rows rather than a desktop table layout**
+- [x] **Step 4: Run `npm run build` in `frontend` and verify the operations route is included**
 
 ## Chunk 4: Verification, README, And Progress
 
@@ -120,18 +120,18 @@
 - Modify: `docs/superpowers/plans/2026-03-16-community-rebuild-node.md`
 - Modify: `docs/superpowers/plans/2026-03-16-phase1-node-progress.md`
 
-- [ ] **Step 1: Run `node --experimental-strip-types --test frontend/src/lib/community/visibility.test.ts`**
-- [ ] **Step 2: Run `node --test frontend/scripts/community-bilingual-resources.test.mjs`**
-- [ ] **Step 3: Run `mvn test -Dtest=MockCommunityServiceTest` in `backend`**
-- [ ] **Step 4: Run `npm run build` in `frontend`**
-- [ ] **Step 5: Update `README.md` so the homepage reflects the rebuilt community, moderation-aware H5 flow, and current project progress**
-- [ ] **Step 6: Mark this node complete in the plan and update `docs/superpowers/plans/2026-03-16-phase1-node-progress.md` from `9 / 12 = 75%` to `10 / 12 = 83%`**
-- [ ] **Step 7: Commit and push the completed node on the community branch**
+- [x] **Step 1: Run `node --experimental-strip-types --test frontend/src/lib/community/visibility.test.ts`**
+- [x] **Step 2: Run `node --test frontend/scripts/community-bilingual-resources.test.mjs`**
+- [x] **Step 3: Run `mvn test -Dtest=MockCommunityServiceTest` in `backend`**
+- [x] **Step 4: Run `npm run build` in `frontend`**
+- [x] **Step 5: Update `README.md` so the homepage reflects the rebuilt community, moderation-aware H5 flow, and current project progress**
+- [x] **Step 6: Mark this node complete in the plan and update `docs/superpowers/plans/2026-03-16-phase1-node-progress.md` from `9 / 12 = 75%` to `10 / 12 = 83%`**
+- [x] **Step 7: Commit and push the completed node on the community branch**
 
 ## Node Status
 
 - Current node: `community rewrite with moderation and ops H5`
-- Current completion state: `Chunks 1-2 complete, Chunk 3 pending`
+- Current completion state: `completed`
 - Progress policy:
   - keep overall Phase 1 node progress at `9 / 12 = 75%` until all three internal delivery blocks are complete
   - only move to `10 / 12 = 83%` after user community rewrite, backend contract integration, and operations H5 moderation are all verified

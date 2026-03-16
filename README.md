@@ -1,12 +1,32 @@
 # MintBit 薄荷比特
 
-AI 驱动的个性化维生素推荐平台
+AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
+
+## Phase 1 Snapshot
+
+- 当前交付重点：`手机端 H5` + `完整双语` + `生命绿 #6DB578` 品牌视觉
+- 当前工程进度：`10 / 12 = 83%`
+- 当前已完成主链路：首页、问卷、报告、OCR 上传与确认、历史画报时间轴、打卡、社区、社区审核 H5
+- 当前社区能力：推荐 feed、发帖、帖子详情、评论、我的帖子、审核状态、运营审核列表页
+- 后续节点：通知/帮助/隐私双语化、发布加固、企业微信接入预留、Web 扩展预留
+
+## Current Product Shape
+
+MintBit Phase 1 目前围绕一条完整的“评估 -> 报告 -> 打卡 -> 社区”闭环展开。移动端 H5 已具备双语基础、健康问卷、OCR 报告补录、个性化营养建议、历史画报时间轴、每日打卡，以及带审核状态的社区互动流。
+
+当前社区模块已经重构为移动优先结构：
+
+- `/community`：推荐 feed 与圈子流
+- `/community/create`：发帖页
+- `/community/post/[id]`：帖子详情与评论
+- `/community/me`：我的帖子与审核状态
+- `/ops/community-review`：手机 H5 运营审核页
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | Next.js 14 + TypeScript + Tailwind CSS + Framer Motion + Three.js |
+| Frontend | Next.js 16 + TypeScript + Tailwind CSS |
 | Backend | Java 17 + Spring Boot 3.2 + MyBatis-Plus |
 | Database | PostgreSQL 16 + Redis 7 |
 | Storage | MinIO (S3-compatible) |
@@ -52,9 +72,10 @@ chmod +x scripts/deploy.sh
 health/
 ├── docker-compose.yml
 ├── .env.example
-├── frontend/          # Next.js 14
+├── frontend/          # H5 app / bilingual routes / community ops H5
 ├── backend/           # Spring Boot 3.2
 ├── poster-service/    # Puppeteer renderer
+├── docs/              # PRD / technical / execution / node plans
 ├── nginx/             # Reverse proxy config
 ├── sql/               # Database init scripts
 └── scripts/           # Deploy & maintenance

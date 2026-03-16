@@ -202,7 +202,7 @@ export async function saveCommunityPost(locale: Locale, postId: string) {
   }
 }
 
-export async function fetchModerationQueue(status?: string): Promise<ModerationQueueItem[]> {
+export async function fetchModerationQueue(locale: Locale, status?: string): Promise<ModerationQueueItem[]> {
   try {
     const response = (await api.get("/community/moderation/queue", {
       params: { status },
@@ -214,7 +214,7 @@ export async function fetchModerationQueue(status?: string): Promise<ModerationQ
 
     return response.data.items
   } catch {
-    return []
+    return getCommunityContent(locale).reviewQueue.filter((item) => !status || item.currentStatus === status)
   }
 }
 

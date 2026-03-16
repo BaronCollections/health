@@ -5,8 +5,8 @@
 This tracker measures **current H5 Phase 1 engineering node progress**, not final commercial readiness.
 
 - Total planned engineering nodes in the current roadmap: `12`
-- Completed nodes after the check-in persistence node: `9`
-- Current completion percentage: `75%`
+- Completed nodes after the community rewrite node: `10`
+- Current completion percentage: `83%`
 
 ## Node Status
 
@@ -19,6 +19,6 @@ This tracker measures **current H5 Phase 1 engineering node progress**, not fina
 7. `Community and history timeline linkage` — completed
 8. `OCR contract layer` — completed
 9. `Check-in and saved-plan persistence integration` — completed
-10. `Community deep bilingualization and moderation states` — pending
+10. `Community rewrite with moderation and ops H5` — completed
 11. `Notifications, help, and privacy settings bilingualization` — pending
 12. `Release hardening and WeCom/Web readiness prep` — pending
