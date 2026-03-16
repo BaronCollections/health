@@ -65,7 +65,7 @@
 - [x] **Step 1: Run `node --test frontend/scripts/report-ocr-translations.test.mjs`**
 - [x] **Step 2: Run `npm run build` in `frontend`**
 - [x] **Step 3: Record the node status in this plan**
-- [ ] **Step 4: Commit and push the node**
+- [x] **Step 4: Commit and push the node**
 
 ## Node Status
 
@@ -74,6 +74,7 @@
   - `node --test frontend/scripts/report-ocr-translations.test.mjs`
   - `npm install` in `frontend` to restore missing worktree dependencies
   - `npm run build`
+- Pushed branch: `codex/local-prototype-h5`
 - Implementation notes:
   - report long-form copy now lives under `frontend/src/lib/report/` with stable goal IDs for locale-safe selection
   - OCR confirmation content now lives under `frontend/src/lib/ocr/` and is exposed through `/ocr-confirmation`
