@@ -68,9 +68,9 @@
 - Create: `backend/src/main/java/com/mintbit/health/model/dto/community/MyCommunityPostsResponse.java`
 - Create: `backend/src/test/java/com/mintbit/health/service/MockCommunityServiceTest.java`
 
-- [ ] **Step 1: Write a failing backend test that covers feed, post detail, my posts, moderation queue, and moderation decision transitions**
-- [ ] **Step 2: Add DTO skeletons for the community contract types required by that test**
-- [ ] **Step 3: Run `mvn test -Dtest=MockCommunityServiceTest` in `backend` and confirm the new contract test fails before implementation**
+- [x] **Step 1: Write a failing backend test that covers feed, post detail, my posts, moderation queue, and moderation decision transitions**
+- [x] **Step 2: Add DTO skeletons for the community contract types required by that test**
+- [x] **Step 3: Run `mvn test -Dtest=MockCommunityServiceTest` in `backend` and confirm the new contract test fails before implementation**
 
 ### Task 4: Implement the mock service, controller endpoints, and client integration
 
@@ -88,11 +88,11 @@
 - Modify: `frontend/src/lib/community/index.ts`
 - Modify: `frontend/src/i18n/messages.ts`
 
-- [ ] **Step 1: Implement a deterministic mock community service that returns stable circles, feed items, author views, and moderation queue items**
-- [ ] **Step 2: Replace the placeholder controller methods with typed request and response contracts for feed, detail, create, comment, like, save, my posts, circles, queue, and moderation actions**
-- [ ] **Step 3: Implement a frontend community API client that prefers the backend contract and falls back to local mock resources if the API is unavailable**
-- [ ] **Step 4: Wire the user routes to the new client so create, detail, comment, like, save, and “my posts” flows all respect moderation states**
-- [ ] **Step 5: Re-run `mvn test -Dtest=MockCommunityServiceTest` in `backend`, `node --experimental-strip-types --test frontend/src/lib/community/visibility.test.ts`, `node --test frontend/scripts/community-bilingual-resources.test.mjs`, and `npm run build` in `frontend`**
+- [x] **Step 1: Implement a deterministic mock community service that returns stable circles, feed items, author views, and moderation queue items**
+- [x] **Step 2: Replace the placeholder controller methods with typed request and response contracts for feed, detail, create, comment, like, save, my posts, circles, queue, and moderation actions**
+- [x] **Step 3: Implement a frontend community API client that prefers the backend contract and falls back to local mock resources if the API is unavailable**
+- [x] **Step 4: Wire the user routes to the new client so create, detail, comment, like, save, and “my posts” flows all respect moderation states**
+- [x] **Step 5: Re-run `mvn test -Dtest=MockCommunityServiceTest` in `backend`, `node --experimental-strip-types --test frontend/src/lib/community/visibility.test.ts`, `node --test frontend/scripts/community-bilingual-resources.test.mjs`, and `npm run build` in `frontend`**
 
 ## Chunk 3: Operations H5 Moderation
 
@@ -131,7 +131,7 @@
 ## Node Status
 
 - Current node: `community rewrite with moderation and ops H5`
-- Current completion state: `Chunk 1 complete, Chunk 2 pending`
+- Current completion state: `Chunks 1-2 complete, Chunk 3 pending`
 - Progress policy:
   - keep overall Phase 1 node progress at `9 / 12 = 75%` until all three internal delivery blocks are complete
   - only move to `10 / 12 = 83%` after user community rewrite, backend contract integration, and operations H5 moderation are all verified

@@ -15,6 +15,7 @@ type CommentThreadProps = {
   placeholder: string
   submitLabel: string
   emptyLabel: string
+  onSubmitComment?: (content: string) => Promise<CommunityComment> | CommunityComment
 }
 
 export function CommentThread({
@@ -24,31 +25,36 @@ export function CommentThread({
   placeholder,
   submitLabel,
   emptyLabel,
+  onSubmitComment,
 }: CommentThreadProps) {
   const [draft, setDraft] = useState("")
   const [threadComments, setThreadComments] = useState(comments)
+  const [submitting, setSubmitting] = useState(false)
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const value = draft.trim()
     if (!value) {
       return
     }
 
-    setThreadComments((previous) => [
-      ...previous,
-      {
-        id: `local-${previous.length + 1}`,
-        authorName: "Xiaoya",
-        authorAvatar: "X",
-        authorRole: "Particle assistant user",
-        viewerOwned: true,
-        status: "pending_review",
-        relativeTime: "Just now",
-        content: value,
-        likes: 0,
-      },
-    ])
+    setSubmitting(true)
+    const nextComment = onSubmitComment
+      ? await onSubmitComment(value)
+      : {
+          id: `local-${threadComments.length + 1}`,
+          authorName: "Xiaoya",
+          authorAvatar: "X",
+          authorRole: "Particle assistant user",
+          viewerOwned: true,
+          status: "pending_review" as const,
+          relativeTime: "Just now",
+          content: value,
+          likes: 0,
+        }
+
+    setThreadComments((previous) => [...previous, nextComment])
     setDraft("")
+    setSubmitting(false)
   }
 
   return (
@@ -68,6 +74,7 @@ export function CommentThread({
           onClick={handleSubmit}
           className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-[0_12px_24px_rgba(109,181,120,0.28)] transition hover:opacity-90"
           aria-label={submitLabel}
+          disabled={submitting}
         >
           <Send className="h-4 w-4" />
         </button>

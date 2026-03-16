@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 
 import { useLocale } from "@/i18n/use-locale"
 import { getCommunityContent } from "@/lib/community"
+import { createCommunityPost } from "@/lib/community-api/client"
 
 export function CommunityCreatePage() {
   const router = useRouter()
@@ -15,18 +16,27 @@ export function CommunityCreatePage() {
   const [circleId, setCircleId] = useState(content.circles[0]?.id ?? "")
   const [body, setBody] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   const suggestedTags = useMemo(
     () => Array.from(new Set(content.seedPosts.flatMap((post) => post.tags))).slice(0, 4),
     [content.seedPosts],
   )
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!body.trim()) {
       return
     }
 
+    setSubmitting(true)
+    await createCommunityPost(locale, {
+      circleId,
+      content: body.trim(),
+      tags: suggestedTags.slice(0, 2),
+      images: [],
+    })
     setSubmitted(true)
+    setSubmitting(false)
     window.setTimeout(() => router.push("/community/me"), 900)
   }
 
@@ -118,7 +128,7 @@ export function CommunityCreatePage() {
           type="button"
           onClick={handleSubmit}
           className="mt-6 w-full rounded-full bg-primary px-4 py-4 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(109,181,120,0.28)] disabled:opacity-50"
-          disabled={!body.trim()}
+          disabled={!body.trim() || submitting}
         >
           {content.create.submit}
         </button>

@@ -1,12 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import { ArrowLeft } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 import { useLocale } from "@/i18n/use-locale"
-import { getCommunityContent, getViewerCommunityPostsByStatus } from "@/lib/community"
+import { getCommunityContent } from "@/lib/community"
+import { fetchMyCommunityPosts, likeCommunityPost, saveCommunityPost } from "@/lib/community-api/client"
+import type { CommunityPost } from "@/lib/community/types"
 
 import { PostCard } from "./post-card"
 
@@ -16,8 +18,24 @@ export function CommunityMyPostsPage() {
   const router = useRouter()
   const { locale } = useLocale()
   const content = getCommunityContent(locale)
-  const groupedPosts = getViewerCommunityPostsByStatus(locale)
+  const [posts, setPosts] = useState<CommunityPost[]>([])
   const [activeStatus, setActiveStatus] = useState<(typeof orderedStatuses)[number]>("pending_review")
+
+  useEffect(() => {
+    void fetchMyCommunityPosts(locale).then((response) => setPosts(response))
+  }, [locale])
+
+  const groupedPosts = useMemo(() => {
+    const grouped = new Map<string, CommunityPost[]>()
+
+    for (const post of posts) {
+      const current = grouped.get(post.status) ?? []
+      current.push(post)
+      grouped.set(post.status, current)
+    }
+
+    return grouped
+  }, [posts])
 
   const activePosts = groupedPosts.get(activeStatus) ?? []
 
@@ -63,6 +81,36 @@ export function CommunityMyPostsPage() {
               saveLabel={content.detail.save}
               showStatus
               onOpenDetail={() => router.push(`/community/post/${post.id}`)}
+              onLike={() => {
+                setPosts((previous) =>
+                  previous.map((entry) =>
+                    entry.id === post.id ? { ...entry, likes: entry.likes + 1 } : entry,
+                  ),
+                )
+                void likeCommunityPost(locale, post.id).then((updated) => {
+                  if (!updated) {
+                    return
+                  }
+                  setPosts((previous) =>
+                    previous.map((entry) => (entry.id === updated.id ? updated : entry)),
+                  )
+                })
+              }}
+              onSave={() => {
+                setPosts((previous) =>
+                  previous.map((entry) =>
+                    entry.id === post.id ? { ...entry, saves: entry.saves + 1 } : entry,
+                  ),
+                )
+                void saveCommunityPost(locale, post.id).then((updated) => {
+                  if (!updated) {
+                    return
+                  }
+                  setPosts((previous) =>
+                    previous.map((entry) => (entry.id === updated.id ? updated : entry)),
+                  )
+                })
+              }}
               footerSlot={
                 activeStatus === "rejected" || activeStatus === "flagged" ? (
                   <button

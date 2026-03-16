@@ -1,10 +1,14 @@
 "use client"
 
+import { useEffect, useState } from "react"
+
 import { ArrowLeft } from "lucide-react"
 import { useParams, useRouter } from "next/navigation"
 
 import { useLocale } from "@/i18n/use-locale"
-import { getCommunityContent, getCommunityPostDetail } from "@/lib/community"
+import { getCommunityContent } from "@/lib/community"
+import { fetchCommunityPostDetail, likeCommunityPost, saveCommunityPost, submitCommunityComment } from "@/lib/community-api/client"
+import type { CommunityPost } from "@/lib/community/types"
 
 import { CommentThread } from "./comment-thread"
 import { PostCard } from "./post-card"
@@ -14,7 +18,16 @@ export function CommunityPostDetailPage() {
   const params = useParams<{ id: string }>()
   const { locale } = useLocale()
   const content = getCommunityContent(locale)
-  const post = getCommunityPostDetail(locale, params.id)
+  const [post, setPost] = useState<CommunityPost | null>(null)
+
+  useEffect(() => {
+    if (!params.id) {
+      return
+    }
+
+    setPost(null)
+    void fetchCommunityPostDetail(locale, params.id).then((response) => setPost(response))
+  }, [locale, params.id])
 
   if (!post) {
     return (
@@ -53,6 +66,22 @@ export function CommunityPostDetailPage() {
           likeLabel={content.detail.like}
           saveLabel={content.detail.save}
           showStatus={post.viewerOwned}
+          onLike={() => {
+            setPost((current) => (current ? { ...current, likes: current.likes + 1 } : current))
+            void likeCommunityPost(locale, post.id).then((updated) => {
+              if (updated) {
+                setPost(updated)
+              }
+            })
+          }}
+          onSave={() => {
+            setPost((current) => (current ? { ...current, saves: current.saves + 1 } : current))
+            void saveCommunityPost(locale, post.id).then((updated) => {
+              if (updated) {
+                setPost(updated)
+              }
+            })
+          }}
         />
         <CommentThread
           comments={post.comments}
@@ -61,6 +90,7 @@ export function CommunityPostDetailPage() {
           placeholder={content.detail.commentPlaceholder}
           submitLabel={content.detail.submitComment}
           emptyLabel={content.detail.noComments}
+          onSubmitComment={(message) => submitCommunityComment(locale, post.id, { content: message })}
         />
       </div>
     </div>

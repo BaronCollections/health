@@ -15,6 +15,8 @@ type PostCardProps = {
   saveLabel: string
   showStatus?: boolean
   onOpenDetail?: () => void
+  onLike?: () => void
+  onSave?: () => void
   footerSlot?: ReactNode
 }
 
@@ -25,6 +27,8 @@ export function PostCard({
   saveLabel,
   showStatus = false,
   onOpenDetail,
+  onLike,
+  onSave,
   footerSlot,
 }: PostCardProps) {
   return (
@@ -79,18 +83,32 @@ export function PostCard({
       ) : null}
 
       <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
-        <div className="inline-flex items-center gap-1.5" aria-label={likeLabel}>
+        <button
+          type="button"
+          onClick={onLike}
+          className="inline-flex items-center gap-1.5 rounded-full bg-transparent p-0"
+          aria-label={likeLabel}
+        >
           <Heart className="h-4 w-4" />
           <span>{post.likes}</span>
-        </div>
-        <div className="inline-flex items-center gap-1.5">
+        </button>
+        <button
+          type="button"
+          onClick={onOpenDetail}
+          className="inline-flex items-center gap-1.5 rounded-full bg-transparent p-0"
+        >
           <MessageCircle className="h-4 w-4" />
           <span>{post.comments.length}</span>
-        </div>
-        <div className="inline-flex items-center gap-1.5" aria-label={saveLabel}>
+        </button>
+        <button
+          type="button"
+          onClick={onSave}
+          className="inline-flex items-center gap-1.5 rounded-full bg-transparent p-0"
+          aria-label={saveLabel}
+        >
           <Bookmark className="h-4 w-4" />
           <span>{post.saves}</span>
-        </div>
+        </button>
       </div>
 
       {footerSlot ? <div className="mt-4">{footerSlot}</div> : null}

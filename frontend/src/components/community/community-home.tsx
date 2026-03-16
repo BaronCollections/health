@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import { ArrowRight, Clock3, Layers3, Plus, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation"
 import { SharedNav } from "@/components/shared-nav"
 import { useLocale } from "@/i18n/use-locale"
 import { getCommunityContent, getPublicCommunityPosts } from "@/lib/community"
+import { fetchCommunityFeed, likeCommunityPost, saveCommunityPost } from "@/lib/community-api/client"
+import type { CommunityCircle, CommunityPost } from "@/lib/community/types"
 
 import { PostCard } from "./post-card"
 
@@ -15,10 +17,21 @@ export function CommunityHome() {
   const router = useRouter()
   const { locale } = useLocale()
   const content = getCommunityContent(locale)
-  const publicPosts = getPublicCommunityPosts(locale)
+  const [circles, setCircles] = useState<CommunityCircle[]>(content.circles)
+  const [publicPosts, setPublicPosts] = useState<CommunityPost[]>(getPublicCommunityPosts(locale))
 
   const [activeTab, setActiveTab] = useState<"recommended" | "circles">("recommended")
   const [selectedCircleId, setSelectedCircleId] = useState<string | null>(null)
+
+  useEffect(() => {
+    setCircles(content.circles)
+    setPublicPosts(getPublicCommunityPosts(locale))
+
+    void fetchCommunityFeed(locale).then((response) => {
+      setCircles(response.circles)
+      setPublicPosts(response.posts)
+    })
+  }, [content.circles, locale])
 
   const filteredPosts = useMemo(() => {
     if (!selectedCircleId) {
@@ -91,7 +104,7 @@ export function CommunityHome() {
             >
               {content.home.allCircles}
             </button>
-            {content.circles.map((circle) => (
+            {circles.map((circle) => (
               <button
                 key={circle.id}
                 type="button"
@@ -125,7 +138,7 @@ export function CommunityHome() {
 
         {activeTab === "circles" ? (
           <section className="mt-5 grid gap-3">
-            {content.circles.map((circle) => (
+            {circles.map((circle) => (
               <button
                 key={circle.id}
                 type="button"
@@ -161,6 +174,36 @@ export function CommunityHome() {
                 likeLabel={content.detail.like}
                 saveLabel={content.detail.save}
                 onOpenDetail={() => router.push(`/community/post/${post.id}`)}
+                onLike={() => {
+                  setPublicPosts((previous) =>
+                    previous.map((entry) =>
+                      entry.id === post.id ? { ...entry, likes: entry.likes + 1 } : entry,
+                    ),
+                  )
+                  void likeCommunityPost(locale, post.id).then((updated) => {
+                    if (!updated) {
+                      return
+                    }
+                    setPublicPosts((previous) =>
+                      previous.map((entry) => (entry.id === updated.id ? updated : entry)),
+                    )
+                  })
+                }}
+                onSave={() => {
+                  setPublicPosts((previous) =>
+                    previous.map((entry) =>
+                      entry.id === post.id ? { ...entry, saves: entry.saves + 1 } : entry,
+                    ),
+                  )
+                  void saveCommunityPost(locale, post.id).then((updated) => {
+                    if (!updated) {
+                      return
+                    }
+                    setPublicPosts((previous) =>
+                      previous.map((entry) => (entry.id === updated.id ? updated : entry)),
+                    )
+                  })
+                }}
               />
             ))
           ) : (
