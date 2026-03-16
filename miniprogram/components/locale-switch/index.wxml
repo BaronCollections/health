@@ -1,0 +1,19 @@
+<view class="locale-switch">
+  <text wx:if="{{label}}" class="locale-switch__label">{{label}}</text>
+  <view class="locale-switch__track">
+    <view
+      class="locale-switch__item {{locale === 'zh-CN' ? 'locale-switch__item--active' : ''}}"
+      data-locale="zh-CN"
+      bindtap="handleSelect"
+    >
+      中文
+    </view>
+    <view
+      class="locale-switch__item {{locale === 'en' ? 'locale-switch__item--active' : ''}}"
+      data-locale="en"
+      bindtap="handleSelect"
+    >
+      EN
+    </view>
+  </view>
+</view>

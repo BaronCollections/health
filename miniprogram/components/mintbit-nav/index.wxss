@@ -1,0 +1,61 @@
+.mintbit-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.mintbit-nav__safe {
+  height: env(safe-area-inset-top);
+}
+
+.mintbit-nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 112rpx;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+}
+
+.mintbit-nav__side {
+  width: 148rpx;
+}
+
+.mintbit-nav__center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.mintbit-nav__title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1d3422;
+}
+
+.mintbit-nav__subtitle {
+  font-size: 22rpx;
+  color: #617064;
+}
+
+.mintbit-nav__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.mintbit-nav__back-icon {
+  font-size: 34rpx;
+  color: #1d3422;
+}
+
+.mintbit-nav__back-label {
+  font-size: 24rpx;
+  color: #1d3422;
+  font-weight: 600;
+}

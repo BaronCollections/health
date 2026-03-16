@@ -1,0 +1,6 @@
+<view class="fallback-state fallback-state--{{tone}}">
+  <view class="fallback-state__badge">{{tone}}</view>
+  <text class="fallback-state__title">{{title}}</text>
+  <text class="fallback-state__body">{{body}}</text>
+  <view wx:if="{{ctaText}}" class="fallback-state__action" bindtap="handleAction">{{ctaText}}</view>
+</view>

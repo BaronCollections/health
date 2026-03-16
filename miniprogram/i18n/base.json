@@ -1,11 +1,13 @@
 {
-	"ios": {
-		"name": "未命名多端应用"
-	},
-	"android": {
-		"name": "未命名多端应用"
-	},
-	"common": {
-		"name": "未命名多端应用"
-	}
+  "ios": {
+    "name": "MintBit"
+  },
+  "android": {
+    "name": "MintBit"
+  },
+  "common": {
+    "name": "MintBit",
+    "defaultLocale": "zh-CN",
+    "supportedLocales": ["zh-CN", "en"]
+  }
 }

@@ -1,0 +1,16 @@
+<view class="mintbit-nav">
+  <view class="mintbit-nav__safe"></view>
+  <view class="mintbit-nav__bar">
+    <view class="mintbit-nav__side">
+      <view wx:if="{{showBack}}" class="mintbit-nav__back" bindtap="handleBack">
+        <text class="mintbit-nav__back-icon">‹</text>
+        <text class="mintbit-nav__back-label">{{backLabel}}</text>
+      </view>
+    </view>
+    <view class="mintbit-nav__center">
+      <text class="mintbit-nav__title">{{title}}</text>
+      <text wx:if="{{subtitle}}" class="mintbit-nav__subtitle">{{subtitle}}</text>
+    </view>
+    <view class="mintbit-nav__side"></view>
+  </view>
+</view>

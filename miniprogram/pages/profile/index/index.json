@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mintbit-nav": "/components/mintbit-nav/index",
+    "locale-switch": "/components/locale-switch/index"
+  }
+}

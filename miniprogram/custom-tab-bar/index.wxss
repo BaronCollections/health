@@ -1,0 +1,50 @@
+.mintbit-tabbar {
+  position: fixed;
+  left: 20rpx;
+  right: 20rpx;
+  bottom: calc(20rpx + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+  padding: 20rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 253, 247, 0.96);
+  box-shadow: 0 24rpx 80rpx rgba(83, 125, 90, 0.14);
+  backdrop-filter: blur(24rpx);
+}
+
+.mintbit-tabbar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 8rpx;
+  border-radius: 999rpx;
+}
+
+.mintbit-tabbar__item--active {
+  background: rgba(109, 181, 120, 0.14);
+}
+
+.mintbit-tabbar__dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 999rpx;
+  background: rgba(109, 181, 120, 0.25);
+}
+
+.mintbit-tabbar__item--active .mintbit-tabbar__dot {
+  background: #6db578;
+}
+
+.mintbit-tabbar__label {
+  font-size: 22rpx;
+  color: #6f7c73;
+  font-weight: 600;
+}
+
+.mintbit-tabbar__item--active .mintbit-tabbar__label {
+  color: #1d3422;
+}

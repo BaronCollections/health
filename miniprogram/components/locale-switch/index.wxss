@@ -1,0 +1,33 @@
+.locale-switch {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.locale-switch__label {
+  font-size: 24rpx;
+  color: #617064;
+  font-weight: 600;
+}
+
+.locale-switch__track {
+  display: inline-flex;
+  padding: 8rpx;
+  border-radius: 999rpx;
+  background: rgba(239, 248, 240, 0.96);
+}
+
+.locale-switch__item {
+  min-width: 108rpx;
+  padding: 16rpx 18rpx;
+  border-radius: 999rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #617064;
+  font-weight: 600;
+}
+
+.locale-switch__item--active {
+  background: #6db578;
+  color: #ffffff;
+}

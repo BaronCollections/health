@@ -1,0 +1,6 @@
+<view class="page-shell">
+  <mintbit-nav title="MintBit" />
+  <view wx:if="{{shell}}" class="page-content">
+    <fallback-state tone="loading" title="{{shell.title}}" body="{{shell.body}}" ctaText="{{common.continue}}" />
+  </view>
+</view>

@@ -1,0 +1,31 @@
+<view class="page-shell">
+  <mintbit-nav title="{{brandName}}" />
+
+  <view wx:if="{{copy}}" class="page-content">
+    <view class="surface-card section-card">
+      <text class="eyebrow">{{copy.eyebrow}}</text>
+      <view class="section-title">{{copy.heroTitle}}</view>
+      <view class="section-body">{{copy.heroBody}}</view>
+      <view class="button-row">
+        <view class="button-primary" bindtap="handlePrimaryAction">{{copy.primaryCta}}</view>
+        <view class="button-secondary" bindtap="handleSecondaryAction">{{copy.secondaryCta}}</view>
+      </view>
+    </view>
+
+    <view class="surface-card section-card" style="margin-top: 24rpx;">
+      <view class="status-pill">{{authStatus}}</view>
+      <view class="card-grid">
+        <view
+          wx:for="{{copy.cards}}"
+          wx:key="id"
+          class="mini-card"
+          data-id="{{item.id}}"
+          bindtap="handleCardTap"
+        >
+          <view class="mini-card__title">{{item.title}}</view>
+          <view class="mini-card__body">{{item.body}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

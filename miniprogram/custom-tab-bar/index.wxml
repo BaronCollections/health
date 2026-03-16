@@ -1,0 +1,12 @@
+<view class="mintbit-tabbar">
+  <view
+    wx:for="{{items}}"
+    wx:key="path"
+    class="mintbit-tabbar__item {{selectedPath === item.path ? 'mintbit-tabbar__item--active' : ''}}"
+    data-path="{{item.path}}"
+    bindtap="handleSwitchTab"
+  >
+    <view class="mintbit-tabbar__dot"></view>
+    <text class="mintbit-tabbar__label">{{item.label}}</text>
+  </view>
+</view>

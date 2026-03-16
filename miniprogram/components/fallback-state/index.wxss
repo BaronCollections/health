@@ -1,0 +1,48 @@
+.fallback-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18rpx;
+  padding: 36rpx 32rpx;
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 24rpx 72rpx rgba(83, 125, 90, 0.08);
+}
+
+.fallback-state__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(109, 181, 120, 0.12);
+  color: #4f9a5c;
+  font-size: 22rpx;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.fallback-state__title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1d3422;
+}
+
+.fallback-state__body {
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: #617064;
+}
+
+.fallback-state__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72rpx;
+  padding: 0 24rpx;
+  border-radius: 999rpx;
+  background: rgba(109, 181, 120, 0.12);
+  color: #4f9a5c;
+  font-size: 24rpx;
+  font-weight: 600;
+}

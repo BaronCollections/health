@@ -1,0 +1,4 @@
+.button-row .button-secondary,
+.button-row .button-primary {
+  flex: 1;
+}
