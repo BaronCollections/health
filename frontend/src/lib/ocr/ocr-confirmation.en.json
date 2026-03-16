@@ -1,0 +1,92 @@
+{
+  "header": {
+    "title": "OCR review",
+    "subtitle": "Confirm the extracted values before using them to strengthen your recommendation explanation."
+  },
+  "statusCard": {
+    "eyebrow": "Report enhancement",
+    "title": "Six key biomarkers extracted",
+    "description": "Low-confidence fields are highlighted so you can verify them before submission."
+  },
+  "fileMeta": {
+    "label": "Source file",
+    "value": "2026-03-12-health-report.pdf",
+    "confidenceLabel": "Overall confidence",
+    "confidenceValue": "Needs review"
+  },
+  "confidenceBadges": {
+    "high": "High confidence",
+    "medium": "Review needed",
+    "low": "Low confidence"
+  },
+  "sections": [
+    {
+      "id": "baseline",
+      "title": "Baseline markers",
+      "fields": [
+        {
+          "id": "vitamin-d",
+          "label": "25-OH Vitamin D",
+          "value": "18 ng/mL",
+          "confidence": "medium",
+          "note": "The value was read from a note area, so it should be checked against the original report."
+        },
+        {
+          "id": "hemoglobin",
+          "label": "Hemoglobin",
+          "value": "128 g/L",
+          "confidence": "high",
+          "note": "Matches the main table text directly."
+        },
+        {
+          "id": "ferritin",
+          "label": "Ferritin",
+          "value": "21 ng/mL",
+          "confidence": "medium",
+          "note": "Units were normalized automatically to ng/mL."
+        }
+      ]
+    },
+    {
+      "id": "metabolic",
+      "title": "Metabolic and inflammation",
+      "fields": [
+        {
+          "id": "fasting-glucose",
+          "label": "Fasting Glucose",
+          "value": "5.8 mmol/L",
+          "confidence": "high",
+          "note": "OCR matches the primary table value exactly."
+        },
+        {
+          "id": "triglycerides",
+          "label": "Triglycerides",
+          "value": "1.92 mmol/L",
+          "confidence": "high",
+          "note": "The original lab unit has been preserved."
+        },
+        {
+          "id": "hs-crp",
+          "label": "High-Sensitivity C-Reactive Protein",
+          "value": "3.2 mg/L",
+          "confidence": "low",
+          "note": "The scan edge is partially blocked, so check it against the paper report."
+        }
+      ]
+    }
+  ],
+  "auditTrail": {
+    "title": "Recognition and correction log",
+    "items": [
+      "Spacing and unit formatting were normalized without changing your questionnaire answers.",
+      "Low-confidence values will remain marked as user-confirmation-needed in the recommendation explanation.",
+      "After confirmation, these biomarkers enrich the explanation chain only and do not replace medical diagnosis."
+    ]
+  },
+  "footnote": "After you confirm, MintBit will keep your questionnaire answers and add these biomarkers to the evidence behind your nutrition guidance.",
+  "actions": {
+    "primary": "Confirm and refresh guidance",
+    "secondary": "Do this later",
+    "returnLabel": "Back to nutrition poster"
+  }
+}

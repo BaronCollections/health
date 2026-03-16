@@ -1,0 +1,92 @@
+{
+  "header": {
+    "title": "OCR 识别确认",
+    "subtitle": "请核对识别内容后，再用它增强你的推荐解释。"
+  },
+  "statusCard": {
+    "eyebrow": "报告增强",
+    "title": "已提取 6 项关键指标",
+    "description": "低置信度字段已高亮标注，建议提交前逐项确认。"
+  },
+  "fileMeta": {
+    "label": "文件来源",
+    "value": "2026-03-12 体检报告.pdf",
+    "confidenceLabel": "整体置信度",
+    "confidenceValue": "需确认"
+  },
+  "confidenceBadges": {
+    "high": "高置信",
+    "medium": "需确认",
+    "low": "低置信"
+  },
+  "sections": [
+    {
+      "id": "baseline",
+      "title": "基础指标",
+      "fields": [
+        {
+          "id": "vitamin-d",
+          "label": "25-OH 维生素 D",
+          "value": "18 ng/mL",
+          "confidence": "medium",
+          "note": "数值来自报告附注区域，建议对照原图确认。"
+        },
+        {
+          "id": "hemoglobin",
+          "label": "血红蛋白",
+          "value": "128 g/L",
+          "confidence": "high",
+          "note": "与表格主区域文本一致。"
+        },
+        {
+          "id": "ferritin",
+          "label": "铁蛋白",
+          "value": "21 ng/mL",
+          "confidence": "medium",
+          "note": "单位已自动标准化为 ng/mL。"
+        }
+      ]
+    },
+    {
+      "id": "metabolic",
+      "title": "代谢与炎症",
+      "fields": [
+        {
+          "id": "fasting-glucose",
+          "label": "空腹血糖",
+          "value": "5.8 mmol/L",
+          "confidence": "high",
+          "note": "OCR 与主表数值完全一致。"
+        },
+        {
+          "id": "triglycerides",
+          "label": "甘油三酯",
+          "value": "1.92 mmol/L",
+          "confidence": "high",
+          "note": "已沿用原始化验单位。"
+        },
+        {
+          "id": "hs-crp",
+          "label": "超敏 C 反应蛋白",
+          "value": "3.2 mg/L",
+          "confidence": "low",
+          "note": "扫描边缘有遮挡，建议与纸质报告再次核对。"
+        }
+      ]
+    }
+  ],
+  "auditTrail": {
+    "title": "识别与修正记录",
+    "items": [
+      "系统已统一异常空格和单位格式，不会改动你的原始问卷答案。",
+      "低置信度字段会在后续推荐说明中标记为“待用户确认”。",
+      "确认后，这些指标只会增强推荐解释链，不会替代医生诊断。"
+    ]
+  },
+  "footnote": "确认后，MintBit 会保留你的问卷答案，并把这些指标加入营养建议的解释依据。",
+  "actions": {
+    "primary": "确认并更新建议",
+    "secondary": "稍后处理",
+    "returnLabel": "返回营养画报"
+  }
+}

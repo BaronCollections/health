@@ -1,0 +1,233 @@
+{
+  "profile": {
+    "userName": "baron"
+  },
+  "metrics": {
+    "bmi": 48.5,
+    "totalScore": 49,
+    "scores": {
+      "diet": 57,
+      "physical": 60,
+      "mental": 73,
+      "exercise": 10
+    }
+  },
+  "header": {
+    "ownerSuffix": "的",
+    "posterTitle": "个人营养画报",
+    "swipeHint": "左滑查看详细建议"
+  },
+  "bmi": {
+    "label": "BMI 指数",
+    "description": "你的身体质量指数 BMI = 48.5 kg/m²，属于肥胖范围，会提高心血管疾病、糖代谢异常和关节负担风险。建议通过均衡饮食、稳定作息和逐步增加活动量来做长期体重管理。"
+  },
+  "scoreSummary": {
+    "label": "你的健康测评综合得分：",
+    "footnote": "*报告结果基于 FFQ 营养测评和 4 大维度专业健康评估"
+  },
+  "dimensions": [
+    {
+      "id": "diet",
+      "label": "饮食",
+      "angle": 0
+    },
+    {
+      "id": "physical",
+      "label": "体质",
+      "angle": 90
+    },
+    {
+      "id": "mental",
+      "label": "心理",
+      "angle": 180
+    },
+    {
+      "id": "exercise",
+      "label": "运动",
+      "angle": 270
+    }
+  ],
+  "goalsSection": {
+    "label": "本次改善目标：",
+    "primaryLabel": "首要目标：",
+    "primaryGoalId": "stress",
+    "items": [
+      {
+        "id": "immunity",
+        "label": "免疫力"
+      },
+      {
+        "id": "gut",
+        "label": "胃肠道功能"
+      },
+      {
+        "id": "stress",
+        "label": "情绪/压力"
+      }
+    ]
+  },
+  "dailyGoalSection": {
+    "title": "每日小目标",
+    "icon": "💧",
+    "itemTitle": "换个大水杯喝水吧",
+    "description": "多喝水有助于维持代谢和消化状态。你可以准备一个更顺手的大容量水杯，把补水变成随手就能完成的小动作。"
+  },
+  "specialRemindersSection": {
+    "title": "特殊提醒",
+    "items": [
+      "痛风或尿酸偏高人群应避免高嘌呤海鱼、动物内脏、浓肉汤和酒精，以免诱发或加重不适。",
+      "备孕期女性建议从孕前 3 个月开始每日补充 400 μg 叶酸，并持续至孕早期。",
+      "备孕期应通过均衡膳食和适量运动把 BMI 调整到更稳定范围，再进入营养强化阶段。",
+      "长期使用部分非甾体抗炎药时，维生素 C 消耗可能增加，应留意额外补充。"
+    ]
+  },
+  "dietAdviceSection": {
+    "title": "饮食建议",
+    "items": [
+      {
+        "id": "diet-01",
+        "number": "01",
+        "title": "增加富含铁的天然食物",
+        "content": "如果日常偏素食，建议优先增加谷物、豆类、坚果和深色蔬菜，同时搭配富含维生素 C 的食物，帮助铁吸收。"
+      },
+      {
+        "id": "diet-02",
+        "number": "02",
+        "title": "排卵期适度控制豆制品",
+        "content": "排卵期内如果豆制品摄入量明显偏高，建议适当收敛，保持饮食多样而不过量。"
+      },
+      {
+        "id": "diet-03",
+        "number": "03",
+        "title": "维生素 C 缺口优先从饮食补齐",
+        "content": "增加橙柑、猕猴桃、彩椒、土豆和绿叶蔬菜摄入；如果饮食执行困难，再考虑使用补剂作为补充。"
+      },
+      {
+        "id": "diet-04",
+        "number": "04",
+        "title": "咖啡因摄入控制在安全范围",
+        "content": "健康成年人每日咖啡因摄入建议不超过 400 mg，大致相当于 2 到 3 杯中杯美式咖啡。"
+      },
+      {
+        "id": "diet-05",
+        "number": "05",
+        "title": "尽早戒烟能降低多种疾病风险",
+        "content": "吸烟与肺部、心血管和消化系统疾病风险显著相关，越早戒烟，长期收益越大。"
+      },
+      {
+        "id": "diet-06",
+        "number": "06",
+        "title": "每周至少吃 3 次深海鱼",
+        "content": "三文鱼、沙丁鱼等富含 Omega-3 的深海鱼有助于血脂管理和心血管健康，可作为优先蛋白来源。"
+      },
+      {
+        "id": "diet-07",
+        "number": "07",
+        "title": "果汁不如直接吃新鲜水果",
+        "content": "新鲜水果保留更多膳食纤维，也更不容易在不知不觉中摄入过量游离糖。"
+      }
+    ]
+  },
+  "exerciseAdviceSection": {
+    "title": "运动与作息",
+    "items": [
+      {
+        "id": "exercise-01",
+        "number": "01",
+        "title": "每周运动时长不少于 150 分钟",
+        "content": "久坐会增加代谢和心血管负担。建议用快走、骑行、力量训练等方式，把每周活动量稳定提升到 150 分钟以上。"
+      }
+    ],
+    "footnote": "*以上建议结合你的营养目标、饮食、运动和作息情况综合生成，用于帮助你建立更均衡的长期习惯。"
+  },
+  "closingSection": {
+    "icon": "💡",
+    "note": "由于身体状态、生活习惯和营养目标会变化，建议每 3 个月重新完成一次评估问卷，并对比历史画报变化。",
+    "secondaryCta": "上传体检报告",
+    "primaryCta": "查看营养方案"
+  },
+  "nutritionSection": {
+    "title": "改善目标营养方案",
+    "description": "根据你的改善目标，推荐以下营养补充方案",
+    "cards": {
+      "immunity": [
+        {
+          "id": "vitamin-c",
+          "category": "免疫",
+          "name": "维生素 C",
+          "benefit": "增强免疫细胞活性，帮助身体建立更稳定的防护能力。",
+          "color": "from-[#FFB347] to-[#FFCC80]",
+          "type": "round"
+        },
+        {
+          "id": "zinc",
+          "category": "免疫",
+          "name": "锌元素",
+          "benefit": "支持免疫系统发育与修复，也有助于伤口愈合和黏膜保护。",
+          "color": "from-[#87CEEB] to-[#B0E0E6]",
+          "type": "capsule"
+        },
+        {
+          "id": "vitamin-d3",
+          "category": "阳光",
+          "name": "维生素 D3",
+          "benefit": "帮助调节免疫反应，也参与钙吸收和骨骼支持。",
+          "color": "from-[#FFD700] to-[#FFF8DC]",
+          "type": "softgel"
+        }
+      ],
+      "gut": [
+        {
+          "id": "probiotics",
+          "category": "肠道",
+          "name": "益生菌",
+          "benefit": "帮助调节肠道菌群平衡，改善腹胀、排便和消化舒适度。",
+          "color": "from-[#90EE90] to-[#98FB98]",
+          "type": "capsule"
+        },
+        {
+          "id": "fiber",
+          "category": "肠道",
+          "name": "膳食纤维",
+          "benefit": "促进肠道蠕动并提升饱腹感，是改善日常饮食结构的基础。",
+          "color": "from-[#DEB887] to-[#F5DEB3]",
+          "type": "oval"
+        },
+        {
+          "id": "glutamine",
+          "category": "修复",
+          "name": "谷氨酰胺",
+          "benefit": "支持肠道黏膜修复，帮助维持更稳定的肠道屏障。",
+          "color": "from-[#98D8C8] to-[#B8E6D4]",
+          "type": "capsule-long"
+        }
+      ],
+      "stress": [
+        {
+          "id": "magnesium",
+          "category": "压力",
+          "name": "镁元素",
+          "benefit": "帮助缓解紧张感，支持肌肉放松和睡眠质量。",
+          "color": "from-[#DDA0DD] to-[#E6E6FA]",
+          "type": "round"
+        },
+        {
+          "id": "b-complex",
+          "category": "脑力",
+          "name": "B 族维生素",
+          "benefit": "支持神经系统与能量代谢，帮助改善疲劳和脑力负担。",
+          "color": "from-[#FFE4B5] to-[#FFEFD5]",
+          "type": "capsule"
+        },
+        {
+          "id": "omega-3",
+          "category": "稳态",
+          "name": "Omega-3",
+          "benefit": "支持情绪稳定和大脑健康，是长期调节压力的常见基础营养。",
+          "color": "from-[#87CEFA] to-[#B0E2FF]",
+          "type": "softgel"
+        }
+      ]
+    }
+  }
+}

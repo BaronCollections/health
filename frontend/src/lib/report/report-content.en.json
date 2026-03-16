@@ -1,0 +1,233 @@
+{
+  "profile": {
+    "userName": "baron"
+  },
+  "metrics": {
+    "bmi": 48.5,
+    "totalScore": 49,
+    "scores": {
+      "diet": 57,
+      "physical": 60,
+      "mental": 73,
+      "exercise": 10
+    }
+  },
+  "header": {
+    "ownerSuffix": "'s",
+    "posterTitle": "Nutrition Snapshot",
+    "swipeHint": "Swipe left for detailed guidance"
+  },
+  "bmi": {
+    "label": "BMI",
+    "description": "Your body mass index is 48.5 kg/m², which falls in the obesity range and raises long-term cardiometabolic and joint-health risk. A balanced diet, steadier routine, and gradual activity increases are the healthiest path to weight management."
+  },
+  "scoreSummary": {
+    "label": "Your overall assessment score:",
+    "footnote": "*Generated from the FFQ nutrition assessment and four core health dimensions."
+  },
+  "dimensions": [
+    {
+      "id": "diet",
+      "label": "Diet",
+      "angle": 0
+    },
+    {
+      "id": "physical",
+      "label": "Body",
+      "angle": 90
+    },
+    {
+      "id": "mental",
+      "label": "Mind",
+      "angle": 180
+    },
+    {
+      "id": "exercise",
+      "label": "Activity",
+      "angle": 270
+    }
+  ],
+  "goalsSection": {
+    "label": "Priority improvement goals:",
+    "primaryLabel": "Primary goal:",
+    "primaryGoalId": "stress",
+    "items": [
+      {
+        "id": "immunity",
+        "label": "Immunity"
+      },
+      {
+        "id": "gut",
+        "label": "Gut health"
+      },
+      {
+        "id": "stress",
+        "label": "Stress / Mood"
+      }
+    ]
+  },
+  "dailyGoalSection": {
+    "title": "Daily micro-goal",
+    "icon": "💧",
+    "itemTitle": "Switch to a larger water bottle",
+    "description": "Better hydration supports digestion and metabolic balance. Keeping a bottle you like within reach makes the habit much easier to repeat."
+  },
+  "specialRemindersSection": {
+    "title": "Special reminders",
+    "items": [
+      "If you have gout or elevated uric acid, avoid high-purine fish, organ meats, concentrated broths, and alcohol to reduce flare risk.",
+      "If you are preparing for pregnancy, consider 400 μg of folic acid daily starting three months before conception and continuing into early pregnancy.",
+      "Before pregnancy-focused supplementation, use balanced meals and moderate exercise to move BMI toward a steadier range.",
+      "Some long-term anti-inflammatory medicines can increase vitamin C depletion, so extra attention to intake may be helpful."
+    ]
+  },
+  "dietAdviceSection": {
+    "title": "Nutrition guidance",
+    "items": [
+      {
+        "id": "diet-01",
+        "number": "01",
+        "title": "Increase naturally iron-rich foods",
+        "content": "If your diet leans plant-based, prioritize grains, beans, nuts, and dark greens, and pair them with vitamin C-rich foods to improve iron absorption."
+      },
+      {
+        "id": "diet-02",
+        "number": "02",
+        "title": "Moderate soy intake around ovulation",
+        "content": "If soy foods are heavily concentrated in your diet during ovulation, pull them back slightly and keep meals varied rather than excessive."
+      },
+      {
+        "id": "diet-03",
+        "number": "03",
+        "title": "Close vitamin C gaps through food first",
+        "content": "Add oranges, kiwi, peppers, potatoes, and leafy greens more consistently, then use supplements only if food intake stays difficult."
+      },
+      {
+        "id": "diet-04",
+        "number": "04",
+        "title": "Keep caffeine within a safe range",
+        "content": "For healthy adults, daily caffeine is best kept below 400 mg, which is roughly equal to two or three medium Americanos."
+      },
+      {
+        "id": "diet-05",
+        "number": "05",
+        "title": "Quitting smoking lowers multiple risks",
+        "content": "Smoking strongly increases pulmonary, cardiovascular, and digestive disease risk. The earlier you stop, the greater the long-term benefit."
+      },
+      {
+        "id": "diet-06",
+        "number": "06",
+        "title": "Eat deep-sea fish at least three times a week",
+        "content": "Salmon, sardines, and other omega-3-rich fish support lipid balance and cardiovascular health and can be a preferred protein choice."
+      },
+      {
+        "id": "diet-07",
+        "number": "07",
+        "title": "Whole fruit beats juice",
+        "content": "Fresh fruit keeps more fiber intact and makes it harder to consume excess free sugar without noticing."
+      }
+    ]
+  },
+  "exerciseAdviceSection": {
+    "title": "Movement and recovery",
+    "items": [
+      {
+        "id": "exercise-01",
+        "number": "01",
+        "title": "Aim for at least 150 minutes of activity each week",
+        "content": "Sedentary time increases metabolic and cardiovascular burden. Brisk walking, cycling, and light strength work are practical ways to build a steadier weekly baseline."
+      }
+    ],
+    "footnote": "*These suggestions combine your goals, nutrition habits, movement, and routine to support a more balanced long-term lifestyle."
+  },
+  "closingSection": {
+    "icon": "💡",
+    "note": "Because health status, habits, and goals change over time, retake the assessment every three months and compare the result with your poster history.",
+    "secondaryCta": "Upload a health report",
+    "primaryCta": "View nutrition plan"
+  },
+  "nutritionSection": {
+    "title": "Goal-based nutrition plan",
+    "description": "Recommended nutrients based on your current improvement goals",
+    "cards": {
+      "immunity": [
+        {
+          "id": "vitamin-c",
+          "category": "Immune",
+          "name": "Vitamin C",
+          "benefit": "Supports immune-cell activity and helps the body maintain a steadier defense response.",
+          "color": "from-[#FFB347] to-[#FFCC80]",
+          "type": "round"
+        },
+        {
+          "id": "zinc",
+          "category": "Immune",
+          "name": "Zinc",
+          "benefit": "Supports immune development and repair while helping with tissue recovery and mucosal protection.",
+          "color": "from-[#87CEEB] to-[#B0E0E6]",
+          "type": "capsule"
+        },
+        {
+          "id": "vitamin-d3",
+          "category": "Sunlight",
+          "name": "Vitamin D3",
+          "benefit": "Helps regulate immune responses and also supports calcium absorption and bone health.",
+          "color": "from-[#FFD700] to-[#FFF8DC]",
+          "type": "softgel"
+        }
+      ],
+      "gut": [
+        {
+          "id": "probiotics",
+          "category": "Gut",
+          "name": "Probiotics",
+          "benefit": "Helps balance the gut microbiome and improve bloating, digestion, and bowel comfort.",
+          "color": "from-[#90EE90] to-[#98FB98]",
+          "type": "capsule"
+        },
+        {
+          "id": "fiber",
+          "category": "Gut",
+          "name": "Dietary Fiber",
+          "benefit": "Supports bowel movement and satiety and is a core part of improving everyday diet quality.",
+          "color": "from-[#DEB887] to-[#F5DEB3]",
+          "type": "oval"
+        },
+        {
+          "id": "glutamine",
+          "category": "Repair",
+          "name": "L-Glutamine",
+          "benefit": "Supports gut-lining repair and helps maintain a stronger intestinal barrier.",
+          "color": "from-[#98D8C8] to-[#B8E6D4]",
+          "type": "capsule-long"
+        }
+      ],
+      "stress": [
+        {
+          "id": "magnesium",
+          "category": "Stress",
+          "name": "Magnesium",
+          "benefit": "Supports muscle relaxation, calmer stress response, and better sleep quality.",
+          "color": "from-[#DDA0DD] to-[#E6E6FA]",
+          "type": "round"
+        },
+        {
+          "id": "b-complex",
+          "category": "Focus",
+          "name": "Vitamin B Complex",
+          "benefit": "Supports the nervous system and energy metabolism and can help reduce fatigue load.",
+          "color": "from-[#FFE4B5] to-[#FFEFD5]",
+          "type": "capsule"
+        },
+        {
+          "id": "omega-3",
+          "category": "Balance",
+          "name": "Omega-3",
+          "benefit": "Supports mood steadiness and brain health and is a common baseline nutrient for long-term stress care.",
+          "color": "from-[#87CEFA] to-[#B0E2FF]",
+          "type": "softgel"
+        }
+      ]
+    }
+  }
+}
