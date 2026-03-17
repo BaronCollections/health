@@ -16,11 +16,11 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 ## Mini Program Migration Snapshot
 
 - 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
-- 当前迁移阶段：`Platform Account Center`
-- 当前小程序总进度：`约 96%`
+- 当前迁移阶段：`Community Ops Moderation`
+- 当前小程序总进度：`约 98%`
 - 当前已完成：
   - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
-  - Node 基础测试与契约测试：`46` 个测试全部通过
+  - Node 基础测试与契约测试：`50` 个测试全部通过
   - MintBit 原生壳层：`app.js / app.json / app.wxss / custom-tab-bar`
   - 首批可运行页面：`home / profile / report / checkin / community / auth/login / auth/bind-phone`
   - 小程序认证契约：`/api/miniprogram/auth/login`、`/sms/send`、`/bind`、`/refresh`、`/me`
@@ -38,6 +38,7 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 原生发帖页：`/pages/community/create/index` 已接入圈子选择、标签建议、正文提交与本地回退状态
   - 原生帖子详情：`/pages/community/detail/index` 已接入点赞、收藏、评论输入与状态展示
   - 原生我的帖子：`/pages/community/my-posts/index` 已接入审核状态分栏与帖子进度追踪
+  - 原生社区审核页：`/pages/community/review/index` 已接入审核队列分栏、审核动作与本地兜底状态同步
   - 社区运行时：`community content / api / session / view-model` 已独立成可测试模块
   - 原生账户首页：`/pages/profile/index/index` 已接入账户摘要、卡片入口、语言切换和管理员白名单显示
   - 原生通知流：`/pages/profile/notifications/*` 已接入分类筛选、批量已读和消息详情
@@ -46,7 +47,6 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 原生安全与审计：`/pages/profile/security/index`、`/pages/profile/audit-log/index` 和管理员检查页已可访问
   - 账户运行时：`account content / api / state / runtime / view-model` 已独立成可测试模块
 - 当前仍待完成：
-  - 社区运营审核页在小程序端的迁移与管理员入口深化
   - 微信开发者工具内的完整交互验收与发布配置收口
 
 ## Current Product Shape
