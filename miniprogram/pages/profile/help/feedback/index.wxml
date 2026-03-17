@@ -31,7 +31,24 @@
       <input class="text-input" data-field="contact" value="{{contact}}" placeholder="{{viewModel.contactPlaceholder}}" bindinput="handleInput" />
 
       <view class="field-label form-label">{{viewModel.screenshotLabel}}</view>
-      <input class="text-input" data-field="screenshotName" value="{{screenshotName}}" placeholder="{{viewModel.screenshotPlaceholder}}" bindinput="handleInput" />
+      <view class="button-row attachment-actions">
+        <view class="button-secondary" bindtap="handlePickScreenshot">{{screenshotAsset ? viewModel.screenshotReplaceCta : viewModel.screenshotCta}}</view>
+        <view wx:if="{{screenshotAsset}}" class="button-ghost" bindtap="handlePreviewScreenshot">{{viewModel.screenshotLabel}}</view>
+      </view>
+
+      <view wx:if="{{screenshotAsset}}" class="attachment-card">
+        <image class="attachment-card__image" src="{{screenshotAsset.tempFilePath}}" mode="aspectFill" bindtap="handlePreviewScreenshot" />
+        <view class="attachment-card__name">{{screenshotAsset.name}}</view>
+        <view class="attachment-card__remove" bindtap="handleRemoveScreenshot">{{viewModel.screenshotRemoveCta}}</view>
+      </view>
+
+      <view wx:if="{{!screenshotAsset}}" class="hint-card attachment-empty">
+        <view class="mini-card__body">{{viewModel.screenshotPlaceholder}}</view>
+      </view>
+
+      <view class="hint-card attachment-hint">
+        <view class="mini-card__body">{{viewModel.screenshotHint}}</view>
+      </view>
 
       <view wx:if="{{errorMessage}}" class="error-text">{{errorMessage}}</view>
     </view>

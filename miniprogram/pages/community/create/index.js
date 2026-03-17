@@ -5,6 +5,7 @@ import {
   createFallbackCommunityPost,
   getCommunityContent,
 } from '../../../../services/community/index.js';
+import { pickImages } from '../../../../services/media/image-picker.js';
 import { createCommunityStateStore } from '../../../../services/community/session.js';
 import { createRequestClient } from '../../../../services/request/client.js';
 
@@ -22,6 +23,7 @@ Page({
     viewModel: null,
     selectedCircleId: '',
     selectedTags: [],
+    selectedImages: [],
     contentValue: '',
     errorMessage: '',
   },
@@ -109,6 +111,52 @@ Page({
     });
   },
 
+  async handleAddImages() {
+    const remaining = Math.max(0, 3 - this.data.selectedImages.length);
+
+    if (!remaining) {
+      return;
+    }
+
+    try {
+      const nextImages = await pickImages({
+        count: remaining,
+      });
+
+      this.setData({
+        selectedImages: [...this.data.selectedImages, ...nextImages].slice(0, 3),
+      });
+    } catch (error) {
+      if (!String(error?.errMsg || error?.message || '').includes('cancel')) {
+        wx.showToast({
+          title: this.data.locale === 'zh-CN' ? '选图失败' : 'Image selection failed',
+          icon: 'none',
+        });
+      }
+    }
+  },
+
+  handleRemoveImage(event) {
+    const imageId = event.currentTarget.dataset.imageId;
+    this.setData({
+      selectedImages: this.data.selectedImages.filter((image) => image.id !== imageId),
+    });
+  },
+
+  handlePreviewImage(event) {
+    const current = event.currentTarget.dataset.imagePath;
+    const urls = this.data.selectedImages.map((image) => image.tempFilePath).filter(Boolean);
+
+    if (!current || !urls.length) {
+      return;
+    }
+
+    wx.previewImage({
+      current,
+      urls,
+    });
+  },
+
   async handleSubmit() {
     const content = this.data.contentValue.trim();
 
@@ -123,7 +171,7 @@ Page({
       circleId: this.data.selectedCircleId,
       content,
       tags: this.data.selectedTags,
-      images: [],
+      images: this.data.selectedImages,
     };
 
     let createdPost;

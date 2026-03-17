@@ -135,6 +135,20 @@ Page({
     await this.refreshDetail();
   },
 
+  handlePreviewPostImages(event) {
+    const current = event.currentTarget.dataset.imagePath;
+    const urls = (this.data.viewModel?.post?.images || []).map((image) => image.tempFilePath).filter(Boolean);
+
+    if (!current || !urls.length) {
+      return;
+    }
+
+    wx.previewImage({
+      current,
+      urls,
+    });
+  },
+
   async handleSubmitComment() {
     const currentPost = this.getCurrentPost();
     const content = this.data.commentValue.trim();

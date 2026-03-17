@@ -140,6 +140,21 @@
   font-weight: 600;
 }
 
+.image-strip {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 20rpx;
+  overflow-x: auto;
+}
+
+.image-strip__item {
+  width: 184rpx;
+  height: 184rpx;
+  border-radius: 22rpx;
+  background: rgba(221, 232, 223, 0.72);
+  flex-shrink: 0;
+}
+
 .post-card__footer {
   display: flex;
   gap: 20rpx;

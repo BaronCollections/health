@@ -24,6 +24,25 @@
   color: var(--mintbit-text-secondary);
 }
 
+.record-attachment {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  margin-top: 16rpx;
+}
+
+.record-attachment__label {
+  font-size: 22rpx;
+  color: var(--mintbit-brand-strong);
+  word-break: break-all;
+}
+
+.record-attachment__cta {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: var(--mintbit-brand-strong);
+}
+
 .record-reply {
   margin-top: 14rpx;
   padding: 18rpx 20rpx;

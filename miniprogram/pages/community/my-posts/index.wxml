@@ -37,17 +37,31 @@
       <view
         wx:for="{{viewModel.posts}}"
         wx:key="id"
+        wx:for-item="post"
         class="surface-card section-card post-card"
-        data-post-id="{{item.id}}"
+        data-post-id="{{post.id}}"
         bindtap="handleOpenPost"
       >
         <view class="post-card__top">
-          <view class="status-pill">{{item.statusLabel}}</view>
-          <view class="post-card__time">{{item.relativeTime}}</view>
+          <view class="status-pill">{{post.statusLabel}}</view>
+          <view class="post-card__time">{{post.relativeTime}}</view>
         </view>
-        <view class="post-card__content">{{item.content}}</view>
-        <view wx:if="{{item.moderationReason}}" class="moderation-note">{{item.moderationReason}}</view>
-        <view class="post-card__footer">{{item.circleName}} · {{item.likes}} / {{item.saves}}</view>
+        <view class="post-card__content">{{post.content}}</view>
+        <view wx:if="{{post.moderationReason}}" class="moderation-note">{{post.moderationReason}}</view>
+        <view wx:if="{{post.images.length}}" class="image-strip">
+          <image
+            wx:for="{{post.images}}"
+            wx:key="id"
+            wx:for-item="image"
+            class="image-strip__item"
+            src="{{image.tempFilePath}}"
+            mode="aspectFill"
+            data-post-id="{{post.id}}"
+            data-image-path="{{image.tempFilePath}}"
+            catchtap="handlePreviewPostImages"
+          />
+        </view>
+        <view class="post-card__footer">{{post.circleName}} · {{post.likes}} / {{post.saves}}</view>
       </view>
     </view>
   </view>

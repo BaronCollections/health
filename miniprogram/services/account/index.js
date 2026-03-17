@@ -77,6 +77,7 @@ export function mergeFeedbackRecords(localRecords = [], apiRecords = []) {
         description: local.description || record.description,
         contact: local.contact || record.contact,
         screenshotName: local.screenshotName || record.screenshotName,
+        screenshotAsset: local.screenshotAsset || record.screenshotAsset,
         reply: local.reply || record.reply,
       };
     }),
@@ -220,6 +221,7 @@ export function buildFeedbackRecordsViewModel({
 
   return {
     header: content.feedbackRecordsView,
+    attachmentPreviewCta: content.feedbackRecordsView.attachmentPreviewCta,
     groups: statusOrder
       .map((status) => ({
         id: status,

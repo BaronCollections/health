@@ -1,6 +1,7 @@
 import { PROFILE_ROUTES } from '../../../../../config/routes.js';
 import { getAccountContent } from '../../../../../services/account/index.js';
 import { createAccountClient, getAccountStateStore } from '../../../../../services/account/runtime.js';
+import { pickImages } from '../../../../../services/media/image-picker.js';
 
 function getStores() {
   return getApp().globalData;
@@ -17,7 +18,7 @@ Page({
     subject: '',
     description: '',
     contact: '',
-    screenshotName: '',
+    screenshotAsset: null,
     errorMessage: '',
   },
 
@@ -78,6 +79,44 @@ Page({
     });
   },
 
+  async handlePickScreenshot() {
+    try {
+      const images = await pickImages({
+        count: 1,
+      });
+
+      this.setData({
+        screenshotAsset: images[0] || null,
+      });
+    } catch (error) {
+      if (!String(error?.errMsg || error?.message || '').includes('cancel')) {
+        wx.showToast({
+          title: this.data.locale === 'zh-CN' ? '选图失败' : 'Image selection failed',
+          icon: 'none',
+        });
+      }
+    }
+  },
+
+  handleRemoveScreenshot() {
+    this.setData({
+      screenshotAsset: null,
+    });
+  },
+
+  handlePreviewScreenshot() {
+    const current = this.data.screenshotAsset?.tempFilePath;
+
+    if (!current) {
+      return;
+    }
+
+    wx.previewImage({
+      current,
+      urls: [current],
+    });
+  },
+
   async handleSubmit() {
     if (!this.data.subject.trim() || !this.data.description.trim()) {
       this.setData({
@@ -91,7 +130,8 @@ Page({
       subject: this.data.subject.trim(),
       description: this.data.description.trim(),
       contact: this.data.contact.trim(),
-      screenshotName: this.data.screenshotName.trim(),
+      screenshotName: this.data.screenshotAsset?.name || '',
+      screenshotAsset: this.data.screenshotAsset,
     };
 
     let createdRecord;

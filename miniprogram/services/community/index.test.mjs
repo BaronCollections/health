@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  buildCommunityCreateViewModel,
   buildCommunityDetailViewModel,
   buildCommunityHomeViewModel,
   buildCommunityMyPostsViewModel,
@@ -22,7 +23,18 @@ test('buildCommunityHomeViewModel returns localized feed tabs and only public po
     viewModel.posts.map((post) => post.id),
     ['post-101'],
   );
+  assert.equal(viewModel.metaLabels.images, 'images');
   assert.equal(viewModel.timelineBridge.cta, 'Open history timeline');
+});
+
+test('buildCommunityCreateViewModel exposes native image picker copy', () => {
+  const viewModel = buildCommunityCreateViewModel({
+    locale: 'zh-CN',
+    selectedCircleId: 'gut-balance',
+  });
+
+  assert.equal(viewModel.actions.addImage, '添加图片');
+  assert.match(viewModel.tips.imageHint, /最多/);
 });
 
 test('mergeCommunityPosts prepends local entries and overlays existing posts by id', () => {
@@ -62,6 +74,48 @@ test('mergeCommunityPosts keeps localized presentation fields when overlaying se
   assert.equal(merged.likes, 77);
 });
 
+test('mergeCommunityPosts deep clones image asset objects from overlay posts', () => {
+  const merged = mergeCommunityPosts([], [
+    {
+      ...getCommunityContent('en').seedPosts[0],
+      id: 'post-local-image',
+      images: [
+        {
+          id: 'image-1',
+          name: 'community-a.png',
+          tempFilePath: '/tmp/community-a.png',
+          size: 2048,
+          type: 'image',
+        },
+      ],
+    },
+  ]);
+
+  merged[0].images[0].name = 'mutated.png';
+
+  assert.equal(merged[0].id, 'post-local-image');
+  assert.equal(merged[0].images.length, 1);
+  assert.equal(getCommunityContent('en').seedPosts[0].images.length, 0);
+  assert.equal(
+    mergeCommunityPosts([], [
+      {
+        ...getCommunityContent('en').seedPosts[0],
+        id: 'post-local-image',
+        images: [
+          {
+            id: 'image-1',
+            name: 'community-a.png',
+            tempFilePath: '/tmp/community-a.png',
+            size: 2048,
+            type: 'image',
+          },
+        ],
+      },
+    ])[0].images[0].name,
+    'community-a.png',
+  );
+});
+
 test('buildCommunityDetailViewModel keeps author-visible pending comments on owned posts', () => {
   const viewModel = buildCommunityDetailViewModel({
     locale: 'zh-CN',
@@ -72,6 +126,7 @@ test('buildCommunityDetailViewModel keeps author-visible pending comments on own
   assert.equal(viewModel.post.id, 'post-102');
   assert.equal(viewModel.comments.length, 1);
   assert.match(viewModel.statusLabel, /审核中/);
+  assert.equal(viewModel.metaLabels.images, '图片');
 });
 
 test('buildCommunityMyPostsViewModel groups viewer owned posts by moderation status', () => {

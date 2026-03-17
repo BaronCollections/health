@@ -25,7 +25,9 @@ function clonePost(post) {
   return {
     ...post,
     tags: [...(post.tags || [])],
-    images: [...(post.images || [])],
+    images: (post.images || []).map((image) => ({
+      ...image,
+    })),
     comments: (post.comments || []).map((comment) => ({
       ...comment,
     })),
@@ -208,6 +210,7 @@ export function buildCommunityHomeViewModel({
       likes: locale === 'zh-CN' ? '点赞' : 'likes',
       comments: locale === 'zh-CN' ? '评论' : 'comments',
       saves: locale === 'zh-CN' ? '收藏' : 'saves',
+      images: locale === 'zh-CN' ? '图片' : 'images',
     },
     tabs: [
       { id: 'recommended', label: content.home.recommendedTab, active: activeTab === 'recommended' },
@@ -257,10 +260,13 @@ export function buildCommunityCreateViewModel({ locale, selectedCircleId } = {})
       tagsLabel: content.create.tagsLabel,
     },
     actions: {
+      addImage: content.create.addImage,
+      removeImage: content.create.removeImage,
       submit: content.create.submit,
     },
     tips: {
       imageHint: content.create.imageHint,
+      imageEmpty: content.create.imageEmpty,
       pendingHint: content.create.pendingHint,
     },
     circles: content.circles.map((circle) => ({
@@ -311,6 +317,7 @@ export function buildCommunityDetailViewModel({ locale, postId, posts } = {}) {
     },
     metaLabels: {
       likes: locale === 'zh-CN' ? '点赞' : 'likes',
+      images: locale === 'zh-CN' ? '图片' : 'images',
     },
     commentPlaceholder: content.detail.commentPlaceholder,
     emptyComments: content.detail.noComments,

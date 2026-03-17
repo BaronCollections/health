@@ -49,6 +49,23 @@
         </view>
       </view>
 
+      <view class="field-label content-label">{{viewModel.actions.addImage}}</view>
+      <view class="button-row attachment-actions">
+        <view class="button-secondary" bindtap="handleAddImages">{{viewModel.actions.addImage}}</view>
+      </view>
+
+      <view wx:if="{{selectedImages.length}}" class="attachment-grid">
+        <view wx:for="{{selectedImages}}" wx:key="id" class="attachment-card">
+          <image class="attachment-card__image" src="{{item.tempFilePath}}" mode="aspectFill" bindtap="handlePreviewImage" data-image-path="{{item.tempFilePath}}" />
+          <view class="attachment-card__name">{{item.name}}</view>
+          <view class="attachment-card__remove" bindtap="handleRemoveImage" data-image-id="{{item.id}}">{{viewModel.actions.removeImage}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{!selectedImages.length}}" class="hint-card attachment-empty">
+        <view class="mini-card__body">{{viewModel.tips.imageEmpty}}</view>
+      </view>
+
       <view class="hint-card">
         <view class="mini-card__title">{{viewModel.tips.imageHint}}</view>
         <view class="mini-card__body">{{viewModel.tips.pendingHint}}</view>

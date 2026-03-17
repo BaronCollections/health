@@ -41,6 +41,33 @@ test('mergeFeedbackRecords keeps localized copy while applying server status', (
   assert.equal(merged[0].status, 'responded');
 });
 
+test('mergeFeedbackRecords keeps localized screenshot asset metadata when overlaying server records', () => {
+  const merged = mergeFeedbackRecords(
+    [
+      {
+        ...getAccountContent('zh-CN').feedbackRecords.find((entry) => entry.id === 'fb-1'),
+        screenshotAsset: {
+          id: 'shot-1',
+          name: 'ocr-order.png',
+          tempFilePath: '/tmp/ocr-order.png',
+          size: 2048,
+          type: 'image',
+        },
+      },
+    ],
+    [
+      {
+        ...getAccountContent('en').feedbackRecords.find((entry) => entry.id === 'fb-1'),
+        status: 'responded',
+      },
+    ],
+  );
+
+  assert.equal(merged[0].status, 'responded');
+  assert.equal(merged[0].screenshotAsset.name, 'ocr-order.png');
+  assert.equal(merged[0].screenshotAsset.tempFilePath, '/tmp/ocr-order.png');
+});
+
 test('mergeFeedbackRecords prepends local-only records ahead of seeded records', () => {
   const merged = mergeFeedbackRecords(
     [
@@ -93,6 +120,7 @@ test('buildFeedbackRecordsViewModel groups records by status labels', () => {
   });
 
   assert.equal(viewModel.header.title, 'Feedback records');
+  assert.equal(viewModel.attachmentPreviewCta, 'Preview');
   assert.equal(viewModel.groups[0].statusLabel, 'In review');
   assert.equal(viewModel.groups[0].items.length, 1);
 });

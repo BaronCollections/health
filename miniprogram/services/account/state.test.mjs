@@ -34,6 +34,13 @@ test('createAccountStateStore persists read markers and created records', () => 
     subject: 'Need better OCR ordering',
     status: 'submitted',
     submittedAt: '刚刚',
+    screenshotAsset: {
+      id: 'shot-1',
+      name: 'ocr-order.png',
+      tempFilePath: '/tmp/ocr-order.png',
+      size: 2048,
+      type: 'image',
+    },
   });
   store.saveExportRequest({
     id: 'export-local-1',
@@ -52,6 +59,7 @@ test('createAccountStateStore persists read markers and created records', () => 
 
   assert.deepEqual(snapshot.readNotificationIds, ['notif-1']);
   assert.equal(snapshot.feedbackRecords.length, 1);
+  assert.equal(snapshot.feedbackRecords[0].screenshotAsset.name, 'ocr-order.png');
   assert.equal(snapshot.exportRequests.length, 1);
   assert.equal(snapshot.deleteRequests.length, 1);
 });

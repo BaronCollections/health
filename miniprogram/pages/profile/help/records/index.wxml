@@ -19,6 +19,17 @@
           <view class="record-item__subject">{{record.subject}}</view>
           <view class="record-item__meta">{{record.category}} · {{record.submittedAt}}</view>
           <view class="list-item__body">{{record.description}}</view>
+          <view wx:if="{{record.screenshotAsset || record.screenshotName}}" class="record-attachment">
+            <view class="record-attachment__label">{{record.screenshotAsset ? record.screenshotAsset.name : record.screenshotName}}</view>
+            <view
+              wx:if="{{record.screenshotAsset && record.screenshotAsset.tempFilePath}}"
+              class="record-attachment__cta"
+              data-image-path="{{record.screenshotAsset.tempFilePath}}"
+              bindtap="handlePreviewScreenshot"
+            >
+              {{viewModel.attachmentPreviewCta}}
+            </view>
+          </view>
           <view wx:if="{{record.reply}}" class="record-reply">{{record.reply}}</view>
         </view>
       </view>

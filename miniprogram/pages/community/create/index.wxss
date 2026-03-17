@@ -70,6 +70,50 @@
   color: var(--mintbit-brand-strong);
 }
 
+.attachment-actions {
+  margin-top: 16rpx;
+}
+
+.attachment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16rpx;
+  margin-top: 18rpx;
+}
+
+.attachment-card {
+  padding: 16rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.94);
+  border: 2rpx solid rgba(217, 230, 215, 0.88);
+}
+
+.attachment-card__image {
+  width: 100%;
+  height: 220rpx;
+  border-radius: 22rpx;
+  background: rgba(221, 232, 223, 0.72);
+}
+
+.attachment-card__name {
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: var(--mintbit-text);
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.attachment-card__remove {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #c76655;
+}
+
+.attachment-empty {
+  margin-top: 18rpx;
+}
+
 .hint-card {
   margin-top: 28rpx;
   padding: 24rpx;

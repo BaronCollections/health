@@ -131,4 +131,20 @@ Page({
       url: `${COMMUNITY_ROUTES.detail}?postId=${event.currentTarget.dataset.postId}`,
     });
   },
+
+  handlePreviewPostImages(event) {
+    const postId = event.currentTarget.dataset.postId;
+    const current = event.currentTarget.dataset.imagePath;
+    const post = this.sourcePosts?.find((entry) => entry.id === postId);
+    const urls = (post?.images || []).map((image) => image.tempFilePath).filter(Boolean);
+
+    if (!current || !urls.length) {
+      return;
+    }
+
+    wx.previewImage({
+      current,
+      urls,
+    });
+  },
 });

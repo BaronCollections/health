@@ -28,6 +28,18 @@
         <view wx:for="{{viewModel.post.tags}}" wx:key="*this" class="tag-chip">{{item}}</view>
       </view>
 
+      <view wx:if="{{viewModel.post.images.length}}" class="image-strip">
+        <image
+          wx:for="{{viewModel.post.images}}"
+          wx:key="id"
+          class="image-strip__item"
+          src="{{item.tempFilePath}}"
+          mode="aspectFill"
+          data-image-path="{{item.tempFilePath}}"
+          catchtap="handlePreviewPostImages"
+        />
+      </view>
+
       <view class="button-row">
         <view class="button-primary" bindtap="handleLike">{{viewModel.actions.like}} · {{viewModel.post.likes}}</view>
         <view class="button-secondary" bindtap="handleSave">{{viewModel.actions.save}} · {{viewModel.post.saves}}</view>

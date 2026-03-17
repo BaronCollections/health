@@ -69,3 +69,18 @@
   line-height: 1.6;
   color: var(--mintbit-brand-strong);
 }
+
+.image-strip {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 18rpx;
+  overflow-x: auto;
+}
+
+.image-strip__item {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 22rpx;
+  background: rgba(221, 232, 223, 0.72);
+  flex-shrink: 0;
+}

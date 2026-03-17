@@ -92,6 +92,13 @@ test('createAccountApi creates feedback, export, and delete requests', async () 
     category: 'OCR 识别',
     subject: 'Need better field sorting',
     description: 'desc',
+    screenshotAsset: {
+      id: 'shot-1',
+      name: 'ocr-order.png',
+      tempFilePath: '/tmp/ocr-order.png',
+      size: 2048,
+      type: 'image',
+    },
   });
   const exportRequest = await api.createExportRequest({
     scopeSummary: 'Assessment history',
@@ -108,4 +115,5 @@ test('createAccountApi creates feedback, export, and delete requests', async () 
     '/account/privacy/export',
     '/account/privacy/delete-request',
   ]);
+  assert.equal(calls[0].data.screenshotAsset.name, 'ocr-order.png');
 });

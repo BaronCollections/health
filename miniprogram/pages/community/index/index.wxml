@@ -66,29 +66,45 @@
       <view
         wx:for="{{viewModel.posts}}"
         wx:key="id"
+        wx:for-item="post"
         class="surface-card section-card post-card"
-        data-post-id="{{item.id}}"
+        data-post-id="{{post.id}}"
         bindtap="handleOpenPost"
       >
         <view class="post-card__header">
-          <view class="avatar-badge">{{item.authorAvatar}}</view>
+          <view class="avatar-badge">{{post.authorAvatar}}</view>
           <view class="post-card__meta">
-            <view class="post-card__author">{{item.authorName}}</view>
-            <view class="post-card__time">{{item.circleName}} · {{item.relativeTime}}</view>
+            <view class="post-card__author">{{post.authorName}}</view>
+            <view class="post-card__time">{{post.circleName}} · {{post.relativeTime}}</view>
           </view>
-          <view class="status-pill">{{item.statusLabel}}</view>
+          <view class="status-pill">{{post.statusLabel}}</view>
         </view>
 
-        <view class="post-card__content">{{item.content}}</view>
+        <view class="post-card__content">{{post.content}}</view>
 
-        <view wx:if="{{item.tagLine}}" class="tag-row">
-          <view wx:for="{{item.tags}}" wx:key="*this" class="tag-chip">{{item}}</view>
+        <view wx:if="{{post.tagLine}}" class="tag-row">
+          <view wx:for="{{post.tags}}" wx:key="*this" class="tag-chip">{{item}}</view>
+        </view>
+
+        <view wx:if="{{post.images.length}}" class="image-strip">
+          <image
+            wx:for="{{post.images}}"
+            wx:key="id"
+            wx:for-item="image"
+            class="image-strip__item"
+            src="{{image.tempFilePath}}"
+            mode="aspectFill"
+            data-post-id="{{post.id}}"
+            data-image-path="{{image.tempFilePath}}"
+            catchtap="handlePreviewPostImages"
+          />
         </view>
 
         <view class="post-card__footer">
-          <text>{{item.likes}} {{viewModel.metaLabels.likes}}</text>
-          <text>{{item.commentCount}} {{viewModel.metaLabels.comments}}</text>
-          <text>{{item.saves}} {{viewModel.metaLabels.saves}}</text>
+          <text wx:if="{{post.images.length}}">{{post.images.length}} {{viewModel.metaLabels.images}}</text>
+          <text>{{post.likes}} {{viewModel.metaLabels.likes}}</text>
+          <text>{{post.commentCount}} {{viewModel.metaLabels.comments}}</text>
+          <text>{{post.saves}} {{viewModel.metaLabels.saves}}</text>
         </view>
       </view>
     </view>

@@ -60,4 +60,17 @@ Page({
       }),
     });
   },
+
+  handlePreviewScreenshot(event) {
+    const current = event.currentTarget.dataset.imagePath;
+
+    if (!current) {
+      return;
+    }
+
+    wx.previewImage({
+      current,
+      urls: [current],
+    });
+  },
 });

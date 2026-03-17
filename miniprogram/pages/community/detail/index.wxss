@@ -68,6 +68,21 @@
   font-weight: 600;
 }
 
+.image-strip {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 22rpx;
+  overflow-x: auto;
+}
+
+.image-strip__item {
+  width: 210rpx;
+  height: 210rpx;
+  border-radius: 24rpx;
+  background: rgba(221, 232, 223, 0.72);
+  flex-shrink: 0;
+}
+
 .comments-card {
   margin-top: 24rpx;
 }
