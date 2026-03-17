@@ -3,6 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:foundation": "node --test services/request/client.test.mjs services/auth/session.test.mjs services/i18n/index.test.mjs"
+    "test:foundation": "node --test services/request/client.test.mjs services/auth/session.test.mjs services/i18n/index.test.mjs",
+    "test:all": "node --test services/assessment/question-bank.test.mjs services/assessment/api.test.mjs services/assessment/session.test.mjs services/assessment/ocr-content.test.mjs services/report/content.test.mjs services/report/timeline.test.mjs services/checkin/index.test.mjs services/community/index.test.mjs services/community/session.test.mjs services/community/api.test.mjs services/account/api.test.mjs services/account/state.test.mjs services/account/index.test.mjs",
+    "test": "npm run test:all",
+    "check:syntax": "node scripts/check-syntax.mjs",
+    "check:json": "node scripts/check-json.mjs",
+    "check:project-config": "node scripts/check-project-config.mjs"
   }
 }

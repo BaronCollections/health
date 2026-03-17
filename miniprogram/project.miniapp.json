@@ -1,8 +1,8 @@
 {
   "miniVersion": "v2",
-  "name": "%name%",
-  "version": "0.0.1",
-  "versionCode": 100,
+  "name": "MintBit",
+  "version": "0.1.0",
+  "versionCode": 101,
   "i18nFilePath": "i18n",
   "mini-ohos": {
     "sdkVersion": "0.5.1"
@@ -29,7 +29,7 @@
       "xhdpi": "",
       "xxhdpi": ""
     },
-    "enableVConsole": "open",
+    "enableVConsole": "close",
     "privacy": {
       "enable": true
     }
@@ -45,7 +45,7 @@
       "WeAppLBS": false,
       "WeAppOthers": false
     },
-    "enableVConsole": "open",
+    "enableVConsole": "close",
     "icons": {
       "mainIcon120": "",
       "mainIcon180": "",

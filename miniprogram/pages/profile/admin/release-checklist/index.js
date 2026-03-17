@@ -62,7 +62,7 @@ Page({
           {
             id: 'progress',
             title: appSnapshot.locale === 'zh-CN' ? '迁移进度' : 'Migration progress',
-            value: '98%',
+            value: '99%',
           },
         ],
         actions: [
