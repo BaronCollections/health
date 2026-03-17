@@ -10,7 +10,7 @@
 ## Delivered
 
 - Removed the unused TDesign example pages from `miniprogram/pages`, leaving only the MintBit business routes.
-- Removed demo-only helper components and the old `miniprogram/demos` directory.
+- Removed demo-only helper components, the old `miniprogram/demos` directory, the unused `miniprogram_npm` bundle, and miniapp-only residue files.
 - Confirmed the remaining workspace tree now only contains MintBit business pages under `pages/`.
 - Updated the repository front page and mini program README to reflect the cleanup.
 

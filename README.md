@@ -47,7 +47,7 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 原生安全与审计：`/pages/profile/security/index`、`/pages/profile/audit-log/index` 和管理员检查页已可访问
   - 账户运行时：`account content / api / state / runtime / view-model` 已独立成可测试模块
   - 小程序发布收口：`project.config.json` 已切到 MintBit 业务编译场景，`miniprogram/README.md` 与本地校验脚本已补齐
-  - 工程清理：旧 TDesign 示例页、示例 helper 组件和演示目录已从 `miniprogram/` 移除，当前工程只保留 MintBit 业务页
+  - 工程清理：旧 TDesign 示例页、示例 helper 组件、`miniprogram_npm` 包和 miniapp 残留配置已从 `miniprogram/` 移除，当前工程只保留 MintBit 微信小程序业务页
 - 当前仍待完成：
   - 微信开发者工具内的最终手工验收与提审
 
