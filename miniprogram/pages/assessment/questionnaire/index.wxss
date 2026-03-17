@@ -1,0 +1,3 @@
+.button-row .button-primary {
+  width: 100%;
+}

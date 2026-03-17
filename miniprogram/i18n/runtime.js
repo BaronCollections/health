@@ -60,6 +60,13 @@ export const MINTBIT_COPY = {
       bindSendCode: '发送验证码',
       bindSubmit: '完成绑定',
     },
+    assessmentFlow: {
+      next: '下一题',
+      submit: '生成报告',
+      resume: '继续上次评估',
+      loadingTitle: '正在生成报告',
+      loadingBody: '正在整理你的基础健康信息并跳转到报告页。',
+    },
     shells: {
       report: {
         title: '营养报告',
@@ -135,6 +142,13 @@ export const MINTBIT_COPY = {
       bindCodeLabel: 'Verification code',
       bindSendCode: 'Send code',
       bindSubmit: 'Complete binding',
+    },
+    assessmentFlow: {
+      next: 'Next',
+      submit: 'Generate report',
+      resume: 'Resume assessment',
+      loadingTitle: 'Generating your report',
+      loadingBody: 'We are organizing your baseline health inputs and will open the report next.',
     },
     shells: {
       report: {

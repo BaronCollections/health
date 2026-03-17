@@ -1,0 +1,6 @@
+<view class="page-shell">
+  <mintbit-nav title="MintBit" showBack="{{true}}" backLabel="Back" />
+  <view class="page-content">
+    <fallback-state tone="loading" title="Generating report" body="We are turning the assessment into your first native mini program report view." />
+  </view>
+</view>

@@ -2,6 +2,8 @@ function getStores() {
   return getApp().globalData;
 }
 
+import { ASSESSMENT_ROUTES } from '../../../config/routes.js';
+
 Page({
   data: {
     copy: null,
@@ -45,7 +47,7 @@ Page({
 
   handlePrimaryAction() {
     wx.navigateTo({
-      url: '/pages/auth/login/index',
+      url: ASSESSMENT_ROUTES.questionnaire,
     });
   },
 
@@ -73,7 +75,7 @@ Page({
     }
 
     wx.navigateTo({
-      url: '/pages/auth/login/index',
+      url: ASSESSMENT_ROUTES.questionnaire,
     });
   },
 });

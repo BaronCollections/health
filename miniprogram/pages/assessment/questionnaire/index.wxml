@@ -1,0 +1,36 @@
+<view class="page-shell">
+  <mintbit-nav title="MintBit" showBack="{{true}}" backLabel="Back" />
+
+  <view wx:if="{{currentQuestion && copy}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="status-pill">{{currentIndex + 1}} / {{totalQuestions}}</view>
+      <view class="section-title">{{currentQuestion.title}}</view>
+      <view wx:if="{{errorMessage}}" class="section-body" style="color: #b4503c;">{{errorMessage}}</view>
+
+      <view wx:if="{{currentQuestion.type === 'single_choice'}}" class="list-stack" style="margin-top: 24rpx;">
+        <view
+          wx:for="{{currentQuestion.options}}"
+          wx:key="value"
+          class="list-item surface-card"
+          data-value="{{item.value}}"
+          bindtap="handleOptionSelect"
+        >
+          <view class="list-item__content">
+            <view class="list-item__title">{{item.label}}</view>
+          </view>
+          <view class="list-item__arrow">›</view>
+        </view>
+      </view>
+
+      <view wx:if="{{currentQuestion.type === 'group_input'}}" class="form-stack">
+        <view wx:for="{{currentQuestion.fields}}" wx:key="key">
+          <text class="field-label">{{item.label}}</text>
+          <input class="text-input" type="number" data-key="{{item.key}}" bindinput="handleFieldInput" />
+        </view>
+        <view class="button-row">
+          <view class="button-primary" bindtap="handleGroupSubmit">{{isSubmitting ? '...' : copy.submit}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

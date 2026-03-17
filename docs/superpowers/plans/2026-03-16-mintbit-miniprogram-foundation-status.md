@@ -66,5 +66,5 @@ Result:
 
 ## Next Recommended Program
 
-1. Finish the remaining auth adapter work in `Mini Program Foundation`
-2. Then move to `Assessment / OCR / Report`
+1. Continue the active `Assessment / OCR / Report` migration program
+2. After that, finish the remaining domain pages and verify them inside WeChat DevTools

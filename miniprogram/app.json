@@ -7,7 +7,9 @@
     "pages/community/index/index",
     "pages/profile/index/index",
     "pages/auth/login/index",
-    "pages/auth/bind-phone/index"
+    "pages/auth/bind-phone/index",
+    "pages/assessment/questionnaire/index",
+    "pages/assessment/result-loading/index"
   ],
   "window": {
     "navigationBarTitleText": "MintBit",

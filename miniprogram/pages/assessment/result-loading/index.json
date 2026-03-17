@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mintbit-nav": "/components/mintbit-nav/index",
+    "fallback-state": "/components/fallback-state/index"
+  }
+}
