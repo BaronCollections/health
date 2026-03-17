@@ -52,9 +52,11 @@ Run this inside WeChat DevTools before a release build:
 3. OCR upload accepts image/PDF files and the confirmation page can be opened.
 4. Report, timeline, and check-in pages render with the expected saved state.
 5. Community feed, create, detail, my posts, and moderation-state transitions still work.
-6. Allowlisted admins can open the release checklist and native community moderation page.
-7. Account center pages render and submit feedback/export/delete actions correctly.
-8. Tab bar, locale switching, and admin-only entry visibility all remain correct after relaunch.
+6. Community create supports native image selection, preview, removal, and successful local echo after submission.
+7. Account feedback supports native screenshot selection and feedback records show the attachment state correctly.
+8. Allowlisted admins can open the release checklist and native community moderation page.
+9. Account center pages render and submit feedback/export/delete actions correctly.
+10. Tab bar, locale switching, and admin-only entry visibility all remain correct after relaunch.
 
 ## Release Handoff Notes
 

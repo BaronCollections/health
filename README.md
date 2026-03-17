@@ -16,11 +16,11 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 ## Mini Program Migration Snapshot
 
 - 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
-- 当前迁移阶段：`Release Readiness`
-- 当前小程序总进度：`约 99%`
+- 当前迁移阶段：`Code Complete`
+- 当前小程序代码迁移进度：`100%`
 - 当前已完成：
   - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
-  - Node 基础测试与契约测试：`50` 个测试全部通过
+  - Node 基础测试与契约测试：`55` 个测试全部通过
   - MintBit 原生壳层：`app.js / app.json / app.wxss / custom-tab-bar`
   - 首批可运行页面：`home / profile / report / checkin / community / auth/login / auth/bind-phone`
   - 小程序认证契约：`/api/miniprogram/auth/login`、`/sms/send`、`/bind`、`/refresh`、`/me`
@@ -36,6 +36,7 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 原生打卡页：`/pages/checkin/index/index` 已接入连续打卡、积分累计、报告方案回桥与空态处理
   - 原生社区页：`/pages/community/index/index` 已升级为真实 feed，接入推荐/圈子切换、时间轴桥接与帖子卡片
   - 原生发帖页：`/pages/community/create/index` 已接入圈子选择、标签建议、正文提交与本地回退状态
+  - 原生社区图片流：发帖页已接入真实微信选图、图片预览、移除与帖子卡片/详情回显
   - 原生帖子详情：`/pages/community/detail/index` 已接入点赞、收藏、评论输入与状态展示
   - 原生我的帖子：`/pages/community/my-posts/index` 已接入审核状态分栏与帖子进度追踪
   - 原生社区审核页：`/pages/community/review/index` 已接入审核队列分栏、审核动作与本地兜底状态同步
@@ -43,6 +44,7 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 原生账户首页：`/pages/profile/index/index` 已接入账户摘要、卡片入口、语言切换和管理员白名单显示
   - 原生通知流：`/pages/profile/notifications/*` 已接入分类筛选、批量已读和消息详情
   - 原生帮助与反馈：`/pages/profile/help/*` 已接入 FAQ、反馈表单与反馈记录状态流
+  - 原生反馈截图流：反馈表单已接入真实微信选图、截图预览与反馈记录附件回显
   - 原生隐私与数据控制：`/pages/profile/privacy/*` 已接入导出申请、删除申请、文档说明与状态展示
   - 原生安全与审计：`/pages/profile/security/index`、`/pages/profile/audit-log/index` 和管理员检查页已可访问
   - 账户运行时：`account content / api / state / runtime / view-model` 已独立成可测试模块
