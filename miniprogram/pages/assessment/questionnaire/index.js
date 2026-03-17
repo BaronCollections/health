@@ -150,7 +150,10 @@ Page({
       });
 
       if (response.status === 'completed') {
-        assessmentSessionStore.clear();
+        assessmentSessionStore.save({
+          ...response,
+          answers: nextAnswers,
+        });
         wx.navigateTo({
           url: `${ASSESSMENT_ROUTES.resultLoading}?assessmentId=${this.data.assessmentId}`,
         });

@@ -1,3 +1,5 @@
+import { REPORT_ROUTES } from '../../../config/routes.js';
+
 Page({
   data: {
     assessmentId: null,
@@ -9,8 +11,8 @@ Page({
     });
 
     this.timer = setTimeout(() => {
-      wx.switchTab({
-        url: '/pages/report/index/index',
+      wx.navigateTo({
+        url: `${REPORT_ROUTES.ocrUpload}?assessmentId=${this.data.assessmentId || ''}`,
       });
     }, 1200);
   },

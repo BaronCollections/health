@@ -5,6 +5,7 @@ export const MINTBIT_COPY = {
       comingSoon: '该模块正在迁移到原生小程序',
       continue: '继续',
       switchLanguage: '语言',
+      back: '返回',
     },
     tabBar: {
       home: '首页',
@@ -70,7 +71,9 @@ export const MINTBIT_COPY = {
     shells: {
       report: {
         title: '营养报告',
-        body: '报告、时间轴和 OCR 流会在下一阶段继续迁移。',
+        body: '报告详情和时间轴会在下一阶段继续迁移，当前可先完成 OCR 上传与确认。',
+        uploadCta: '继续 OCR 上传',
+        reviewCta: '继续 OCR 确认',
       },
       checkin: {
         title: '每日打卡',
@@ -88,6 +91,7 @@ export const MINTBIT_COPY = {
       comingSoon: 'This area is still being migrated into the native mini program.',
       continue: 'Continue',
       switchLanguage: 'Language',
+      back: 'Back',
     },
     tabBar: {
       home: 'Home',
@@ -153,7 +157,9 @@ export const MINTBIT_COPY = {
     shells: {
       report: {
         title: 'Nutrition Report',
-        body: 'Report, timeline, and OCR flows will continue to migrate in the next domain.',
+        body: 'Report detail and timeline migrate next. For now, continue the OCR upload and review flow here.',
+        uploadCta: 'Continue OCR upload',
+        reviewCta: 'Continue OCR review',
       },
       checkin: {
         title: 'Daily Check-In',

@@ -64,3 +64,70 @@ test('createAssessmentSessionStore clears the active assessment session', () => 
 
   assert.equal(store.read(), null);
 });
+
+test('createAssessmentSessionStore persists OCR upload metadata and OCR confirmation payload', () => {
+  const store = createAssessmentSessionStore({
+    storage: createMemoryStorage({
+      'mintbit.assessment.session': JSON.stringify({
+        assessmentId: 101,
+        status: 'completed',
+      }),
+    }),
+  });
+
+  store.saveOcrUpload({
+    fileName: 'report.pdf',
+    filePath: '/tmp/report.pdf',
+    fileSize: 4096,
+    fileType: 'application/pdf',
+    uploadedAt: '2026-03-17T01:00:00Z',
+    syncStatus: 'uploaded',
+    taskId: 'ocr-task-101',
+  });
+  store.saveOcrResult({
+    assessmentId: 101,
+    status: 'needs_confirmation',
+    sections: [
+      {
+        id: 'baseline',
+        fields: [
+          {
+            id: 'vitamin-d',
+            value: '18 ng/mL',
+            confidence: 'medium',
+          },
+        ],
+      },
+    ],
+  });
+
+  assert.deepEqual(store.read(), {
+    assessmentId: 101,
+    status: 'completed',
+    ocrUpload: {
+      fileName: 'report.pdf',
+      filePath: '/tmp/report.pdf',
+      fileSize: 4096,
+      fileType: 'application/pdf',
+      uploadedAt: '2026-03-17T01:00:00Z',
+      syncStatus: 'uploaded',
+      taskId: 'ocr-task-101',
+    },
+    ocrResult: {
+      assessmentId: 101,
+      status: 'needs_confirmation',
+      sections: [
+        {
+          id: 'baseline',
+          fields: [
+            {
+              id: 'vitamin-d',
+              value: '18 ng/mL',
+              confidence: 'medium',
+            },
+          ],
+        },
+      ],
+    },
+  });
+});

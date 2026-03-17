@@ -15,3 +15,9 @@ export const ASSESSMENT_ROUTES = Object.freeze({
   questionnaire: '/pages/assessment/questionnaire/index',
   resultLoading: '/pages/assessment/result-loading/index',
 });
+
+export const REPORT_ROUTES = Object.freeze({
+  index: '/pages/report/index/index',
+  ocrUpload: '/pages/report/ocr-upload/index',
+  ocrConfirmation: '/pages/report/ocr-confirmation/index',
+});

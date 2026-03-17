@@ -1,0 +1,69 @@
+<view class="page-shell">
+  <mintbit-nav
+    title="{{copy.header.title}}"
+    subtitle="{{brandName}}"
+    showBack="{{true}}"
+    backLabel="{{backLabel}}"
+  />
+
+  <view wx:if="{{copy}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="eyebrow">{{copy.hero.eyebrow}}</view>
+      <view class="section-title">{{copy.hero.title}}</view>
+      <view class="section-body">{{copy.header.subtitle}}</view>
+      <view class="section-body">{{copy.hero.body}}</view>
+      <view class="upload-formats">{{copy.formatsLabel}}</view>
+    </view>
+
+    <view class="card-grid">
+      <view wx:for="{{copy.steps}}" wx:key="id" class="mini-card">
+        <view class="mini-card__title">{{item.title}}</view>
+        <view class="mini-card__body">{{item.body}}</view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view wx:if="{{status === 'idle'}}" class="surface-card section-card">
+      <view class="section-title upload-card-title">{{copy.idleCard.title}}</view>
+      <view class="section-body">{{copy.idleCard.body}}</view>
+      <view wx:if="{{fallbackNotice}}" class="status-note">{{fallbackNotice}}</view>
+      <view class="button-row">
+        <view class="button-primary button-wide" bindtap="handleChooseFile">{{copy.idleCard.primaryCta}}</view>
+        <view class="button-secondary button-wide" bindtap="handleSecondaryAction">{{copy.idleCard.secondaryCta}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{selectedFile && status !== 'idle'}}" class="surface-card section-card">
+      <view wx:if="{{status === 'processing'}}" class="section-title upload-card-title">{{copy.processingCard.title}}</view>
+      <view wx:else class="section-title upload-card-title">{{copy.readyCard.title}}</view>
+      <view wx:if="{{status === 'processing'}}" class="section-body">{{copy.processingCard.body}}</view>
+      <view wx:else class="section-body">{{copy.readyCard.body}}</view>
+      <view wx:if="{{fallbackNotice}}" class="status-note">{{fallbackNotice}}</view>
+
+      <view class="file-meta-card">
+        <view class="file-meta-row">
+          <text class="file-meta-label">{{copy.readyCard.fileNameLabel}}</text>
+          <text class="file-meta-value">{{selectedFileName}}</text>
+        </view>
+        <view class="file-meta-row">
+          <text class="file-meta-label">{{copy.readyCard.fileSizeLabel}}</text>
+          <text class="file-meta-value">{{selectedFileSizeText}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{status === 'ready'}}" class="button-row">
+        <view class="button-primary button-wide" bindtap="handleStartRecognition">{{copy.readyCard.primaryCta}}</view>
+        <view class="button-secondary button-wide" bindtap="handleChooseFile">{{copy.readyCard.replaceCta}}</view>
+      </view>
+
+      <view wx:if="{{status === 'processing'}}" class="list-stack process-stack">
+        <view wx:for="{{copy.processingCard.items}}" wx:key="*this" class="mini-card process-item">
+          <view class="mini-card__body process-body">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="upload-footer">{{copy.footerNote}}</view>
+  </view>
+</view>

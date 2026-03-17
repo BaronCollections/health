@@ -64,10 +64,10 @@
 - Create: `miniprogram/services/assessment/api.test.mjs`
 - Create: `miniprogram/services/assessment/session.test.mjs`
 
-- [ ] **Step 1: Write failing tests for create/resume/submit answer/OCR fetch contracts**
-- [ ] **Step 2: Write failing tests for assessment session persistence and resume metadata**
-- [ ] **Step 3: Run `node --test miniprogram/services/assessment/api.test.mjs miniprogram/services/assessment/session.test.mjs` and confirm failure**
-- [ ] **Step 4: Commit the failing assessment runtime tests**
+- [x] **Step 1: Write failing tests for create/resume/submit answer/OCR fetch contracts**
+- [x] **Step 2: Write failing tests for assessment session persistence and resume metadata**
+- [x] **Step 3: Run `node --test miniprogram/services/assessment/api.test.mjs miniprogram/services/assessment/session.test.mjs` and confirm failure**
+- [x] **Step 4: Commit the failing assessment runtime tests**
 
 ### Task 2: Implement assessment API adapters and session store
 
@@ -75,10 +75,10 @@
 - Create: `miniprogram/services/assessment/api.js`
 - Create: `miniprogram/services/assessment/session.js`
 
-- [ ] **Step 1: Implement the minimal mini program assessment API client around the existing backend endpoints**
-- [ ] **Step 2: Implement storage-backed assessment session helpers for current assessment id, current question index, and OCR upload metadata**
-- [ ] **Step 3: Re-run `node --test miniprogram/services/assessment/api.test.mjs miniprogram/services/assessment/session.test.mjs` and confirm pass**
-- [ ] **Step 4: Commit the assessment runtime layer**
+- [x] **Step 1: Implement the minimal mini program assessment API client around the existing backend endpoints**
+- [x] **Step 2: Implement storage-backed assessment session helpers for current assessment id, current question index, and OCR upload metadata**
+- [x] **Step 3: Re-run `node --test miniprogram/services/assessment/api.test.mjs miniprogram/services/assessment/session.test.mjs` and confirm pass**
+- [x] **Step 4: Commit the assessment runtime layer**
 
 ## Chunk 2: Questionnaire Flow
 
@@ -99,10 +99,10 @@
 - Create: `miniprogram/pages/assessment/result-loading/index.wxml`
 - Create: `miniprogram/pages/assessment/result-loading/index.wxss`
 
-- [ ] **Step 1: Reuse the H5 bilingual questionnaire structure in a mini program-friendly question bank module**
-- [ ] **Step 2: Build the questionnaire page with progressive answering, storage-backed resume, and submit-to-report transition**
-- [ ] **Step 3: Build the result-loading transition page**
-- [ ] **Step 4: Run syntax checks and targeted node tests, then commit the questionnaire flow**
+- [x] **Step 1: Reuse the H5 bilingual questionnaire structure in a mini program-friendly question bank module**
+- [x] **Step 2: Build the questionnaire page with progressive answering, storage-backed resume, and submit-to-report transition**
+- [x] **Step 3: Build the result-loading transition page**
+- [x] **Step 4: Run syntax checks and targeted node tests, then commit the questionnaire flow**
 
 ## Chunk 3: OCR Upload And Confirmation
 
@@ -118,9 +118,9 @@
 - Create: `miniprogram/pages/report/ocr-confirmation/index.wxml`
 - Create: `miniprogram/pages/report/ocr-confirmation/index.wxss`
 
-- [ ] **Step 1: Add file-selection support for image and PDF uploads using mini program upload capabilities**
-- [ ] **Step 2: Build the OCR confirmation review page from the existing backend OCR result contract**
-- [ ] **Step 3: Verify the OCR routes against the assessment session runtime and commit the OCR flow**
+- [x] **Step 1: Add file-selection support for image and PDF uploads using mini program upload capabilities**
+- [x] **Step 2: Build the OCR confirmation review page from the existing backend OCR result contract**
+- [x] **Step 3: Verify the OCR routes against the assessment session runtime and commit the OCR flow**
 
 ## Chunk 4: Report Detail And Timeline
 

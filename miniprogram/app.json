@@ -9,7 +9,9 @@
     "pages/auth/login/index",
     "pages/auth/bind-phone/index",
     "pages/assessment/questionnaire/index",
-    "pages/assessment/result-loading/index"
+    "pages/assessment/result-loading/index",
+    "pages/report/ocr-upload/index",
+    "pages/report/ocr-confirmation/index"
   ],
   "window": {
     "navigationBarTitleText": "MintBit",

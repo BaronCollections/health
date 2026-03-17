@@ -1,0 +1,81 @@
+<view class="page-shell">
+  <mintbit-nav
+    title="{{copy.header.title}}"
+    subtitle="{{brandName}}"
+    showBack="{{true}}"
+    backLabel="{{backLabel}}"
+  />
+
+  <view wx:if="{{copy && !hasUpload}}" class="page-content">
+    <fallback-state
+      tone="warning"
+      title="{{copy.missingTitle}}"
+      body="{{copy.missingBody}}"
+      ctaText="{{copy.missingAction}}"
+      bind:action="handleBackToUpload"
+    />
+  </view>
+
+  <view wx:if="{{copy && hasUpload}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="eyebrow">{{copy.statusCard.eyebrow}}</view>
+      <view class="section-title confirmation-title">{{copy.statusCard.title}}</view>
+      <view class="section-body">{{copy.header.subtitle}}</view>
+      <view class="section-body">{{copy.statusCard.description}}</view>
+      <view wx:if="{{fallbackNotice}}" class="status-note">{{fallbackNotice}}</view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="file-meta-row">
+        <view>
+          <view class="file-meta-label">{{copy.fileMeta.label}}</view>
+          <view class="file-meta-value file-meta-value--left">{{upload.fileName}}</view>
+          <view wx:if="{{uploadMeta}}" class="file-meta-subtitle">{{uploadMeta}}</view>
+        </view>
+        <view class="confidence-block">
+          <view class="file-meta-label">{{copy.fileMeta.confidenceLabel}}</view>
+          <view class="confidence-pill confidence-pill--medium">{{copy.fileMeta.confidenceValue}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view wx:for="{{sections}}" wx:key="id" wx:for-item="section" class="surface-card section-card section-stack">
+      <view class="section-header">{{section.title}}</view>
+
+      <view class="list-stack">
+        <view wx:for="{{section.fields}}" wx:key="id" wx:for-item="field" class="mini-card metric-card">
+          <view class="metric-header">
+            <view class="metric-title">{{field.label}}</view>
+            <view class="confidence-pill confidence-pill--{{field.confidence}}">
+              {{field.confidenceLabel}}
+            </view>
+          </view>
+          <view class="metric-value">{{field.value}}</view>
+          <view class="metric-note">{{field.note}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{copy.auditTrail.title}}</view>
+      <view class="audit-list">
+        <view wx:for="{{copy.auditTrail.items}}" wx:key="*this" class="audit-item">
+          <view class="audit-dot"></view>
+          <view class="audit-text">{{item}}</view>
+        </view>
+      </view>
+      <view class="upload-footer">{{copy.footnote}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{copy && hasUpload}}" class="page-actions">
+    <view class="button-primary button-wide" bindtap="handlePrimaryAction">{{copy.actions.primary}}</view>
+    <view class="button-secondary button-wide" bindtap="handleSecondaryAction">{{copy.actions.secondary}}</view>
+  </view>
+</view>

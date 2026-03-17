@@ -17,7 +17,7 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 
 - 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
 - 当前迁移阶段：`Assessment / OCR / Report`
-- 当前小程序总进度：`约 35%`
+- 当前小程序总进度：`约 50%`
 - 当前已完成：
   - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
   - Node 基础测试与契约测试：`17` 个测试全部通过
@@ -28,8 +28,11 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 双语基础：`zh-CN / en` 语言切换、tabBar 文案、首页与账户页基础文案
   - 评估会话契约：`/api/assessment/create`、`/api/assessment/{id}/answer`、`/api/assessment/resume`
   - 原生问卷流：首页进入问卷、会话恢复、逐题提交、结果加载过渡页
+  - 原生 OCR 流：`结果加载 -> OCR 上传 -> OCR 确认 -> 报告 tab 回桥`
+  - OCR 契约复用：`/api/assessment/{id}/report/upload`、`/api/assessment/{id}/report/result`
 - 当前仍待完成：
-  - OCR 上传与确认、报告详情、历史时间轴、打卡、社区、账户深页的完整域迁移
+  - 报告详情、历史时间轴、打卡、社区、账户深页的完整域迁移
+  - 完整问卷题库从首批题目扩展到 Phase 1 全量题目
   - 微信开发者工具内的完整交互验收与发布配置收口
 
 ## Current Product Shape

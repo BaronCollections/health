@@ -21,24 +21,46 @@ function createStorageAdapter(storage) {
 export function createAssessmentSessionStore({ storage } = {}) {
   const adapter = createStorageAdapter(storage);
 
+  function readSnapshot() {
+    const rawValue = adapter.getItem(ASSESSMENT_SESSION_STORAGE_KEY);
+
+    if (!rawValue) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(rawValue);
+    } catch {
+      adapter.removeItem(ASSESSMENT_SESSION_STORAGE_KEY);
+      return null;
+    }
+  }
+
+  function writeSnapshot(snapshot) {
+    adapter.setItem(ASSESSMENT_SESSION_STORAGE_KEY, JSON.stringify(snapshot));
+    return snapshot;
+  }
+
   return {
     read() {
-      const rawValue = adapter.getItem(ASSESSMENT_SESSION_STORAGE_KEY);
-
-      if (!rawValue) {
-        return null;
-      }
-
-      try {
-        return JSON.parse(rawValue);
-      } catch {
-        adapter.removeItem(ASSESSMENT_SESSION_STORAGE_KEY);
-        return null;
-      }
+      return readSnapshot();
     },
     save(snapshot) {
-      adapter.setItem(ASSESSMENT_SESSION_STORAGE_KEY, JSON.stringify(snapshot));
-      return snapshot;
+      return writeSnapshot(snapshot);
+    },
+    saveOcrUpload(ocrUpload) {
+      const currentSnapshot = readSnapshot() || {};
+      return writeSnapshot({
+        ...currentSnapshot,
+        ocrUpload,
+      });
+    },
+    saveOcrResult(ocrResult) {
+      const currentSnapshot = readSnapshot() || {};
+      return writeSnapshot({
+        ...currentSnapshot,
+        ocrResult,
+      });
     },
     clear() {
       adapter.removeItem(ASSESSMENT_SESSION_STORAGE_KEY);
