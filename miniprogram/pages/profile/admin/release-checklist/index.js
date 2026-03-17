@@ -1,5 +1,6 @@
+import { COMMUNITY_ROUTES } from '../../../../../config/routes.js';
 import { resolveEnvConfig } from '../../../../../config/env.js';
-import { resolveAdminState } from '../../../../../services/account/runtime.js';
+import { openAppRoute, resolveAdminState } from '../../../../../services/account/runtime.js';
 
 function getStores() {
   return getApp().globalData;
@@ -61,10 +62,25 @@ Page({
           {
             id: 'progress',
             title: appSnapshot.locale === 'zh-CN' ? '迁移进度' : 'Migration progress',
-            value: '88%',
+            value: '98%',
+          },
+        ],
+        actions: [
+          {
+            id: 'community-review',
+            title: appSnapshot.locale === 'zh-CN' ? '社区审核队列' : 'Community moderation queue',
+            body:
+              appSnapshot.locale === 'zh-CN'
+                ? '进入原生小程序审核页，处理待审帖子和评论。'
+                : 'Open the native moderation page for pending posts and comments.',
+            href: COMMUNITY_ROUTES.review,
           },
         ],
       },
     });
+  },
+
+  handleOpenAction(event) {
+    openAppRoute(event.currentTarget.dataset.href);
   },
 });

@@ -1,0 +1,67 @@
+<view class="page-shell">
+  <mintbit-nav title="{{brandName}}" subtitle="{{viewModel.header.title}}" showBack="{{true}}" backLabel="{{backLabel}}" />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card review-hero">
+      <view class="eyebrow">Ops Mini</view>
+      <view class="section-title review-title">{{viewModel.header.title}}</view>
+      <view class="section-body">{{viewModel.header.subtitle}}</view>
+      <view class="button-row">
+        <view class="button-ghost" bindtap="handleOpenCommunity">{{backLabel}}</view>
+      </view>
+    </view>
+
+    <view class="tab-row">
+      <view
+        wx:for="{{viewModel.tabs}}"
+        wx:key="id"
+        class="community-tab {{item.active ? 'community-tab--active' : ''}}"
+        data-status="{{item.id}}"
+        bindtap="handleTabChange"
+      >
+        <view class="community-tab__label">{{item.label}}</view>
+        <view class="community-tab__count">{{item.count}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{!viewModel.items.length}}" class="surface-card section-card empty-card">
+      <view class="list-item__title">{{viewModel.emptyState.title}}</view>
+      <view class="list-item__body">{{viewModel.emptyState.body}}</view>
+    </view>
+
+    <view wx:if="{{viewModel.items.length}}" class="list-stack review-stack">
+      <view wx:for="{{viewModel.items}}" wx:key="targetId" class="surface-card section-card review-card">
+        <view class="review-card__header">
+          <view class="avatar-badge">{{item.authorAvatar}}</view>
+          <view class="review-card__meta">
+            <view class="review-card__title-row">
+              <view class="post-card__author">{{item.authorName}}</view>
+              <view class="status-pill">{{item.statusLabel}}</view>
+            </view>
+            <view class="post-card__time">{{item.targetTypeLabel}} · {{item.circleName}}</view>
+            <view class="post-card__time">{{item.relativeTime}}</view>
+          </view>
+        </view>
+
+        <view class="review-card__content">{{item.contentPreview}}</view>
+        <view class="review-note">{{item.moderationReason}}</view>
+
+        <view class="review-action-row">
+          <button
+            wx:for="{{item.actions}}"
+            wx:key="id"
+            wx:for-item="action"
+            class="review-action {{busyTargetId === item.targetId ? 'review-action--disabled' : ''}}"
+            data-target-id="{{item.targetId}}"
+            data-target-type="{{item.targetType}}"
+            data-action="{{action.id}}"
+            bindtap="handleModerationAction"
+            disabled="{{busyTargetId === item.targetId}}"
+          >
+            {{action.label}}
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

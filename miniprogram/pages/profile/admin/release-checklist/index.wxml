@@ -13,5 +13,21 @@
         <view class="list-item__body">{{item.value}}</view>
       </view>
     </view>
+
+    <view wx:if="{{checklist.actions.length}}" class="list-stack checklist-stack">
+      <view
+        wx:for="{{checklist.actions}}"
+        wx:key="id"
+        class="list-item surface-card"
+        data-href="{{item.href}}"
+        bindtap="handleOpenAction"
+      >
+        <view class="list-item__content">
+          <view class="list-item__title">{{item.title}}</view>
+          <view class="list-item__body">{{item.body}}</view>
+        </view>
+        <view class="list-item__arrow">›</view>
+      </view>
+    </view>
   </view>
 </view>

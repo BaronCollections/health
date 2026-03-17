@@ -13,6 +13,13 @@ const COMMENT_STATUSES_BY_AUDIENCE = {
 };
 
 const MY_POST_TABS = ['pending_review', 'approved', 'rejected', 'flagged'];
+const REVIEW_TABS = ['pending_review', 'approved', 'rejected', 'flagged'];
+const REVIEW_ACTIONS_BY_STATUS = {
+  pending_review: ['approve', 'reject', 'flag'],
+  approved: ['flag', 'restore'],
+  rejected: ['restore', 'approve'],
+  flagged: ['restore', 'approve'],
+};
 
 function clonePost(post) {
   return {
@@ -88,6 +95,40 @@ function mergeLocalizedPost(basePost, overlayPost) {
 function filterByStatus(items, allowedStatuses) {
   const allowed = new Set(allowedStatuses);
   return items.filter((item) => allowed.has(item.status));
+}
+
+function cloneModerationItem(item) {
+  return {
+    ...item,
+  };
+}
+
+function mergeModerationQueue(baseItems = [], overlayItems = []) {
+  const overlayMap = new Map(overlayItems.map((item) => [item.targetId, cloneModerationItem(item)]));
+  const extraItems = overlayItems
+    .filter((item) => !baseItems.some((entry) => entry.targetId === item.targetId))
+    .map((item) => cloneModerationItem(item));
+
+  const mergedBase = baseItems.map((item) => {
+    const overlay = overlayMap.get(item.targetId);
+
+    if (!overlay) {
+      return cloneModerationItem(item);
+    }
+
+    return {
+      ...overlay,
+      id: overlay.id || item.id,
+      authorName: item.authorName || overlay.authorName,
+      authorAvatar: item.authorAvatar || overlay.authorAvatar,
+      circleName: item.circleName || overlay.circleName,
+      relativeTime: item.relativeTime || overlay.relativeTime,
+      contentPreview: item.contentPreview || overlay.contentPreview,
+      moderationReason: overlay.moderationReason || item.moderationReason,
+    };
+  });
+
+  return [...extraItems, ...mergedBase];
 }
 
 export function filterPostsForAudience(posts, audience) {
@@ -308,6 +349,45 @@ export function buildCommunityMyPostsViewModel({ locale, posts, activeStatus = '
   };
 }
 
+export function buildCommunityReviewViewModel({ locale, items, activeStatus = 'pending_review' } = {}) {
+  const content = getCommunityContent(locale);
+  const mergedItems = mergeModerationQueue(content.reviewQueue, items || content.reviewQueue);
+  const counts = Object.fromEntries(REVIEW_TABS.map((status) => [status, 0]));
+
+  for (const item of mergedItems) {
+    counts[item.currentStatus] = (counts[item.currentStatus] || 0) + 1;
+  }
+
+  return {
+    header: {
+      title: content.review.title,
+      subtitle: content.review.subtitle,
+    },
+    tabs: REVIEW_TABS.map((status) => ({
+      id: status,
+      label: content.review.tabs[status],
+      count: counts[status] || 0,
+      active: status === activeStatus,
+    })),
+    activeStatus,
+    items: mergedItems
+      .filter((item) => item.currentStatus === activeStatus)
+      .map((item) => ({
+        ...cloneModerationItem(item),
+        statusLabel: content.statuses[item.currentStatus] || item.currentStatus,
+        targetTypeLabel: item.targetType === 'post' ? content.review.targetPost : content.review.targetComment,
+        actions: (REVIEW_ACTIONS_BY_STATUS[activeStatus] || []).map((action) => ({
+          id: action,
+          label: content.review.actions[action],
+        })),
+      })),
+    emptyState: {
+      title: content.review.queueEmptyTitle,
+      body: content.review.queueEmptyBody,
+    },
+  };
+}
+
 export function createFallbackCommunityPost(locale, input = {}) {
   const content = getCommunityContent(locale);
   const circle = content.circles.find((entry) => entry.id === input.circleId) || content.circles[0];
@@ -347,4 +427,4 @@ export function createFallbackCommunityComment(locale, input = {}) {
   };
 }
 
-export { getCommunityContent };
+export { getCommunityContent, mergeModerationQueue };

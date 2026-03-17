@@ -8,6 +8,7 @@
     "pages/community/create/index",
     "pages/community/detail/index",
     "pages/community/my-posts/index",
+    "pages/community/review/index",
     "pages/profile/index/index",
     "pages/profile/notifications/index",
     "pages/profile/notifications/detail/index",

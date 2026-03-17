@@ -69,5 +69,21 @@ export function createCommunityApi({ request } = {}) {
         method: 'POST',
       }));
     },
+
+    async fetchModerationQueue(status) {
+      return unwrapResult(await request({
+        url: '/community/moderation/queue',
+        method: 'GET',
+        data: status ? { status } : undefined,
+      }));
+    },
+
+    async moderateItem(targetType, targetId, action, payload) {
+      return unwrapResult(await request({
+        url: `/community/moderation/${targetType}/${targetId}/${action}`,
+        method: 'POST',
+        data: payload,
+      }));
+    },
   };
 }

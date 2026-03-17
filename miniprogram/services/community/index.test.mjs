@@ -5,6 +5,7 @@ import {
   buildCommunityDetailViewModel,
   buildCommunityHomeViewModel,
   buildCommunityMyPostsViewModel,
+  buildCommunityReviewViewModel,
   getCommunityContent,
   mergeCommunityPosts,
 } from './index.js';
@@ -86,5 +87,22 @@ test('buildCommunityMyPostsViewModel groups viewer owned posts by moderation sta
   assert.deepEqual(
     viewModel.posts.map((post) => post.id),
     ['post-104'],
+  );
+});
+
+test('buildCommunityReviewViewModel groups moderation queue items by status and exposes localized actions', () => {
+  const content = getCommunityContent('zh-CN');
+  const viewModel = buildCommunityReviewViewModel({
+    locale: 'zh-CN',
+    items: content.reviewQueue,
+    activeStatus: 'pending_review',
+  });
+
+  assert.equal(viewModel.header.title, '社区审核');
+  assert.equal(viewModel.tabs.find((tab) => tab.id === 'pending_review').count, 1);
+  assert.equal(viewModel.items[0].targetTypeLabel, '帖子');
+  assert.deepEqual(
+    viewModel.items[0].actions.map((action) => action.id),
+    ['approve', 'reject', 'flag'],
   );
 });

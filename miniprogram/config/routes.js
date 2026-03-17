@@ -28,6 +28,7 @@ export const COMMUNITY_ROUTES = Object.freeze({
   create: '/pages/community/create/index',
   detail: '/pages/community/detail/index',
   myPosts: '/pages/community/my-posts/index',
+  review: '/pages/community/review/index',
 });
 
 export const PROFILE_ROUTES = Object.freeze({

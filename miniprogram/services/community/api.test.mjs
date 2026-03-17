@@ -105,3 +105,62 @@ test('createCommunityApi creates a community post and submits a comment', async 
   assert.equal(post.id, 'post-301');
   assert.equal(comment.id, 'comment-301');
 });
+
+test('createCommunityApi fetches moderation queue items by status and submits moderation actions', async () => {
+  const calls = [];
+  const api = createCommunityApi({
+    request: async (payload) => {
+      calls.push(payload);
+
+      return {
+        data: {
+          code: 200,
+          data: payload.url.includes('/moderation/post/')
+            ? {
+                id: 'queue-201',
+                targetId: 'post-102',
+                targetType: 'post',
+                currentStatus: 'approved',
+              }
+            : {
+                status: 'pending_review',
+                items: [
+                  {
+                    id: 'queue-201',
+                    targetId: 'post-102',
+                    targetType: 'post',
+                    currentStatus: 'pending_review',
+                  },
+                ],
+              },
+        },
+      };
+    },
+  });
+
+  const queue = await api.fetchModerationQueue('pending_review');
+  const decision = await api.moderateItem('post', 'post-102', 'approve', {
+    reason: 'Looks compliant',
+    reviewerId: 'ops-mini',
+  });
+
+  assert.deepEqual(calls, [
+    {
+      url: '/community/moderation/queue',
+      method: 'GET',
+      data: {
+        status: 'pending_review',
+      },
+    },
+    {
+      url: '/community/moderation/post/post-102/approve',
+      method: 'POST',
+      data: {
+        reason: 'Looks compliant',
+        reviewerId: 'ops-mini',
+      },
+    },
+  ]);
+  assert.equal(queue.items[0].targetId, 'post-102');
+  assert.equal(decision.currentStatus, 'approved');
+});
