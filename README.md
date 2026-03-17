@@ -16,8 +16,8 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 ## Mini Program Migration Snapshot
 
 - 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
-- 当前迁移阶段：`Community Ops Moderation`
-- 当前小程序总进度：`约 98%`
+- 当前迁移阶段：`Release Readiness`
+- 当前小程序总进度：`约 99%`
 - 当前已完成：
   - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
   - Node 基础测试与契约测试：`50` 个测试全部通过
@@ -46,8 +46,9 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 原生隐私与数据控制：`/pages/profile/privacy/*` 已接入导出申请、删除申请、文档说明与状态展示
   - 原生安全与审计：`/pages/profile/security/index`、`/pages/profile/audit-log/index` 和管理员检查页已可访问
   - 账户运行时：`account content / api / state / runtime / view-model` 已独立成可测试模块
+  - 小程序发布收口：`project.config.json` 已切到 MintBit 业务编译场景，`miniprogram/README.md` 与本地校验脚本已补齐
 - 当前仍待完成：
-  - 微信开发者工具内的完整交互验收与发布配置收口
+  - 微信开发者工具内的最终手工验收与提审
 
 ## Current Product Shape
 
