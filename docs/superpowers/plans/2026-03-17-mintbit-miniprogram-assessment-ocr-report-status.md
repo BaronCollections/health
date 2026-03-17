@@ -25,6 +25,11 @@
   - `miniprogram/services/assessment/question-bank.test.mjs`
   - `miniprogram/pages/assessment/questionnaire/*`
   - `miniprogram/pages/assessment/result-loading/*`
+- Expanded the questionnaire to the full Phase 1 question bank:
+  - `miniprogram/services/assessment/question-bank-source.js`
+  - `30` localized questions
+  - `showIf` visibility rules
+  - `multi_choice` question support in the native questionnaire page
 - Added the native OCR flow and report bridge:
   - `miniprogram/pages/report/ocr-upload/*`
   - `miniprogram/pages/report/ocr-confirmation/*`
@@ -46,25 +51,25 @@
 Executed successfully from the repository root unless otherwise noted:
 
 ```bash
-node --test miniprogram/services/assessment/question-bank.test.mjs miniprogram/services/assessment/api.test.mjs miniprogram/services/assessment/session.test.mjs miniprogram/services/assessment/ocr-content.test.mjs miniprogram/services/report/content.test.mjs miniprogram/services/report/timeline.test.mjs
-node --check miniprogram/services/assessment/question-bank.js miniprogram/services/assessment/api.js miniprogram/services/assessment/session.js miniprogram/services/assessment/ocr-content.js miniprogram/services/report/content.js miniprogram/services/report/timeline.js miniprogram/pages/assessment/questionnaire/index.js miniprogram/pages/assessment/result-loading/index.js miniprogram/pages/report/index/index.js miniprogram/pages/report/ocr-upload/index.js miniprogram/pages/report/ocr-confirmation/index.js miniprogram/pages/report/timeline/index.js miniprogram/pages/home/index/index.js
+node --test miniprogram/services/assessment/question-bank.test.mjs miniprogram/services/assessment/api.test.mjs miniprogram/services/assessment/session.test.mjs miniprogram/services/assessment/ocr-content.test.mjs miniprogram/services/report/content.test.mjs miniprogram/services/report/timeline.test.mjs miniprogram/services/checkin/index.test.mjs
+node --check miniprogram/services/assessment/question-bank-source.js miniprogram/services/assessment/question-bank.js miniprogram/services/assessment/api.js miniprogram/services/assessment/session.js miniprogram/services/assessment/ocr-content.js miniprogram/services/report/content.js miniprogram/services/report/timeline.js miniprogram/services/checkin/index.js miniprogram/pages/assessment/questionnaire/index.js miniprogram/pages/assessment/result-loading/index.js miniprogram/pages/report/index/index.js miniprogram/pages/report/ocr-upload/index.js miniprogram/pages/report/ocr-confirmation/index.js miniprogram/pages/report/timeline/index.js miniprogram/pages/checkin/index/index.js miniprogram/pages/home/index/index.js
 node -e "JSON.parse(require('fs').readFileSync('miniprogram/app.json','utf8')); JSON.parse(require('fs').readFileSync('miniprogram/pages/assessment/questionnaire/index.json','utf8')); JSON.parse(require('fs').readFileSync('miniprogram/pages/assessment/result-loading/index.json','utf8')); JSON.parse(require('fs').readFileSync('miniprogram/pages/report/index/index.json','utf8')); JSON.parse(require('fs').readFileSync('miniprogram/pages/report/ocr-upload/index.json','utf8')); JSON.parse(require('fs').readFileSync('miniprogram/pages/report/ocr-confirmation/index.json','utf8')); JSON.parse(require('fs').readFileSync('miniprogram/pages/report/timeline/index.json','utf8')); console.log('json ok')"
 cd backend && mvn test -Dtest=MockAssessmentFlowServiceTest
 ```
 
 Result:
 
-- `16` mini program assessment, OCR, report, and timeline tests passed
+- `21` mini program assessment, OCR, report, timeline, and check-in tests passed
 - JavaScript syntax checks passed
 - JSON config parsing passed
 - `3` backend assessment service tests passed
 
 ## Remaining In This Program
 
-- Extend the bilingual question bank from the first assessment slice to the full MintBit questionnaire set
 - Expand the current report runtime into full Phase 1 detail depth after more question-bank data is ported
+ - Replace the community placeholder tab with the native feed, posting, and moderation states
 
 ## Next Recommended Program
 
-1. Implement `OCR upload and confirmation`
-2. Then move to `report detail and timeline`
+1. Implement the native community feed and post interaction loop
+2. Then move to account-center deep pages and WeChat DevTools acceptance

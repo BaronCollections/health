@@ -16,11 +16,11 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 ## Mini Program Migration Snapshot
 
 - 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
-- 当前迁移阶段：`Check-In`
-- 当前小程序总进度：`约 72%`
+- 当前迁移阶段：`Full Questionnaire Bank`
+- 当前小程序总进度：`约 80%`
 - 当前已完成：
   - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
-  - Node 基础测试与契约测试：`25` 个测试全部通过
+  - Node 基础测试与契约测试：`21` 个测试全部通过
   - MintBit 原生壳层：`app.js / app.json / app.wxss / custom-tab-bar`
   - 首批可运行页面：`home / profile / report / checkin / community / auth/login / auth/bind-phone`
   - 小程序认证契约：`/api/miniprogram/auth/login`、`/sms/send`、`/bind`、`/refresh`、`/me`
@@ -28,6 +28,7 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 双语基础：`zh-CN / en` 语言切换、tabBar 文案、首页与账户页基础文案
   - 评估会话契约：`/api/assessment/create`、`/api/assessment/{id}/answer`、`/api/assessment/resume`
   - 原生问卷流：首页进入问卷、会话恢复、逐题提交、结果加载过渡页
+  - 全量双语问卷题库：`30` 题、`showIf` 条件、`multi_choice` 多选题都已接入小程序
   - 原生 OCR 流：`结果加载 -> OCR 上传 -> OCR 确认 -> 报告 tab 回桥`
   - OCR 契约复用：`/api/assessment/{id}/report/upload`、`/api/assessment/{id}/report/result`
   - 原生报告页：报告 tab 已升级为真实详情页，接入评分、目标、OCR 状态、营养方案与建议
@@ -35,7 +36,6 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 原生打卡页：`/pages/checkin/index/index` 已接入连续打卡、积分累计、报告方案回桥与空态处理
 - 当前仍待完成：
   - 打卡、社区、账户深页的完整域迁移
-  - 完整问卷题库从首批题目扩展到 Phase 1 全量题目
   - 微信开发者工具内的完整交互验收与发布配置收口
 
 ## Current Product Shape

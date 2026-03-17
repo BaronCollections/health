@@ -10,7 +10,12 @@ import java.util.Map;
 @Service
 public class MockAssessmentFlowService {
 
-    private final List<String> questionIds = List.of("B01", "B02", "B03");
+    private final List<String> questionIds = List.of(
+            "B01", "B02", "B03", "B04", "B05",
+            "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09",
+            "E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08", "E09",
+            "H01", "H02", "H03", "H04", "H05", "H06", "G01"
+    );
     private final Map<Long, Integer> sessionIndexes = new LinkedHashMap<>();
     private long nextAssessmentId = 100L;
     private Long latestAssessmentId = null;

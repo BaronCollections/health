@@ -1,7 +1,7 @@
 import { ASSESSMENT_ROUTES } from '../../../config/routes.js';
 import { createRequestClient } from '../../../services/request/client.js';
 import { createAssessmentApi } from '../../../services/assessment/api.js';
-import { getAssessmentQuestionBank, getAssessmentQuestionById } from '../../../services/assessment/question-bank.js';
+import { getNextVisibleQuestion, getVisibleAssessmentQuestionBank } from '../../../services/assessment/question-bank.js';
 import { createAssessmentSessionStore } from '../../../services/assessment/session.js';
 
 function getStores() {
@@ -20,8 +20,10 @@ Page({
     assessmentId: null,
     answers: {},
     formValues: {},
+    multiChoiceValues: [],
     isSubmitting: false,
     errorMessage: '',
+    backLabel: 'Back',
   },
 
   onLoad() {
@@ -31,6 +33,7 @@ Page({
       this.setData({
         locale: snapshot.locale,
         copy: snapshot.copy.assessmentFlow,
+        backLabel: snapshot.copy.common.back,
       });
       this.refreshCurrentQuestion();
     });
@@ -39,6 +42,7 @@ Page({
     this.setData({
       locale: snapshot.locale,
       copy: snapshot.copy.assessmentFlow,
+      backLabel: snapshot.copy.common.back,
     });
 
     const request = createRequestClient();
@@ -91,21 +95,44 @@ Page({
     this.setData({
       assessmentId: session.assessmentId,
       currentIndex: session.currentIndex,
-      totalQuestions: session.totalQuestions,
       answers: session.answers || {},
       formValues: {},
+      multiChoiceValues: [],
     });
-    this.refreshCurrentQuestion(session.currentQuestionId, session.answers || {});
+    this.refreshCurrentQuestion(session.currentIndex, session.answers || {});
   },
 
-  refreshCurrentQuestion(questionId = null, answers = this.data.answers) {
-    const bank = getAssessmentQuestionBank(this.data.locale);
-    const currentQuestionId = questionId || bank[this.data.currentIndex]?.id || null;
-    const currentQuestion = currentQuestionId ? getAssessmentQuestionById(this.data.locale, currentQuestionId) : null;
+  refreshCurrentQuestion(startIndex = this.data.currentIndex, answers = this.data.answers) {
+    const visibleBank = getVisibleAssessmentQuestionBank({
+      locale: this.data.locale,
+      answers,
+    });
+    const resolvedQuestion = getNextVisibleQuestion({
+      locale: this.data.locale,
+      startIndex,
+      answers,
+    });
+    const selectedValues = Array.isArray(answers[resolvedQuestion?.id]) ? answers[resolvedQuestion.id] : [];
+    const currentQuestion =
+      resolvedQuestion?.type === 'multi_choice'
+        ? {
+            ...resolvedQuestion,
+            options: resolvedQuestion.options.map((option) => ({
+              ...option,
+              selected: selectedValues.includes(option.value),
+            })),
+          }
+        : resolvedQuestion;
+    const currentVisibleIndex = resolvedQuestion
+      ? visibleBank.findIndex((question) => question.id === resolvedQuestion.id)
+      : visibleBank.length;
 
     this.setData({
       currentQuestion,
       answers,
+      currentIndex: Math.max(currentVisibleIndex, 0),
+      totalQuestions: visibleBank.length,
+      multiChoiceValues: selectedValues,
     });
   },
 
@@ -126,6 +153,21 @@ Page({
 
   handleGroupSubmit() {
     void this.submitAnswer(this.data.formValues);
+  },
+
+  handleMultiChoiceToggle(event) {
+    const { value } = event.currentTarget.dataset;
+    const nextValues = this.data.multiChoiceValues.includes(value)
+      ? this.data.multiChoiceValues.filter((item) => item !== value)
+      : [...this.data.multiChoiceValues, value];
+
+    this.setData({
+      multiChoiceValues: nextValues,
+    });
+  },
+
+  handleMultiChoiceSubmit() {
+    void this.submitAnswer(this.data.multiChoiceValues);
   },
 
   async submitAnswer(value) {
@@ -174,6 +216,7 @@ Page({
       this.setData({
         isSubmitting: false,
         formValues: {},
+        multiChoiceValues: [],
       });
     }
   },

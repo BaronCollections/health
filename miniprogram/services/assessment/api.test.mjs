@@ -16,7 +16,7 @@ test('createAssessmentApi creates a new assessment session', async () => {
             status: 'in_progress',
             currentQuestionId: 'B01',
             currentIndex: 0,
-            totalQuestions: 3,
+            totalQuestions: 30,
           },
         },
       };
@@ -37,7 +37,7 @@ test('createAssessmentApi creates a new assessment session', async () => {
     status: 'in_progress',
     currentQuestionId: 'B01',
     currentIndex: 0,
-    totalQuestions: 3,
+    totalQuestions: 30,
   });
 });
 
@@ -54,7 +54,7 @@ test('createAssessmentApi submits an answer and returns the next question pointe
             status: 'in_progress',
             currentQuestionId: 'B02',
             currentIndex: 1,
-            totalQuestions: 3,
+            totalQuestions: 30,
           },
         },
       };
@@ -81,7 +81,7 @@ test('createAssessmentApi submits an answer and returns the next question pointe
     status: 'in_progress',
     currentQuestionId: 'B02',
     currentIndex: 1,
-    totalQuestions: 3,
+    totalQuestions: 30,
   });
 });
 
@@ -95,7 +95,7 @@ test('createAssessmentApi resumes the latest unfinished assessment session', asy
           status: 'in_progress',
           currentQuestionId: 'B02',
           currentIndex: 1,
-          totalQuestions: 3,
+          totalQuestions: 30,
         },
       },
     }),
@@ -108,7 +108,7 @@ test('createAssessmentApi resumes the latest unfinished assessment session', asy
     status: 'in_progress',
     currentQuestionId: 'B02',
     currentIndex: 1,
-    totalQuestions: 3,
+    totalQuestions: 30,
   });
 });
 

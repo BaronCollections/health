@@ -1,10 +1,11 @@
 <view class="page-shell">
-  <mintbit-nav title="MintBit" showBack="{{true}}" backLabel="Back" />
+  <mintbit-nav title="MintBit" showBack="{{true}}" backLabel="{{backLabel}}" />
 
   <view wx:if="{{currentQuestion && copy}}" class="page-content">
     <view class="surface-card section-card">
       <view class="status-pill">{{currentIndex + 1}} / {{totalQuestions}}</view>
       <view class="section-title">{{currentQuestion.title}}</view>
+      <view wx:if="{{currentQuestion.description}}" class="section-body">{{currentQuestion.description}}</view>
       <view wx:if="{{errorMessage}}" class="section-body" style="color: #b4503c;">{{errorMessage}}</view>
 
       <view wx:if="{{currentQuestion.type === 'single_choice'}}" class="list-stack" style="margin-top: 24rpx;">
@@ -29,6 +30,24 @@
         </view>
         <view class="button-row">
           <view class="button-primary" bindtap="handleGroupSubmit">{{isSubmitting ? '...' : copy.submit}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{currentQuestion.type === 'multi_choice'}}" class="form-stack">
+        <view
+          wx:for="{{currentQuestion.options}}"
+          wx:key="value"
+          class="list-item surface-card"
+          data-value="{{item.value}}"
+          bindtap="handleMultiChoiceToggle"
+        >
+          <view class="list-item__content">
+            <view class="list-item__title">{{item.label}}</view>
+          </view>
+          <view class="list-item__arrow">{{item.selected ? '✓' : '+'}}</view>
+        </view>
+        <view class="button-row">
+          <view class="button-primary" bindtap="handleMultiChoiceSubmit">{{isSubmitting ? '...' : copy.submit}}</view>
         </view>
       </view>
     </view>

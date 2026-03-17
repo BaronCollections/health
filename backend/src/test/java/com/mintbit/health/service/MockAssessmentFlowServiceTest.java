@@ -19,7 +19,7 @@ class MockAssessmentFlowServiceTest {
         assertEquals("in_progress", response.getStatus());
         assertEquals("B01", response.getCurrentQuestionId());
         assertEquals(0, response.getCurrentIndex());
-        assertTrue(response.getTotalQuestions() >= 3);
+        assertEquals(30, response.getTotalQuestions());
     }
 
     @Test

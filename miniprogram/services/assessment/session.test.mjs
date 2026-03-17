@@ -28,7 +28,7 @@ test('createAssessmentSessionStore persists assessment progress and answers', ()
     assessmentId: 101,
     currentQuestionId: 'B02',
     currentIndex: 1,
-    totalQuestions: 3,
+    totalQuestions: 30,
     answers: {
       B01: 'female',
     },
@@ -38,7 +38,7 @@ test('createAssessmentSessionStore persists assessment progress and answers', ()
     assessmentId: 101,
     currentQuestionId: 'B02',
     currentIndex: 1,
-    totalQuestions: 3,
+    totalQuestions: 30,
     answers: {
       B01: 'female',
     },
@@ -52,7 +52,7 @@ test('createAssessmentSessionStore clears the active assessment session', () => 
         assessmentId: 101,
         currentQuestionId: 'B02',
         currentIndex: 1,
-        totalQuestions: 3,
+        totalQuestions: 30,
         answers: {
           B01: 'female',
         },
