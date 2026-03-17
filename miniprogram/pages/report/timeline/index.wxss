@@ -1,0 +1,77 @@
+.timeline-score {
+  font-size: 72rpx;
+}
+
+.timeline-delta {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--mintbit-brand-strong);
+}
+
+.section-header {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--mintbit-text);
+  margin-bottom: 20rpx;
+}
+
+.trend-value {
+  margin-top: 12rpx;
+  font-size: 42rpx;
+  font-weight: 700;
+  color: var(--mintbit-text);
+}
+
+.snapshot-card {
+  background: rgba(250, 252, 249, 0.96);
+}
+
+.snapshot-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.audit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.audit-item {
+  display: flex;
+  gap: 16rpx;
+}
+
+.audit-dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin-top: 12rpx;
+  border-radius: 999rpx;
+  background: var(--mintbit-brand);
+  flex-shrink: 0;
+}
+
+.audit-text {
+  flex: 1;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--mintbit-text-secondary);
+}
+
+.page-actions {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  padding: 24rpx 28rpx calc(28rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 253, 247, 0.96);
+  backdrop-filter: blur(18rpx);
+}
+
+.button-wide {
+  width: 100%;
+}

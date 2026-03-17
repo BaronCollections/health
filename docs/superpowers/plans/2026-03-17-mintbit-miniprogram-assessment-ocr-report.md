@@ -138,10 +138,10 @@
 - Create: `miniprogram/pages/report/timeline/index.wxml`
 - Create: `miniprogram/pages/report/timeline/index.wxss`
 
-- [ ] **Step 1: Port the bilingual report content into a mini program runtime module**
-- [ ] **Step 2: Build the native report detail page and link it from the report tab**
-- [ ] **Step 3: Build the poster history timeline page and link it from the report page**
-- [ ] **Step 4: Run route syntax checks, node tests, and commit the report/timeline slice**
+- [x] **Step 1: Port the bilingual report content into a mini program runtime module**
+- [x] **Step 2: Build the native report detail page and link it from the report tab**
+- [x] **Step 3: Build the poster history timeline page and link it from the report page**
+- [x] **Step 4: Run route syntax checks, node tests, and commit the report/timeline slice**
 
 ## Chunk 5: Status Docs
 

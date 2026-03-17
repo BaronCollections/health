@@ -1,5 +1,6 @@
-import { REPORT_ROUTES } from '../../../config/routes.js';
+import { ASSESSMENT_ROUTES, REPORT_ROUTES } from '../../../config/routes.js';
 import { createAssessmentSessionStore } from '../../../services/assessment/session.js';
+import { buildReportViewModel } from '../../../services/report/content.js';
 
 function getStores() {
   return getApp().globalData;
@@ -9,69 +10,72 @@ const assessmentSessionStore = createAssessmentSessionStore();
 
 Page({
   data: {
-    shell: null,
-    common: null,
-    actionText: '',
-    actionRoute: '',
-    actionAssessmentId: null,
+    locale: 'zh-CN',
+    brandName: 'MintBit',
+    viewModel: null,
   },
 
   onLoad() {
-    const appStore = getStores().appStore;
+    const { appStore } = getStores();
 
     this.unsubscribe = appStore.subscribe((snapshot) => {
-      this.setData({
-        shell: snapshot.copy.shells.report,
-        common: snapshot.copy.common,
-      });
-      this.refreshAction();
+      this.applySnapshot(snapshot);
     });
 
-    const snapshot = appStore.hydrate();
-    this.setData({
-      shell: snapshot.copy.shells.report,
-      common: snapshot.copy.common,
-    });
-    this.refreshAction();
+    this.applySnapshot(appStore.hydrate());
   },
 
   onShow() {
     this.getTabBar()?.setActive('/pages/report/index/index');
-    this.refreshAction();
+    this.refreshViewModel();
   },
 
   onUnload() {
     this.unsubscribe?.();
   },
 
-  refreshAction() {
-    const session = assessmentSessionStore.read();
-    const assessmentId = session?.assessmentId || null;
-    const hasOcrUpload = Boolean(session?.ocrUpload);
-
-    if (!assessmentId || !this.data.shell) {
-      this.setData({
-        actionText: '',
-        actionRoute: '',
-        actionAssessmentId: null,
-      });
-      return;
-    }
-
+  applySnapshot(snapshot) {
     this.setData({
-      actionText: hasOcrUpload ? this.data.shell.reviewCta || '' : this.data.shell.uploadCta || '',
-      actionRoute: hasOcrUpload ? REPORT_ROUTES.ocrConfirmation : REPORT_ROUTES.ocrUpload,
-      actionAssessmentId: assessmentId,
+      locale: snapshot.locale,
+      brandName: snapshot.copy.brandName,
+    });
+    this.refreshViewModel(snapshot.locale);
+  },
+
+  refreshViewModel(locale = this.data.locale) {
+    const session = assessmentSessionStore.read() || {};
+    this.setData({
+      viewModel: buildReportViewModel({
+        locale,
+        session,
+      }),
     });
   },
 
-  handleAction() {
-    if (!this.data.actionRoute) {
-      return;
-    }
+  handleOcrAction() {
+    const route =
+      this.data.viewModel?.ocrStatus?.state === 'pending' ? REPORT_ROUTES.ocrUpload : REPORT_ROUTES.ocrConfirmation;
 
     wx.navigateTo({
-      url: `${this.data.actionRoute}?assessmentId=${this.data.actionAssessmentId || ''}`,
+      url: `${route}?assessmentId=${assessmentSessionStore.read()?.assessmentId || ''}`,
+    });
+  },
+
+  handleTimelineAction() {
+    wx.navigateTo({
+      url: REPORT_ROUTES.timeline,
+    });
+  },
+
+  handlePrimaryAction() {
+    wx.switchTab({
+      url: '/pages/checkin/index/index',
+    });
+  },
+
+  handleRetakeAssessment() {
+    wx.navigateTo({
+      url: ASSESSMENT_ROUTES.questionnaire,
     });
   },
 });

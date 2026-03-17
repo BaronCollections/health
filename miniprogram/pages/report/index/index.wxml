@@ -1,12 +1,116 @@
 <view class="page-shell">
-  <mintbit-nav title="MintBit" />
-  <view wx:if="{{shell}}" class="page-content">
-    <fallback-state
-      tone="loading"
-      title="{{shell.title}}"
-      body="{{shell.body}}"
-      ctaText="{{actionText}}"
-      bind:action="handleAction"
-    />
+  <mintbit-nav title="{{brandName}}" subtitle="{{viewModel.header.posterTitle}}" />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="eyebrow">{{viewModel.ownerLabel}}</view>
+      <view class="section-title report-score">{{viewModel.metrics.totalScore}}</view>
+      <view class="section-body">{{viewModel.scoreSummary.label}}</view>
+      <view class="report-footnote">{{viewModel.scoreSummary.footnote}}</view>
+      <view class="spacer-20"></view>
+      <view class="metric-highlight">
+        <view class="metric-highlight__label">{{viewModel.bmi.label}}</view>
+        <view class="metric-highlight__value">{{viewModel.metrics.bmi}}</view>
+      </view>
+      <view class="section-body">{{viewModel.bmi.description}}</view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{viewModel.goalsSection.label}}</view>
+      <view class="goal-primary">{{viewModel.goalsSection.primaryLabel}} {{viewModel.primaryGoal.label}}</view>
+      <view class="goal-chip-row">
+        <view wx:for="{{viewModel.goalsSection.items}}" wx:key="id" class="goal-chip">{{item.label}}</view>
+      </view>
+      <view class="mini-card daily-goal-card">
+        <view class="mini-card__title">{{viewModel.dailyGoal.icon}} {{viewModel.dailyGoal.title}}</view>
+        <view class="mini-card__body">{{viewModel.dailyGoal.itemTitle}}</view>
+        <view class="mini-card__body">{{viewModel.dailyGoal.description}}</view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="card-grid">
+      <view wx:for="{{viewModel.dimensions}}" wx:key="id" class="mini-card">
+        <view class="mini-card__title">{{item.label}}</view>
+        <view class="dimension-score">{{item.score}}</view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">OCR</view>
+      <view class="mini-card__title">{{viewModel.ocrStatus.title}}</view>
+      <view class="mini-card__body">{{viewModel.ocrStatus.body}}</view>
+      <view class="button-row">
+        <view class="button-primary button-wide" bindtap="handleOcrAction">{{viewModel.ocrStatus.actionLabel}}</view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{viewModel.nutritionSection.title}}</view>
+      <view class="section-body">{{viewModel.nutritionSection.description}}</view>
+      <view class="card-grid">
+        <view wx:for="{{viewModel.nutritionCards}}" wx:key="id" class="mini-card nutrition-card">
+          <view class="nutrition-tag">{{item.category}}</view>
+          <view class="mini-card__title">{{item.name}}</view>
+          <view class="mini-card__body">{{item.benefit}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{viewModel.dietAdvice.title}}</view>
+      <view class="list-stack">
+        <view wx:for="{{viewModel.dietAdvice.items}}" wx:key="id" class="mini-card">
+          <view class="advice-number">{{item.number}}</view>
+          <view class="mini-card__title">{{item.title}}</view>
+          <view class="mini-card__body">{{item.content}}</view>
+        </view>
+      </view>
+      <view class="spacer-20"></view>
+      <view class="section-header">{{viewModel.exerciseAdvice.title}}</view>
+      <view wx:for="{{viewModel.exerciseAdvice.items}}" wx:key="id" class="mini-card">
+        <view class="advice-number">{{item.number}}</view>
+        <view class="mini-card__title">{{item.title}}</view>
+        <view class="mini-card__body">{{item.content}}</view>
+      </view>
+      <view class="report-footnote">{{viewModel.exerciseAdvice.footnote}}</view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{viewModel.reminders.title}}</view>
+      <view class="audit-list">
+        <view wx:for="{{viewModel.reminders.items}}" wx:key="*this" class="audit-item">
+          <view class="audit-dot"></view>
+          <view class="audit-text">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{viewModel.nutritionSection.historyEntry.title}}</view>
+      <view class="section-body">{{viewModel.nutritionSection.historyEntry.body}}</view>
+      <view class="button-row">
+        <view class="button-ghost button-wide" bindtap="handleTimelineAction">{{viewModel.nutritionSection.historyEntry.cta}}</view>
+      </view>
+      <view class="report-footnote">{{viewModel.closingSection.icon}} {{viewModel.closingSection.note}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{viewModel}}" class="page-actions">
+    <view class="button-primary button-wide" bindtap="handlePrimaryAction">{{viewModel.closingSection.primaryCta}}</view>
+    <view class="button-secondary button-wide" bindtap="handleRetakeAssessment">{{viewModel.actions.retake}}</view>
   </view>
 </view>

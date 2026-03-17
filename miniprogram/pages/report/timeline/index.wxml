@@ -1,0 +1,76 @@
+<view class="page-shell">
+  <mintbit-nav
+    title="{{viewModel.header.title}}"
+    subtitle="{{brandName}}"
+    showBack="{{true}}"
+    backLabel="{{backLabel}}"
+  />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="eyebrow">{{viewModel.overview.eyebrow}}</view>
+      <view class="section-title timeline-score">{{viewModel.overview.scoreValue}}</view>
+      <view class="section-body">{{viewModel.overview.title}}</view>
+      <view class="section-body">{{viewModel.overview.body}}</view>
+      <view class="timeline-delta">{{viewModel.overview.deltaLabel}} {{viewModel.overview.deltaValue}}</view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{viewModel.trendSection.title}}</view>
+      <view class="card-grid">
+        <view wx:for="{{viewModel.trendSection.items}}" wx:key="id" class="mini-card">
+          <view class="mini-card__title">{{item.label}}</view>
+          <view class="trend-value">{{item.value}}</view>
+          <view class="mini-card__body">{{item.note}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{viewModel.snapshotsSection.title}}</view>
+      <view class="list-stack">
+        <view wx:for="{{viewModel.snapshots}}" wx:key="id" class="mini-card snapshot-card">
+          <view class="snapshot-meta">
+            <view class="mini-card__title">{{item.dateLabel}}</view>
+            <view class="trend-value">{{item.score}}</view>
+          </view>
+          <view class="mini-card__title">{{item.title}}</view>
+          <view class="mini-card__body">{{item.primaryGoal}} · {{item.habit}}</view>
+          <view class="mini-card__body">{{item.highlight}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="section-header">{{viewModel.milestonesSection.title}}</view>
+      <view class="audit-list">
+        <view wx:for="{{viewModel.milestonesSection.items}}" wx:key="*this" class="audit-item">
+          <view class="audit-dot"></view>
+          <view class="audit-text">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="spacer-20"></view>
+
+    <view class="surface-card section-card">
+      <view class="eyebrow">{{viewModel.communityBridge.eyebrow}}</view>
+      <view class="section-header">{{viewModel.communityBridge.title}}</view>
+      <view class="section-body">{{viewModel.communityBridge.body}}</view>
+      <view class="button-row">
+        <view class="button-ghost button-wide" bindtap="handleCommunityAction">{{viewModel.communityBridge.cta}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{viewModel}}" class="page-actions">
+    <view class="button-primary button-wide" bindtap="handlePrimaryAction">{{viewModel.actions.primary}}</view>
+    <view class="button-secondary button-wide" bindtap="handleSecondaryAction">{{viewModel.actions.secondary}}</view>
+  </view>
+</view>

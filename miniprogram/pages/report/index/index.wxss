@@ -1,1 +1,133 @@
+.report-score {
+  font-size: 96rpx;
+}
 
+.report-footnote {
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  line-height: 1.7;
+  color: var(--mintbit-text-secondary);
+}
+
+.metric-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 24rpx;
+  border-radius: 28rpx;
+  background: rgba(244, 250, 245, 0.95);
+}
+
+.metric-highlight__label {
+  font-size: 26rpx;
+  color: var(--mintbit-text-secondary);
+}
+
+.metric-highlight__value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--mintbit-text);
+}
+
+.section-header {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--mintbit-text);
+  margin-bottom: 20rpx;
+}
+
+.goal-primary {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--mintbit-brand-strong);
+}
+
+.goal-chip-row {
+  display: flex;
+  gap: 16rpx;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.goal-chip {
+  padding: 12rpx 20rpx;
+  border-radius: 999rpx;
+  background: rgba(239, 248, 240, 0.95);
+  color: var(--mintbit-brand-strong);
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.daily-goal-card {
+  margin-top: 24rpx;
+}
+
+.dimension-score {
+  margin-top: 12rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--mintbit-text);
+}
+
+.button-wide {
+  width: 100%;
+}
+
+.nutrition-card {
+  background: rgba(250, 252, 249, 0.98);
+}
+
+.nutrition-tag {
+  display: inline-flex;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(109, 181, 120, 0.14);
+  color: var(--mintbit-brand-strong);
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.advice-number {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: var(--mintbit-brand-strong);
+}
+
+.audit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.audit-item {
+  display: flex;
+  gap: 16rpx;
+}
+
+.audit-dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin-top: 12rpx;
+  border-radius: 999rpx;
+  background: var(--mintbit-brand);
+  flex-shrink: 0;
+}
+
+.audit-text {
+  flex: 1;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--mintbit-text-secondary);
+}
+
+.page-actions {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  padding: 24rpx 28rpx calc(28rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 253, 247, 0.96);
+  backdrop-filter: blur(18rpx);
+}

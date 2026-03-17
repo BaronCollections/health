@@ -11,7 +11,8 @@
     "pages/assessment/questionnaire/index",
     "pages/assessment/result-loading/index",
     "pages/report/ocr-upload/index",
-    "pages/report/ocr-confirmation/index"
+    "pages/report/ocr-confirmation/index",
+    "pages/report/timeline/index"
   ],
   "window": {
     "navigationBarTitleText": "MintBit",

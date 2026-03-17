@@ -20,4 +20,5 @@ export const REPORT_ROUTES = Object.freeze({
   index: '/pages/report/index/index',
   ocrUpload: '/pages/report/ocr-upload/index',
   ocrConfirmation: '/pages/report/ocr-confirmation/index',
+  timeline: '/pages/report/timeline/index',
 });
