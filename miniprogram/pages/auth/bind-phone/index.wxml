@@ -5,6 +5,8 @@
     <view class="surface-card section-card">
       <view class="section-title">{{copy.bindTitle}}</view>
       <view class="section-body">{{copy.bindBody}}</view>
+      <view wx:if="{{noticeMessage}}" class="section-body" style="color: #4f9a5c;">{{noticeMessage}}</view>
+      <view wx:if="{{errorMessage}}" class="section-body" style="color: #b4503c;">{{errorMessage}}</view>
 
       <view class="form-stack">
         <view>
@@ -18,8 +20,8 @@
       </view>
 
       <view class="button-row">
-        <view class="button-secondary" bindtap="handleSendCode">{{copy.bindSendCode}}</view>
-        <view class="button-primary" bindtap="handleSubmit">{{copy.bindSubmit}}</view>
+        <view class="button-secondary" bindtap="handleSendCode">{{isSendingCode ? '...' : copy.bindSendCode}}</view>
+        <view class="button-primary" bindtap="handleSubmit">{{isSubmitting ? '...' : copy.bindSubmit}}</view>
       </view>
     </view>
   </view>

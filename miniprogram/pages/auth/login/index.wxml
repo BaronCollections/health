@@ -5,13 +5,14 @@
     <view class="surface-card section-card">
       <view class="section-title">{{copy.loginTitle}}</view>
       <view class="section-body">{{copy.loginBody}}</view>
+      <view wx:if="{{errorMessage}}" class="section-body" style="color: #b4503c;">{{errorMessage}}</view>
       <view class="button-row">
-        <view class="button-primary" bindtap="handleContinue">{{copy.loginCta}}</view>
+        <view class="button-primary" bindtap="handleContinue">{{isSubmitting ? '...' : copy.loginCta}}</view>
       </view>
     </view>
 
     <view style="margin-top: 24rpx;">
-      <fallback-state tone="info" title="Mock login" body="This foundation step keeps WeChat login in a safe local placeholder until API adapters are wired." />
+      <fallback-state tone="info" title="WeChat auth" body="The page now uses wx.login and the backend mini program auth contract. If the account is not bound yet, it continues into phone binding." />
     </view>
   </view>
 </view>

@@ -7,6 +7,10 @@ Page({
     copy: null,
     phone: '',
     code: '',
+    isSendingCode: false,
+    isSubmitting: false,
+    errorMessage: '',
+    noticeMessage: '',
   },
 
   onLoad() {
@@ -39,33 +43,66 @@ Page({
     });
   },
 
-  handleSendCode() {
-    wx.showToast({
-      title: this.data.copy.bindSendCode,
-      icon: 'none',
-    });
-  },
-
-  handleSubmit() {
-    if (!this.data.phone || !this.data.code) {
-      wx.showToast({
-        title: 'Missing fields',
-        icon: 'none',
+  async handleSendCode() {
+    if (!this.data.phone) {
+      this.setData({
+        errorMessage: 'Phone is required',
       });
       return;
     }
 
-    getStores().authStore.setAuthenticated({
-      accessToken: 'mock-access-token',
-      refreshToken: 'mock-refresh-token',
-      userProfile: {
-        id: 7,
-        nickname: this.data.phone,
-      },
+    this.setData({
+      isSendingCode: true,
+      errorMessage: '',
+      noticeMessage: '',
     });
 
-    wx.switchTab({
-      url: '/pages/home/index/index',
+    try {
+      const response = await getStores().authStore.sendSmsCode(this.data.phone);
+      this.setData({
+        noticeMessage: `${response.status}: ${response.maskedPhone}`,
+      });
+    } catch (error) {
+      this.setData({
+        errorMessage: error?.message || 'Failed to send code',
+      });
+    } finally {
+      this.setData({
+        isSendingCode: false,
+      });
+    }
+  },
+
+  async handleSubmit() {
+    if (!this.data.phone || !this.data.code) {
+      this.setData({
+        errorMessage: 'Missing fields',
+      });
+      return;
+    }
+
+    this.setData({
+      isSubmitting: true,
+      errorMessage: '',
     });
+
+    try {
+      await getStores().authStore.bindPhone({
+        phone: this.data.phone,
+        smsCode: this.data.code,
+      });
+
+      wx.switchTab({
+        url: '/pages/home/index/index',
+      });
+    } catch (error) {
+      this.setData({
+        errorMessage: error?.message || 'Bind failed',
+      });
+    } finally {
+      this.setData({
+        isSubmitting: false,
+      });
+    }
   },
 });

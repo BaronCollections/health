@@ -43,6 +43,8 @@ export function createRequestClient({
   env,
   getLocale = () => 'zh-CN',
   getSession = () => ({}),
+  locale,
+  session,
   appId = '',
   requestAdapter,
 } = {}) {
@@ -53,22 +55,28 @@ export function createRequestClient({
   }
 
   return function request({ url, method = 'GET', data, headers = {} }) {
+    const resolvedSession = typeof getSession === 'function' ? getSession() : session || {};
+    const resolvedLocale = typeof getLocale === 'function' ? getLocale() : locale || 'zh-CN';
     const config = createRequestClientConfig({
       env,
-      session: getSession(),
-      locale: getLocale(),
+      session: resolvedSession,
+      locale: resolvedLocale,
       appId,
     });
 
-    return adapter({
-      url: buildApiUrl(config.baseUrl, url),
-      method,
-      data,
-      timeout: config.timeout,
-      header: {
-        ...config.headers,
-        ...headers,
-      },
+    return new Promise((resolve, reject) => {
+      adapter({
+        url: buildApiUrl(config.baseUrl, url),
+        method,
+        data,
+        timeout: config.timeout,
+        header: {
+          ...config.headers,
+          ...headers,
+        },
+        success: resolve,
+        fail: (error) => reject(new Error(error?.errMsg || 'Request failed')),
+      });
     });
   };
 }

@@ -6,6 +6,8 @@ Page({
   data: {
     locale: 'zh-CN',
     copy: null,
+    isSubmitting: false,
+    errorMessage: '',
   },
 
   onLoad() {
@@ -29,13 +31,33 @@ Page({
     this.unsubscribe?.();
   },
 
-  handleContinue() {
-    getStores().authStore.setBindRequired('mock-bind-token', {
-      locale: this.data.locale,
+  async handleContinue() {
+    this.setData({
+      isSubmitting: true,
+      errorMessage: '',
     });
 
-    wx.navigateTo({
-      url: '/pages/auth/bind-phone/index',
-    });
+    try {
+      const snapshot = await getStores().authStore.loginWithWeChat();
+
+      if (snapshot.status === 'bind_required') {
+        wx.navigateTo({
+          url: '/pages/auth/bind-phone/index',
+        });
+        return;
+      }
+
+      wx.switchTab({
+        url: '/pages/home/index/index',
+      });
+    } catch (error) {
+      this.setData({
+        errorMessage: error?.message || 'Login failed',
+      });
+    } finally {
+      this.setData({
+        isSubmitting: false,
+      });
+    }
   },
 });
