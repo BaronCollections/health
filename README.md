@@ -16,11 +16,11 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 ## Mini Program Migration Snapshot
 
 - 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
-- 当前迁移阶段：`Full Questionnaire Bank`
-- 当前小程序总进度：`约 80%`
+- 当前迁移阶段：`Native Community`
+- 当前小程序总进度：`约 88%`
 - 当前已完成：
   - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
-  - Node 基础测试与契约测试：`21` 个测试全部通过
+  - Node 基础测试与契约测试：`30` 个测试全部通过
   - MintBit 原生壳层：`app.js / app.json / app.wxss / custom-tab-bar`
   - 首批可运行页面：`home / profile / report / checkin / community / auth/login / auth/bind-phone`
   - 小程序认证契约：`/api/miniprogram/auth/login`、`/sms/send`、`/bind`、`/refresh`、`/me`
@@ -34,8 +34,14 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - 原生报告页：报告 tab 已升级为真实详情页，接入评分、目标、OCR 状态、营养方案与建议
   - 原生时间轴：`/pages/report/timeline/index` 已接入历史快照、趋势摘要与社区桥接入口
   - 原生打卡页：`/pages/checkin/index/index` 已接入连续打卡、积分累计、报告方案回桥与空态处理
+  - 原生社区页：`/pages/community/index/index` 已升级为真实 feed，接入推荐/圈子切换、时间轴桥接与帖子卡片
+  - 原生发帖页：`/pages/community/create/index` 已接入圈子选择、标签建议、正文提交与本地回退状态
+  - 原生帖子详情：`/pages/community/detail/index` 已接入点赞、收藏、评论输入与状态展示
+  - 原生我的帖子：`/pages/community/my-posts/index` 已接入审核状态分栏与帖子进度追踪
+  - 社区运行时：`community content / api / session / view-model` 已独立成可测试模块
 - 当前仍待完成：
-  - 打卡、社区、账户深页的完整域迁移
+  - 账户深页与平台级设置迁移
+  - 社区运营审核页在小程序端的迁移与管理员入口
   - 微信开发者工具内的完整交互验收与发布配置收口
 
 ## Current Product Shape
