@@ -22,3 +22,10 @@ export const REPORT_ROUTES = Object.freeze({
   ocrConfirmation: '/pages/report/ocr-confirmation/index',
   timeline: '/pages/report/timeline/index',
 });
+
+export const COMMUNITY_ROUTES = Object.freeze({
+  index: '/pages/community/index/index',
+  create: '/pages/community/create/index',
+  detail: '/pages/community/detail/index',
+  myPosts: '/pages/community/my-posts/index',
+});

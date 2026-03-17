@@ -1,1 +1,150 @@
+.community-hero-title {
+  font-size: 42rpx;
+}
 
+.tab-row {
+  display: flex;
+  gap: 16rpx;
+  margin: 24rpx 28rpx 0;
+}
+
+.community-tab {
+  flex: 1;
+  min-height: 74rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--mintbit-text-secondary);
+  font-size: 26rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.community-tab--active {
+  background: linear-gradient(135deg, var(--mintbit-brand) 0%, #8ec68d 100%);
+  color: #ffffff;
+}
+
+.circle-row {
+  display: flex;
+  gap: 16rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 20rpx 28rpx 0;
+  box-sizing: border-box;
+}
+
+.circle-chip {
+  min-width: 188rpx;
+  padding: 18rpx 22rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.78);
+  border: 2rpx solid rgba(217, 230, 215, 0.72);
+  box-sizing: border-box;
+}
+
+.circle-chip--active {
+  background: rgba(109, 181, 120, 0.12);
+  border-color: rgba(109, 181, 120, 0.4);
+}
+
+.circle-chip__title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--mintbit-text);
+}
+
+.circle-chip__meta {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: var(--mintbit-text-secondary);
+}
+
+.community-stack {
+  margin-top: 24rpx;
+}
+
+.bridge-card,
+.empty-card {
+  margin-top: 24rpx;
+}
+
+.circle-card {
+  padding: 28rpx;
+}
+
+.circle-card__meta {
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  color: var(--mintbit-brand-strong);
+  font-weight: 600;
+}
+
+.post-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 18rpx;
+}
+
+.avatar-badge {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: rgba(109, 181, 120, 0.18);
+  color: var(--mintbit-brand-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.post-card__meta {
+  flex: 1;
+}
+
+.post-card__author {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--mintbit-text);
+}
+
+.post-card__time {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: var(--mintbit-text-secondary);
+}
+
+.post-card__content {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  line-height: 1.8;
+  color: var(--mintbit-text);
+}
+
+.tag-row {
+  display: flex;
+  gap: 12rpx;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.tag-chip {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: var(--mintbit-brand-soft);
+  color: var(--mintbit-brand-strong);
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.post-card__footer {
+  display: flex;
+  gap: 20rpx;
+  flex-wrap: wrap;
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: var(--mintbit-text-secondary);
+}

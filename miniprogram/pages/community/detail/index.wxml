@@ -1,0 +1,68 @@
+<view class="page-shell">
+  <mintbit-nav
+    title="{{brandName}}"
+    subtitle="{{viewModel.post.circleName}}"
+    showBack="{{true}}"
+    backLabel="{{backLabel}}"
+  />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="post-head">
+        <view class="avatar-badge">{{viewModel.post.authorAvatar}}</view>
+        <view class="post-head__meta">
+          <view class="post-head__author">{{viewModel.post.authorName}}</view>
+          <view class="post-head__role">{{viewModel.post.authorRole}}</view>
+          <view class="post-head__time">{{viewModel.post.relativeTime}}</view>
+        </view>
+        <view class="status-pill">{{viewModel.statusLabel}}</view>
+      </view>
+
+      <view class="post-content">{{viewModel.post.content}}</view>
+
+      <view wx:if="{{viewModel.post.moderationReason}}" class="moderation-note">
+        {{viewModel.post.moderationReason}}
+      </view>
+
+      <view wx:if="{{viewModel.post.tags.length}}" class="tag-row">
+        <view wx:for="{{viewModel.post.tags}}" wx:key="*this" class="tag-chip">{{item}}</view>
+      </view>
+
+      <view class="button-row">
+        <view class="button-primary" bindtap="handleLike">{{viewModel.actions.like}} · {{viewModel.post.likes}}</view>
+        <view class="button-secondary" bindtap="handleSave">{{viewModel.actions.save}} · {{viewModel.post.saves}}</view>
+      </view>
+    </view>
+
+    <view class="surface-card section-card comments-card">
+      <view class="list-item__title">{{viewModel.header.commentsTitle}}</view>
+
+      <view wx:if="{{!viewModel.comments.length}}" class="mini-card comments-empty">
+        <view class="mini-card__body">{{viewModel.emptyComments}}</view>
+      </view>
+
+      <view wx:if="{{viewModel.comments.length}}" class="list-stack comments-list">
+        <view wx:for="{{viewModel.comments}}" wx:key="id" class="mini-card">
+          <view class="comment-head">
+            <view class="comment-head__author">{{item.authorName}}</view>
+            <view class="status-pill">{{item.statusLabel}}</view>
+          </view>
+          <view class="mini-card__body">{{item.content}}</view>
+          <view class="comment-meta">{{item.relativeTime}} · {{item.likes}} {{viewModel.metaLabels.likes}}</view>
+        </view>
+      </view>
+
+      <view class="field-label comment-label">{{viewModel.actions.submitComment}}</view>
+      <textarea
+        class="text-input comment-textarea"
+        placeholder="{{viewModel.commentPlaceholder}}"
+        value="{{commentValue}}"
+        maxlength="200"
+        bindinput="handleCommentInput"
+      />
+      <view class="button-row">
+        <view class="button-primary button-wide" bindtap="handleSubmitComment">{{viewModel.actions.submitComment}}</view>
+      </view>
+    </view>
+  </view>
+</view>

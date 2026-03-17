@@ -1,6 +1,96 @@
 <view class="page-shell">
-  <mintbit-nav title="MintBit" />
-  <view wx:if="{{shell}}" class="page-content">
-    <fallback-state tone="loading" title="{{shell.title}}" body="{{shell.body}}" ctaText="{{common.continue}}" />
+  <mintbit-nav title="{{brandName}}" subtitle="{{viewModel.header.title}}" />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="eyebrow">{{viewModel.timelineBridge.eyebrow}}</view>
+      <view class="section-title community-hero-title">{{viewModel.header.title}}</view>
+      <view class="section-body">{{viewModel.header.subtitle}}</view>
+      <view class="button-row">
+        <view class="button-primary" bindtap="handleOpenCreate">{{viewModel.header.createCta}}</view>
+        <view class="button-secondary" bindtap="handleOpenMyPosts">{{viewModel.header.myPostsCta}}</view>
+      </view>
+    </view>
+
+    <view class="tab-row">
+      <view
+        wx:for="{{viewModel.tabs}}"
+        wx:key="id"
+        class="community-tab {{item.active ? 'community-tab--active' : ''}}"
+        data-tab="{{item.id}}"
+        bindtap="handleTabChange"
+      >
+        {{item.label}}
+      </view>
+    </view>
+
+    <view class="circle-row">
+      <view
+        wx:for="{{viewModel.circles}}"
+        wx:key="id"
+        class="circle-chip {{item.selected ? 'circle-chip--active' : ''}}"
+        data-circle-id="{{item.id}}"
+        bindtap="handleCircleChange"
+      >
+        <view class="circle-chip__title">{{item.name}}</view>
+        <view wx:if="{{item.memberLabel}}" class="circle-chip__meta">{{item.memberLabel}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{viewModel.activeTab === 'circles'}}" class="list-stack community-stack">
+      <view
+        wx:for="{{viewModel.circleCards}}"
+        wx:key="id"
+        class="surface-card section-card circle-card"
+      >
+        <view class="list-item__title">{{item.name}}</view>
+        <view class="list-item__body">{{item.description}}</view>
+        <view class="circle-card__meta">{{item.memberLabel}}</view>
+      </view>
+    </view>
+
+    <view class="surface-card section-card bridge-card">
+      <view class="list-item__title">{{viewModel.timelineBridge.title}}</view>
+      <view class="list-item__body">{{viewModel.timelineBridge.body}}</view>
+      <view class="button-row">
+        <view class="button-ghost" bindtap="handleOpenTimeline">{{viewModel.timelineBridge.cta}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{!viewModel.posts.length}}" class="surface-card section-card empty-card">
+      <view class="list-item__title">{{viewModel.emptyState.title}}</view>
+      <view class="list-item__body">{{viewModel.emptyState.body}}</view>
+    </view>
+
+    <view wx:if="{{viewModel.posts.length}}" class="list-stack community-stack">
+      <view
+        wx:for="{{viewModel.posts}}"
+        wx:key="id"
+        class="surface-card section-card post-card"
+        data-post-id="{{item.id}}"
+        bindtap="handleOpenPost"
+      >
+        <view class="post-card__header">
+          <view class="avatar-badge">{{item.authorAvatar}}</view>
+          <view class="post-card__meta">
+            <view class="post-card__author">{{item.authorName}}</view>
+            <view class="post-card__time">{{item.circleName}} · {{item.relativeTime}}</view>
+          </view>
+          <view class="status-pill">{{item.statusLabel}}</view>
+        </view>
+
+        <view class="post-card__content">{{item.content}}</view>
+
+        <view wx:if="{{item.tagLine}}" class="tag-row">
+          <view wx:for="{{item.tags}}" wx:key="*this" class="tag-chip">{{item}}</view>
+        </view>
+
+        <view class="post-card__footer">
+          <text>{{item.likes}} {{viewModel.metaLabels.likes}}</text>
+          <text>{{item.commentCount}} {{viewModel.metaLabels.comments}}</text>
+          <text>{{item.saves}} {{viewModel.metaLabels.saves}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
