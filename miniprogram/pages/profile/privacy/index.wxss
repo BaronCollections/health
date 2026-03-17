@@ -1,0 +1,32 @@
+.page-title {
+  font-size: 40rpx;
+}
+
+.privacy-card,
+.document-stack {
+  margin-top: 24rpx;
+}
+
+.prefs-stack {
+  margin-top: 20rpx;
+}
+
+.document-card .list-item__body + .list-item__body {
+  margin-top: 10rpx;
+}
+
+.page-actions {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 16rpx;
+  padding: 24rpx 28rpx calc(24rpx + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(247, 245, 239, 0) 0%, rgba(247, 245, 239, 0.98) 38%);
+  box-sizing: border-box;
+}
+
+.button-wide {
+  flex: 1;
+}

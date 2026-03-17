@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "mintbit-nav": "/components/mintbit-nav/index"
+  }
+}

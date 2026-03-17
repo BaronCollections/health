@@ -1,0 +1,27 @@
+<view class="page-shell">
+  <mintbit-nav title="MintBit" subtitle="{{viewModel.header.title}}" showBack="{{true}}" backLabel="{{backLabel}}" />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="section-title page-title">{{viewModel.header.title}}</view>
+      <view class="section-body">{{viewModel.header.subtitle}}</view>
+    </view>
+
+    <view wx:if="{{!viewModel.groups.length}}" class="surface-card section-card empty-card">
+      <view class="list-item__title">{{viewModel.emptyState.title}}</view>
+      <view class="list-item__body">{{viewModel.emptyState.body}}</view>
+    </view>
+
+    <view wx:if="{{viewModel.groups.length}}" class="list-stack records-stack">
+      <view wx:for="{{viewModel.groups}}" wx:key="id" wx:for-item="group" class="surface-card section-card record-group">
+        <view class="list-item__title">{{group.statusLabel}}</view>
+        <view wx:for="{{group.items}}" wx:key="id" wx:for-item="record" class="record-item">
+          <view class="record-item__subject">{{record.subject}}</view>
+          <view class="record-item__meta">{{record.category}} · {{record.submittedAt}}</view>
+          <view class="list-item__body">{{record.description}}</view>
+          <view wx:if="{{record.reply}}" class="record-reply">{{record.reply}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

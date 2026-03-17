@@ -1,0 +1,43 @@
+<view class="page-shell">
+  <mintbit-nav title="MintBit" subtitle="{{viewModel.title}}" showBack="{{true}}" backLabel="{{backLabel}}" />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="section-title page-title">{{viewModel.title}}</view>
+      <view class="section-body">{{viewModel.subtitle}}</view>
+    </view>
+
+    <view class="surface-card section-card form-card">
+      <view class="field-label">{{viewModel.categoryLabel}}</view>
+      <view class="tag-grid">
+        <view
+          wx:for="{{viewModel.categoryOptions}}"
+          wx:key="id"
+          class="tag-choice {{item.selected ? 'tag-choice--active' : ''}}"
+          data-category="{{item.id}}"
+          bindtap="handleCategoryTap"
+        >
+          {{item.label}}
+        </view>
+      </view>
+
+      <view class="field-label form-label">{{viewModel.subjectLabel}}</view>
+      <input class="text-input" data-field="subject" value="{{subject}}" placeholder="{{viewModel.subjectPlaceholder}}" bindinput="handleInput" />
+
+      <view class="field-label form-label">{{viewModel.descriptionLabel}}</view>
+      <textarea class="text-input form-textarea" data-field="description" value="{{description}}" placeholder="{{viewModel.descriptionPlaceholder}}" bindinput="handleInput" maxlength="400" />
+
+      <view class="field-label form-label">{{viewModel.contactLabel}}</view>
+      <input class="text-input" data-field="contact" value="{{contact}}" placeholder="{{viewModel.contactPlaceholder}}" bindinput="handleInput" />
+
+      <view class="field-label form-label">{{viewModel.screenshotLabel}}</view>
+      <input class="text-input" data-field="screenshotName" value="{{screenshotName}}" placeholder="{{viewModel.screenshotPlaceholder}}" bindinput="handleInput" />
+
+      <view wx:if="{{errorMessage}}" class="error-text">{{errorMessage}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{viewModel}}" class="page-actions">
+    <view class="button-primary button-wide" bindtap="handleSubmit">{{viewModel.submitCta}}</view>
+  </view>
+</view>

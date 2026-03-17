@@ -1,0 +1,48 @@
+<view class="page-shell">
+  <mintbit-nav title="MintBit" subtitle="{{viewModel.header.eyebrow}}" showBack="{{true}}" backLabel="{{backLabel}}" />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="section-title page-title">{{viewModel.header.title}}</view>
+      <view class="section-body">{{viewModel.header.subtitle}}</view>
+      <view class="button-row">
+        <view class="button-secondary" bindtap="handleBatchRead">{{viewModel.header.batchRead}}</view>
+      </view>
+    </view>
+
+    <view class="filter-row">
+      <view
+        wx:for="{{viewModel.filters}}"
+        wx:key="id"
+        class="filter-chip {{item.active ? 'filter-chip--active' : ''}}"
+        data-filter="{{item.id}}"
+        bindtap="handleFilterTap"
+      >
+        {{item.label}}
+      </view>
+    </view>
+
+    <view wx:if="{{!viewModel.items.length}}" class="surface-card section-card empty-card">
+      <view class="list-item__title">{{viewModel.emptyState.title}}</view>
+      <view class="list-item__body">{{viewModel.emptyState.body}}</view>
+    </view>
+
+    <view wx:if="{{viewModel.items.length}}" class="list-stack notifications-stack">
+      <view
+        wx:for="{{viewModel.items}}"
+        wx:key="id"
+        class="surface-card section-card notification-card"
+        data-id="{{item.id}}"
+        bindtap="handleOpenDetail"
+      >
+        <view class="notification-card__top">
+          <view class="status-pill">{{item.typeLabel}}</view>
+          <view class="status-pill {{item.status === 'unread' ? 'status-pill--unread' : ''}}">{{item.statusLabel}}</view>
+        </view>
+        <view class="list-item__title">{{item.title}}</view>
+        <view class="list-item__body">{{item.preview}}</view>
+        <view class="notification-time">{{item.relativeTime}}</view>
+      </view>
+    </view>
+  </view>
+</view>

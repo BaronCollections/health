@@ -1,3 +1,40 @@
-.button-row .button-primary {
-  width: 100%;
+.profile-title {
+  font-size: 40rpx;
+}
+
+.profile-auth-card {
+  margin-top: 24rpx;
+}
+
+.auth-title {
+  font-size: 36rpx;
+  margin-top: 20rpx;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18rpx;
+  margin-top: 24rpx;
+}
+
+.summary-card {
+  min-height: 168rpx;
+}
+
+.summary-label {
+  font-size: 24rpx;
+  color: var(--mintbit-text-secondary);
+}
+
+.summary-value,
+.summary-status {
+  margin-top: 18rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--mintbit-text);
+}
+
+.account-card-stack {
+  margin-top: 24rpx;
 }

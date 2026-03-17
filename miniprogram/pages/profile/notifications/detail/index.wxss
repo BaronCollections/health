@@ -1,0 +1,7 @@
+.detail-title {
+  font-size: 38rpx;
+}
+
+.detail-card {
+  margin-top: 24rpx;
+}

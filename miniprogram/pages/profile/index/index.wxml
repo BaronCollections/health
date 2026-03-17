@@ -1,26 +1,46 @@
 <view class="page-shell">
-  <mintbit-nav title="MintBit" />
+  <mintbit-nav title="MintBit" subtitle="{{viewModel.header.eyebrow}}" />
 
-  <view wx:if="{{copy}}" class="page-content">
+  <view wx:if="{{viewModel}}" class="page-content">
     <view class="surface-card section-card">
-      <view class="section-title">{{copy.title}}</view>
-      <view class="section-body">{{copy.subtitle}}</view>
+      <view class="section-title profile-title">{{viewModel.header.title}}</view>
+      <view class="section-body">{{viewModel.header.subtitle}}</view>
       <view class="spacer-20"></view>
       <locale-switch locale="{{locale}}" label="{{switchLanguageLabel}}" bind:change="handleLocaleChange" />
     </view>
 
-    <view class="surface-card section-card" style="margin-top: 24rpx;">
+    <view class="surface-card section-card profile-auth-card">
       <view class="status-pill">{{authStatus}}</view>
-      <view class="section-title" style="font-size: 38rpx; margin-top: 20rpx;">{{copy.guestTitle}}</view>
-      <view class="section-body">{{copy.guestBody}}</view>
-      <view class="button-row">
-        <view class="button-primary" bindtap="handleAuthCta">{{copy.authCta}}</view>
+      <view class="section-title auth-title">{{authIdentity || 'MintBit'}}</view>
+      <view class="section-body" wx:if="{{authStatus !== 'authenticated'}}">{{authCopy.guestBody}}</view>
+      <view class="section-body" wx:if="{{authStatus === 'authenticated'}}">{{authCopy.memberBody}}</view>
+      <view class="button-row" wx:if="{{authStatus !== 'authenticated'}}">
+        <view class="button-primary" bindtap="handleAuthCta">{{authCopy.authCta}}</view>
       </view>
     </view>
 
-    <view class="list-stack" style="margin-top: 24rpx;">
+    <view class="summary-grid">
+      <view class="mini-card summary-card">
+        <view class="summary-label">{{viewModel.summary.unreadLabel}}</view>
+        <view class="summary-value">{{viewModel.summary.unreadValue}}</view>
+      </view>
+      <view class="mini-card summary-card">
+        <view class="summary-label">{{viewModel.summary.feedbackLabel}}</view>
+        <view class="summary-value">{{viewModel.summary.feedbackValue}}</view>
+      </view>
+      <view class="mini-card summary-card">
+        <view class="summary-label">{{viewModel.summary.exportLabel}}</view>
+        <view class="summary-status">{{viewModel.summary.exportStatusLabel}}</view>
+      </view>
+      <view class="mini-card summary-card">
+        <view class="summary-label">{{viewModel.summary.deleteLabel}}</view>
+        <view class="summary-status">{{viewModel.summary.deleteStatusLabel}}</view>
+      </view>
+    </view>
+
+    <view class="list-stack account-card-stack">
       <view
-        wx:for="{{copy.cards}}"
+        wx:for="{{viewModel.cards}}"
         wx:key="id"
         class="list-item surface-card"
         data-href="{{item.href}}"

@@ -29,3 +29,18 @@ export const COMMUNITY_ROUTES = Object.freeze({
   detail: '/pages/community/detail/index',
   myPosts: '/pages/community/my-posts/index',
 });
+
+export const PROFILE_ROUTES = Object.freeze({
+  index: '/pages/profile/index/index',
+  notifications: '/pages/profile/notifications/index',
+  notificationDetail: '/pages/profile/notifications/detail/index',
+  help: '/pages/profile/help/index',
+  feedback: '/pages/profile/help/feedback/index',
+  feedbackRecords: '/pages/profile/help/records/index',
+  privacy: '/pages/profile/privacy/index',
+  export: '/pages/profile/privacy/export/index',
+  deleteRequest: '/pages/profile/privacy/delete-request/index',
+  security: '/pages/profile/security/index',
+  auditLog: '/pages/profile/audit-log/index',
+  adminReleaseChecklist: '/pages/profile/admin/release-checklist/index',
+});

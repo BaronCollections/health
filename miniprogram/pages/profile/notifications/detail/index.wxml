@@ -1,0 +1,29 @@
+<view class="page-shell">
+  <mintbit-nav
+    title="MintBit"
+    subtitle="{{viewModel.notification.title}}"
+    showBack="{{true}}"
+    backLabel="{{backLabel}}"
+  />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="status-pill">{{viewModel.meta.statusLabel}}</view>
+      <view class="section-title detail-title">{{viewModel.notification.title}}</view>
+      <view class="section-body">{{viewModel.notification.body}}</view>
+    </view>
+
+    <view class="surface-card section-card detail-card">
+      <view class="list-item__title">{{viewModel.meta.sourceLabel}}</view>
+      <view class="list-item__body">{{viewModel.meta.sourceValue}}</view>
+      <view class="spacer-20"></view>
+      <view class="list-item__title">{{viewModel.meta.timeLabel}}</view>
+      <view class="list-item__body">{{viewModel.meta.timeValue}}</view>
+      <view class="spacer-20"></view>
+      <view class="list-item__body">{{viewModel.header.autoReadHint}}</view>
+      <view class="button-row" wx:if="{{viewModel.notification.actionHref}}">
+        <view class="button-primary" bindtap="handleOpenRelated">{{viewModel.header.relatedActionCta}}</view>
+      </view>
+    </view>
+  </view>
+</view>

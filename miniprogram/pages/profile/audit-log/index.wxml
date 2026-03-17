@@ -1,0 +1,17 @@
+<view class="page-shell">
+  <mintbit-nav title="MintBit" subtitle="{{viewModel.header.title}}" showBack="{{true}}" backLabel="{{backLabel}}" />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="section-title page-title">{{viewModel.header.title}}</view>
+      <view class="section-body">{{viewModel.header.subtitle}}</view>
+    </view>
+
+    <view class="list-stack trail-stack">
+      <view wx:for="{{viewModel.trailItems}}" wx:key="id" class="surface-card section-card">
+        <view class="list-item__title">{{item.title}}</view>
+        <view class="list-item__body">{{item.body}}</view>
+      </view>
+    </view>
+  </view>
+</view>

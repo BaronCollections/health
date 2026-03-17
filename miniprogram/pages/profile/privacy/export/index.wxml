@@ -1,0 +1,31 @@
+<view class="page-shell">
+  <mintbit-nav title="MintBit" subtitle="{{viewModel.header.title}}" showBack="{{true}}" backLabel="{{backLabel}}" />
+
+  <view wx:if="{{viewModel}}" class="page-content">
+    <view class="surface-card section-card">
+      <view class="section-title page-title">{{viewModel.header.title}}</view>
+      <view class="section-body">{{viewModel.header.subtitle}}</view>
+    </view>
+
+    <view class="surface-card section-card form-card">
+      <view class="field-label">{{viewModel.header.scopeLabel}}</view>
+      <textarea class="text-input form-textarea" value="{{scopeSummary}}" placeholder="{{viewModel.header.scopePlaceholder}}" bindinput="handleInput" />
+      <view class="button-row">
+        <view class="button-primary" bindtap="handleSubmit">{{viewModel.header.requestCta}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{!viewModel.requests.length}}" class="surface-card section-card empty-card">
+      <view class="list-item__title">{{viewModel.emptyState.title}}</view>
+      <view class="list-item__body">{{viewModel.emptyState.body}}</view>
+    </view>
+
+    <view wx:if="{{viewModel.requests.length}}" class="list-stack request-stack">
+      <view wx:for="{{viewModel.requests}}" wx:key="id" class="surface-card section-card request-card">
+        <view class="list-item__title">{{item.scopeSummary}}</view>
+        <view class="status-pill">{{item.statusLabel}}</view>
+        <view class="request-meta">{{item.requestedAt}}</view>
+      </view>
+    </view>
+  </view>
+</view>
