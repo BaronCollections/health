@@ -1,1 +1,57 @@
+.button-wide {
+  width: 100%;
+}
 
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20rpx;
+}
+
+.summary-card {
+  background: rgba(250, 252, 249, 0.96);
+}
+
+.summary-label {
+  font-size: 24rpx;
+  color: var(--mintbit-text-secondary);
+}
+
+.summary-value {
+  margin-top: 12rpx;
+  font-size: 52rpx;
+  font-weight: 700;
+  color: var(--mintbit-text);
+}
+
+.section-header {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--mintbit-text);
+  margin-bottom: 20rpx;
+}
+
+.plan-card {
+  background: rgba(250, 252, 249, 0.96);
+}
+
+.plan-tag {
+  display: inline-flex;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(109, 181, 120, 0.14);
+  color: var(--mintbit-brand-strong);
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.page-actions {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  padding: 24rpx 28rpx calc(28rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 253, 247, 0.96);
+  backdrop-filter: blur(18rpx);
+}

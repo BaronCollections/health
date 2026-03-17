@@ -16,11 +16,11 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 ## Mini Program Migration Snapshot
 
 - 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
-- 当前迁移阶段：`Assessment / OCR / Report`
-- 当前小程序总进度：`约 65%`
+- 当前迁移阶段：`Check-In`
+- 当前小程序总进度：`约 72%`
 - 当前已完成：
   - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
-  - Node 基础测试与契约测试：`21` 个测试全部通过
+  - Node 基础测试与契约测试：`25` 个测试全部通过
   - MintBit 原生壳层：`app.js / app.json / app.wxss / custom-tab-bar`
   - 首批可运行页面：`home / profile / report / checkin / community / auth/login / auth/bind-phone`
   - 小程序认证契约：`/api/miniprogram/auth/login`、`/sms/send`、`/bind`、`/refresh`、`/me`
@@ -32,6 +32,7 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
   - OCR 契约复用：`/api/assessment/{id}/report/upload`、`/api/assessment/{id}/report/result`
   - 原生报告页：报告 tab 已升级为真实详情页，接入评分、目标、OCR 状态、营养方案与建议
   - 原生时间轴：`/pages/report/timeline/index` 已接入历史快照、趋势摘要与社区桥接入口
+  - 原生打卡页：`/pages/checkin/index/index` 已接入连续打卡、积分累计、报告方案回桥与空态处理
 - 当前仍待完成：
   - 打卡、社区、账户深页的完整域迁移
   - 完整问卷题库从首批题目扩展到 Phase 1 全量题目
