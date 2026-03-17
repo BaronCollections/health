@@ -2,6 +2,8 @@
 
 Native WeChat Mini Program workspace for the MintBit Phase 1 migration.
 
+The workspace now keeps only MintBit business pages. The old TDesign example pages and demo-only helper components were removed from `pages/` and `components/`.
+
 ## Open In WeChat DevTools
 
 1. Open WeChat DevTools.
