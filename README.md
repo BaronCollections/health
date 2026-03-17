@@ -17,15 +17,16 @@ AI 驱动的个性化营养评估、方案建议与社区陪伴平台。
 
 - 当前迁移载体：`miniprogram/`，已将 `VcGo` 宿主工程同步进 `health` 仓库
 - 当前迁移阶段：`Mini Program Foundation`
-- 当前基础阶段进度：`约 70%`
+- 当前基础阶段进度：`约 90%`
 - 当前已完成：
   - 原生小程序运行时纯模块：`request / session / i18n / app-store / auth-store`
   - Node 基础测试：`9` 个测试全部通过
   - MintBit 原生壳层：`app.js / app.json / app.wxss / custom-tab-bar`
   - 首批可运行页面：`home / profile / report / checkin / community / auth/login / auth/bind-phone`
+  - 小程序认证契约：`/api/miniprogram/auth/login`、`/sms/send`、`/bind`、`/refresh`、`/me`
+  - 登录绑定链路：`wx.login -> 后端登录 -> bind_required / authenticated`
   - 双语基础：`zh-CN / en` 语言切换、tabBar 文案、首页与账户页基础文案
 - 当前仍待完成：
-  - 真实微信登录后端适配：`/api/miniprogram/auth/*`
   - 问卷、OCR、报告、时间轴、打卡、社区、账户深页的完整域迁移
   - 微信开发者工具内的完整交互验收与发布配置收口
 

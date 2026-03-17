@@ -31,6 +31,14 @@
   - `miniprogram/pages/report/index/*`
   - `miniprogram/pages/checkin/index/*`
   - `miniprogram/pages/community/index/*`
+- Added real mini program auth contract adapters:
+  - `backend/src/main/java/com/mintbit/health/controller/MiniProgramAuthController.java`
+  - `backend/src/main/java/com/mintbit/health/service/MockMiniProgramAuthService.java`
+  - `miniprogram/services/auth/api.js`
+- Replaced the local auth placeholder flow with:
+  - `wx.login -> /api/miniprogram/auth/login -> bind_required / authenticated`
+  - `/api/miniprogram/auth/sms/send`
+  - `/api/miniprogram/auth/bind`
 
 ## Verification
 
@@ -38,22 +46,23 @@ Executed successfully inside `miniprogram/`:
 
 ```bash
 node --test services/request/client.test.mjs services/auth/session.test.mjs services/i18n/index.test.mjs store/app-store.test.mjs store/auth-store.test.mjs
+node --test services/auth/api.test.mjs
 node --check app.js custom-tab-bar/index.js components/mintbit-nav/index.js components/locale-switch/index.js components/fallback-state/index.js store/app-store.js store/auth-store.js i18n/runtime.js pages/home/index/index.js pages/profile/index/index.js pages/auth/login/index.js pages/auth/bind-phone/index.js pages/report/index/index.js pages/checkin/index/index.js pages/community/index/index.js
 node -e "const fs=require('fs'); const files=['app.json','i18n/base.json','custom-tab-bar/index.json','components/mintbit-nav/index.json','components/locale-switch/index.json','components/fallback-state/index.json','pages/home/index/index.json','pages/profile/index/index.json','pages/auth/login/index.json','pages/auth/bind-phone/index.json','pages/report/index/index.json','pages/checkin/index/index.json','pages/community/index/index.json']; files.forEach((file)=>JSON.parse(fs.readFileSync(file,'utf8'))); console.log('json ok')"
+mvn test -Dtest=MockMiniProgramAuthServiceTest
 ```
 
 Result:
 
-- `9` tests passed
+- `11` mini program Node tests passed
 - JavaScript syntax checks passed
 - JSON config parsing passed
+- `3` backend auth service tests passed
 
 ## Remaining Before Foundation Is Complete
 
-- Add `miniprogram/services/auth/api.js` and wire login/bind pages to real backend contracts
-- Replace the current local auth placeholder flow with `wx.login -> backend login -> bind required / authenticated`
 - Verify the shell routes, tabBar, and auth pages inside WeChat DevTools
-- Update the migration spec status after the real auth adapter lands
+- Decide whether to keep the mock backend auth behavior under `/api/miniprogram/auth/*` or replace it immediately with real WeChat openid exchange
 
 ## Next Recommended Program
 
